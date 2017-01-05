@@ -1,0 +1,109 @@
+@import url(//fonts.googleapis.com/css?family=Arimo:400,700);
+
+body {
+    background: #000;
+    text-align: center;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: -moz-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust:none;
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+	font-smoothing: antialiased;
+	text-size-adjust:none;
+	user-select: none;
+	user-drag: none;
+}
+.mail {
+    z-index: 200;
+    display: block;
+    position: relative;
+    height: 1em;
+    line-height: 1em;
+    padding: .1em 0;
+    font-family: 'Arimo', verdana, sans-serif;
+    font-size: 6vw;
+    color: #fff;
+    text-align: center;
+    margin:auto;
+    text-decoration:none;
+    font-weight:800;
+    mix-blend-mode: difference;
+    opacity: 1;
+    letter-spacing: -.25;
+    border-bottom: 1px solid rgba(255,255,255,1);
+    box-shadow: inset 0 0 0 0 #fff;
+    border-radius: 0;
+    -webkit-transition: 
+        padding-top 400ms 50ms ease-in-out,
+        padding-bottom 400ms 50ms ease-in-out,
+        padding-left 300ms 100ms ease-in-out,
+        padding-right 300ms 100ms ease-in-out,
+        color 250ms 75ms ease-in-out,
+        box-shadow 400ms ease-in-out,
+        border-radius 1ms linear;
+	transition: 
+        padding-top 400ms 50ms ease-in-out,
+        padding-bottom 400ms 50ms ease-in-out,
+        padding-left 300ms 100ms ease-in-out,
+        padding-right 300ms 100ms ease-in-out,
+        color 250ms 75ms ease-in-out,
+        box-shadow 400ms ease-in-out,
+        border-radius 1ms linear;
+}
+.mail:hover {
+    box-shadow: inset 0 -25vw 0 0 #fff;
+    color: #000;
+    padding: .5em;
+    border-radius: 2px;
+}
+.mail:active {
+    mix-blend-mode: lighten;
+}
+.aoshima {
+    z-index: 100;
+    background: url(bg.gif) center center repeat, url(data:image/gif;base64,R0lGODlhMgAlALMAAAzBywnlVEoNM+wT4cwSElFz0pYNG251ld8eT94dk38alj0RiaUkz6NHpEoszXpY0yH5BAAAAAAALAAAAAAyACUAAAT/8MgJarg430Kt/iA2deHmnFzhrSXYjBK7Fqgzy60Hd+pMo7ig8EHcGStERk+IZCKNL2hy6WQVl1cprPaobp4/bCo61hbBysWCesxurwqyPKtWCO732HuqnL8QBIGAfQmFhUkLBoF4dWMDjw2QgINSkG5AJidpQHpom2acEycAoo11eT9qARJca6ByjaUnp7SNpLOzlZADcLapDHanwKcqmsDHZY6WKbEcccPC0I3H1MmOz2N1yMHS2sRJ1WO3zni9arvPwbXf4LnF7+2ED9qPAtDd68b6l5Hp58OKqPnLxwCdQEbY1PlrQM/OwXW7LNFSRDFgMIv9yqUrBLFfQUTppCoKGklykoCSk1KqNMRyUJw7gE6KlNmSZsSWN3OGxDNzkU97hSjqZJnTYKKeKFuWRBewqESASSWtJBqUpFOjwJBK5GlVqdCrG7PGFHqRJ8yXCD4eE0n16VqkM2XCndq2oFKxKNmStCnV49CwCvLq/bkUp+Gqgt7uHewzKlW6fQUzllzXK93FXCdPtgx5gOa5lLteDo0gM+nCaQ8jlvz5rGPBhSIAADs=) center center repeat;
+    background-size:cover;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+.aoshima::after {
+    z-index: 101;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    display: block;
+    background: #000;
+    opacity: .15;
+    content: "\0020";
+}

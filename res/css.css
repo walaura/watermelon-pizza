@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css?family=Heebo:300,700');
+
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+	text-decoration: none;
+	color: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	font-family: 'Heebo', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}
+
+body {
+	background: #ff004e;
+}
+
+canvas {
+	position: fixed;
+	top:0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9;
+}
+
+h1 {
+	display: inline;
+}
+
+.🌈 {
+	position: fixed;
+	top:0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 8;
+	transition: opacity 2.5s;
+	opacity: 0;
+}
+
+.bak{
+	background: #ff004e;
+	opacity: 1;
+	z-index: 7;
+	background-image: linear-gradient(to bottom,#ff004e,#ff4f18);
+}
+.🌈.🌈--body {
+	background: #941F1F;
+	opacity: 1;
+	z-index: 7;
+	background-image: linear-gradient(to bottom,#941F1F,#CE6B5D);
+}
+body {
+	background: #ff004e;
+}
+
+.🌈.🌈--hover {
+	background-image: linear-gradient(to bottom,#ddd,#eee);
+}
+body.body--hover {
+	background: #eee;
+}
+body.body--hover .🌈.🌈--hover {
+	opacity: 1;
+}
+
+
+
+.🙅🌈 {
+	position: relative;
+	z-index: 10;
+	overflow: hidden;
+	margin: 1em;
+}
+
+.🎒 {
+	max-width: 40em;
+	margin: 5em auto;
+	margin: 20vh auto;
+	padding: 0 2.5em;
+	color: #FFEFB9;
+}
+
+@media (max-width: 40em) {
+	.🎒 {
+		font-size: .5em;
+	}
+}
+
+.🎒-🌸 {
+	margin-bottom: 5rem;
+	font-size: 2em;
+	font-weight: 200;
+}
+
+.🌎 {
+	display: block;
+	font-size: 6em;
+	font-weight: 800;
+}
+
+.🌎:not(:last-child):after {
+	content: '\0020';
+	background: #fff;
+	height: 1px;
+	width: .4em;
+	display: block;
+}
+
+.🌎 .🌎-⏹  {
+	display: inline-block;
+	transition: .5s color;
+}
+
+.🌎:hover .🌎-⏹ {
+	animation: .6s jump infinite linear;
+}
+
+.🌎:hover .🌎-⏹:nth-child(5n + 1) {
+	color: #DF151A;
+}
+.🌎:hover .🌎-⏹:nth-child(5n + 2) {
+	color: #FD8603;
+}
+.🌎:hover .🌎-⏹:nth-child(5n + 3) {
+	color: #F4F328;
+}
+.🌎:hover .🌎-⏹:nth-child(5n + 4) {
+	color: #00DA3C;
+}
+.🌎:hover .🌎-⏹:nth-child(5n + 5) {
+	color: #00CBE7;
+}
+
+@keyframes jump {
+	0% {
+		transform: translateY(0);
+	}
+	20% {
+		transform: translateY(-.05em);
+	}
+	80% {
+		transform: translateY(.05em);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
