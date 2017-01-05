@@ -7,11 +7,25 @@
 			color: color,
 		});
 	}
-	
+
+	var rgb2hex = function(rgb) {
+	    if (/^#[0-9A-F]{6}$/i.test(rgb)) return rgb;
+
+	    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+	    function hex(x) {
+	        return ("0" + parseInt(x).toString(16)).slice(-2);
+	    }
+	    return hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+	}
+
+	var getCssColor = function(name) {
+		return window.getComputedStyle(document.documentElement).getPropertyValue('--color-'+name);
+	}
+
 	/*0xff4e18*/
 	var neutralItem = {
-		color: 0x7B9971,
-		material: makeMaterial(0x7B9971)
+		color: getCssColor('rain'),
+		material: makeMaterial(getCssColor('rain'))
 	};
 	var items = {
 		twitter: {
@@ -49,25 +63,7 @@
 			model: 'camera',
 			material: makeMaterial(0xcccccc),
 			scale: 1
-		},
-		flake: {
-			color: 0xeeeeee,
-			model: 'flake',
-			material: makeMaterial(0xcccccc),
-			scale: .1
-		},		flake: {
-			color: 0xeeeeee,
-			model: 'flake',
-			material: makeMaterial(0xcccccc),
-			scale: .1
-		},
-				flake: {
-			color: 0xeeeeee,
-			model: 'flake',
-			material: makeMaterial(0xcccccc),
-			scale: .1
-		},
-
+		}
 
 	};
 

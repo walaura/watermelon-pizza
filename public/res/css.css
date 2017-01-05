@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Heebo:300,700');
 
+:root {
+	--color-main: #2c05ef;
+	--color-main-alt: #056aef;
+	--color-rain: #056aef;
+	--color-text: #05efe2;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -41,27 +48,22 @@ h1 {
 	opacity: 0;
 }
 
-.bak{
-	background: #ff004e;
-	opacity: 1;
-	z-index: 7;
-	background-image: linear-gradient(to bottom,#ff004e,#ff4f18);
-}
 .🌈.🌈--body {
-	background: #941F1F;
+	background: #000;
+	background: var(--color-main);
 	opacity: 1;
 	z-index: 7;
-	background-image: linear-gradient(to bottom,#941F1F,#CE6B5D);
+	background-image: linear-gradient(to bottom,var(--color-main),var(--color-main-alt));
 }
 body {
-	background: #ff004e;
+	background: #000;
 }
 
 .🌈.🌈--hover {
 	background-image: linear-gradient(to bottom,#ddd,#eee);
 }
 body.body--hover {
-	background: #eee;
+	--color-text: #fff;
 }
 body.body--hover .🌈.🌈--hover {
 	opacity: 1;
@@ -81,7 +83,9 @@ body.body--hover .🌈.🌈--hover {
 	margin: 5em auto;
 	margin: 20vh auto;
 	padding: 0 2.5em;
-	color: #FFEFB9;
+	color: #fff;
+	color: var(--color-text);
+	transition: color .5s linear;
 }
 
 @media (max-width: 40em) {
@@ -105,6 +109,8 @@ body.body--hover .🌈.🌈--hover {
 .🌎:not(:last-child):after {
 	content: '\0020';
 	background: #fff;
+	background: var(--color-text);
+	transition: background .5s linear;
 	height: 1px;
 	width: .4em;
 	display: block;
@@ -112,7 +118,6 @@ body.body--hover .🌈.🌈--hover {
 
 .🌎 .🌎-⏹  {
 	display: inline-block;
-	transition: .5s color;
 }
 
 .🌎:hover .🌎-⏹ {
