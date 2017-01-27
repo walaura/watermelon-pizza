@@ -8,18 +8,13 @@
 		});
 	}
 
-	var rgb2hex = function(rgb) {
-	    if (/^#[0-9A-F]{6}$/i.test(rgb)) return rgb;
-
-	    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-	    function hex(x) {
-	        return ("0" + parseInt(x).toString(16)).slice(-2);
-	    }
-	    return hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
-	}
-
 	var getCssColor = function(name) {
-		return window.getComputedStyle(document.documentElement).getPropertyValue('--color-'+name);
+		var color = window
+			.getComputedStyle(document.documentElement)
+			.getPropertyValue('--color-'+name)
+			.replace(/#/g,'')
+			.trim();
+		return parseInt(color,16);
 	}
 
 	/*0xff4e18*/
