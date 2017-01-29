@@ -9,6 +9,7 @@ const uglifycss = require('gulp-uglifycss');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
 const banner = require('gulp-banner');
+const extract = require('extract-zip')
 
 const bannerText = fs.readFileSync('./etc/banner.txt').toString()+"\n\n";
 
@@ -38,9 +39,35 @@ gulp.task('clean',function() {
 
 	['public/watermelon','public/old'].map((dir) => fs.removeSync(dir))
 	fs.mkdirsSync('public/watermelon');
-	fs.copySync('etc/old','public/old');
 
 });
+
+
+gulp.task('makearchive',function(done){
+	fs.removeSync('public/old');
+	fs.mkdirsSync('public/old');
+	fs.readdir('etc/old',function(err,files){
+
+		if(err) throw err;
+		files = files.filter((file)=> path.extname(file) === '.zip');
+
+		let extractedFiles = 0;
+		let onExtractionComplete = () => {
+			extractedFiles++;
+			if(extractedFiles >= files.length) done();
+		}
+
+		files.map((file)=>{
+			let extraction = extract('./etc/old/'+file,{
+				dir: process.cwd()+'/public/old'
+			},function(err){
+				if(err) throw err;
+				onExtractionComplete();
+			});
+		});
+
+	})
+})
 
 
 gulp.task('makejs', function() {
@@ -85,6 +112,6 @@ gulp.task('watch',function() {
 
 gulp.task('make',['clean'],function(){
 
-	gulp.start('makejs','makecss');
+	gulp.start('makearchive','makejs','makecss');
 
 })
