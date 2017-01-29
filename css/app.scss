@@ -1,11 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Heebo:300,700');
-
-:root {
-	--color-main: #2c05ef;
-	--color-main-alt: #056aef;
-	--color-rain: #056aef;
-	--color-text: #05efe2;
-}
+@import 'globals';
 
 * {
 	margin: 0;
@@ -18,10 +11,6 @@
 	font-family: 'Heebo', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
-}
-
-body {
-	background: #ff004e;
 }
 
 canvas {
@@ -49,7 +38,7 @@ h1 {
 }
 
 .🌈.🌈--body {
-	background: #000;
+	background: #fff;
 	background: var(--color-main);
 	opacity: 1;
 	z-index: 7;
@@ -154,3 +143,5 @@ body.body--hover .🌈.🌈--hover {
 		transform: translateY(0);
 	}
 }
+
+@import url("https://fonts.googleapis.com/css?family=Heebo:300,700");
