@@ -1,0 +1,27 @@
+{
+  "name": "watermelon-pizza",
+  "version": "1.0.0",
+  "description": "My personal website!!",
+  "main": "index.js",
+  "dependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "fs-extra": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-uglify": "^2.0.1",
+    "webpack-stream": "^3.2.0"
+  },
+  "scripts": {
+    "gulp": "./node_modules/.bin/gulp",
+    "install": "npm run gulp make",
+    "deploy": "npm run gulp make && ./etc/scripts/deploy.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://walaura@bitbucket.org/walaura/lauragonzalez.cc.git"
+  },
+  "author": "Laura Mayhem",
+  "license": "IT MINE",
+  "homepage": "https://bitbucket.org/walaura/lauragonzalez.cc#readme"
+}

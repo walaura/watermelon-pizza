@@ -1,4 +1,4 @@
-(function(){
+export default function(){
 
 	var makeMaterial = function(color){
 		return new THREE.MeshLambertMaterial({
@@ -198,4 +198,4 @@
 	if(document.readyState === "interactive") go();
 	else window.addEventListener('DOMContentLoaded',go);
 
-})();
+};
