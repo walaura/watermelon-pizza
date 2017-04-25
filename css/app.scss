@@ -83,26 +83,38 @@ body.body--hover .🌈.🌈--hover {
 	}
 }
 
+.🎒-👄 {
+	margin-top: 5rem;
+	a {
+		font-weight: 600;
+		&:hover {
+			color: var(--color-hover);
+		}
+	}
+}
+
 .🎒-🌸 {
 	margin-bottom: 5rem;
 	font-size: 2em;
 	font-weight: 200;
 }
 
-.🌎 {
-	display: block;
-	font-size: 6em;
-	font-weight: 800;
-}
+.🎒-🌎 {
+	.🌎 {
+		display: block;
+		font-size: 6em;
+		font-weight: 800;
+	}
 
-.🌎:not(:last-child):after {
-	content: '\0020';
-	background: #fff;
-	background: var(--color-text);
-	transition: background .5s linear;
-	height: 1px;
-	width: .4em;
-	display: block;
+	.🌎:not(:last-of-type):after {
+		content: '\0020';
+		background: #fff;
+		background: var(--color-text);
+		transition: background .5s linear;
+		height: 1px;
+		width: .4em;
+		display: block;
+	}
 }
 
 .🌎 .🌎-⏹  {
@@ -114,19 +126,19 @@ body.body--hover .🌈.🌈--hover {
 }
 
 .🌎:hover .🌎-⏹:nth-child(5n + 1) {
-	color: #DF151A;
+	color: #FF7575;
 }
 .🌎:hover .🌎-⏹:nth-child(5n + 2) {
-	color: #FD8603;
+	color: #FF9563;
 }
 .🌎:hover .🌎-⏹:nth-child(5n + 3) {
-	color: #F4F328;
+	color: #DEFF65;
 }
 .🌎:hover .🌎-⏹:nth-child(5n + 4) {
-	color: #00DA3C;
+	color: #A7FF7B;
 }
 .🌎:hover .🌎-⏹:nth-child(5n + 5) {
-	color: #00CBE7;
+	color: #5AD3FF;
 }
 
 @keyframes jump {
