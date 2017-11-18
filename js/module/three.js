@@ -58,6 +58,12 @@ export default function(){
 			model: 'camera',
 			material: makeMaterial(0xcccccc),
 			scale: 1
+		},
+		behance: {
+			color: 0xeeeeee,
+			model: 'paintbrush',
+			material: makeMaterial(0xcccccc),
+			scale: .2
 		}
 
 	};
