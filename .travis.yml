@@ -9,8 +9,9 @@ notifications:
   email: false
 deploy:
   provider: s3
-  access_key_id: AKIAJH5KJ3PCX7QUHSCQ
-  secret_access_key: "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"
+  access_key_id: AKIAJA2YXC3DYNFCGERQ
+  secret_access_key:
+    secure: EyHdHI6S214gAhqyTLEDFKVVsX47XE+gV17snZpnWDbvChcfx0nLyVRTDW/nHF8BZpvAco2xQERAdXGg9rQgAKYOpI/KT6MDe8NDvveDCFWfid7ppCtPtRnF2InXHoUrZ9sSaxlnc653OvCJfhlce3rAyF0U0AoJYqQ9j8MsOdxem420xnHliOsKAisI0lfm0CBKnSeW5cXQr0zsJjW8fUv7ZrGl64zqavMCcN9Eu+DHz1FZ3pRWxh3K/meg5A3RF9K8MYCu/oCJ+B5uPbuQFq88pKlY8YDpk0gkWc+XAhclMGf/lMoeGDSCBjTzJHAxaHeQ9idIO2YZgmcDYClwkNcONGIX/Y9hVJfLTSTjCCQGXC7P1yj+MX4A1aaMf+fgXauZdNIAg/hGaECSYooyL7uNJhtfwtqSC/Flgk0Sb7yP1JwjgKkbGtg2ZPRAc067SWgoMG0Zj5r6/bdKCoygTDCJPVOzIfNvDyzouCliSSJkbdTLpbSxvw8RN9PRunDDAHfYuTp/om7DJXOHOHHfejMytI/cqhLVakvKYGeyYH3GDYFEV21nLcEcrR864BfBXVAIy6u2+XB6boT8NMXYRfMJHn3wMNtkt+OS8l+t+r/utRgiNCh2ZddlzCnrg3Hwhaz5Se8lC80jsXvuFB2dyldTXa3Q83q/tdjJJ7J7bYc=
   bucket: lauragonzalez-cc
   skip-cleanup: true
   local-dir: public
