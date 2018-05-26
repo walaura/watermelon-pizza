@@ -11,8 +11,7 @@
 	"scripts": {
 		"install": "npm run make",
 		"make": "concurrently \"npm run css\" \"npm run js\"",
-		"css":
-			"sass css/app.scss public/watermelon/watermelon.css --no-source-map -s compressed",
+		"css": "sass css/app.scss public/watermelon/watermelon.css --no-source-map -s compressed",
 		"js": "webpack"
 	},
 	"repository": {
