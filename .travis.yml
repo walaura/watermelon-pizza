@@ -16,7 +16,7 @@ deploy:
   secret_access_key: $AWS_SECRET_KEY
   bucket: lauragonzalez-cc
   skip-cleanup: true
-  local-dir: dest
+  local-dir: out
   acl: public_read
   on:
     branch: master

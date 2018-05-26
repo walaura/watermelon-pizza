@@ -5,6 +5,5 @@ module.exports = ctx => ({
 			root: './css',
 		}),
 		require('postcss-nesting'),
-		require('postcss-clean'),
 	],
 });

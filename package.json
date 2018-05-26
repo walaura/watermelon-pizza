@@ -11,7 +11,6 @@
 		"extract-zip": "^1.6.7",
 		"fs-extra": "^6.0.1",
 		"postcss": "^6.0.22",
-		"postcss-clean": "^1.1.0",
 		"postcss-cli": "^5.0.0",
 		"postcss-import": "^11.1.0",
 		"postcss-nesting": "^5.0.0",

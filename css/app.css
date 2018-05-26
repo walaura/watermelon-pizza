@@ -1,3 +1,4 @@
+@charset 'utf-8';
 @import 'globals.css';
 @import url('https://fonts.googleapis.com/css?family=Heebo:300,700');
 
@@ -87,7 +88,7 @@ body.body--hover .🌈.🌈--hover {
 
 .🎒-👄 {
 	margin-top: 5rem;
-	a {
+	& a {
 		font-weight: 600;
 		&:hover {
 			color: var(--color-hover);
@@ -102,13 +103,13 @@ body.body--hover .🌈.🌈--hover {
 }
 
 .🎒-🌎 {
-	.🌎 {
+	& .🌎 {
 		display: block;
 		font-size: 6em;
 		font-weight: 800;
 	}
 
-	.🌎:not(:last-of-type):after {
+	& .🌎:not(:last-of-type):after {
 		content: '\0020';
 		background: #fff;
 		background: var(--color-text);
