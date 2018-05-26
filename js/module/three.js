@@ -1,207 +1,178 @@
-export default function(){
+import { items, neutralItem } from './three/items.js';
+import { linkStatusChangeEvent } from './hover.js';
 
-	var makeMaterial = function(color){
-		return new THREE.MeshLambertMaterial({
-			emissive: color,
-			emissiveIntensity: 1,
-			color: color,
+const meshes = [];
+let hoveredItem;
+
+const randomArrKey = items => items[Math.floor(Math.random() * items.length)];
+
+const setup = () => {
+	var scene = new THREE.Scene();
+	var camera = new THREE.PerspectiveCamera(
+		5,
+		window.innerWidth / window.innerHeight,
+		0.1,
+		1000
+	);
+	var renderer = new THREE.WebGLRenderer({
+		alpha: true,
+	});
+
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	document.body.appendChild(renderer.domElement);
+	var directionalLight = new THREE.DirectionalLight(0xffffff, 0.25);
+	directionalLight.position.set(0, 0, 0.1);
+	scene.add(directionalLight);
+
+	var directionalLight = new THREE.DirectionalLight(0xffffff, 0.25);
+	directionalLight.position.set(0, 1, 0);
+	scene.add(directionalLight);
+
+	camera.position.z = 25;
+
+	return { camera, renderer, scene };
+};
+
+const loadJsonPromise = item =>
+	new Promise(yay => {
+		new THREE.JSONLoader().load(item, function(geometry) {
+			yay(geometry);
 		});
+	});
+
+const getItemsWithGeometry = items =>
+	Promise.all(
+		items.map(item =>
+			loadJsonPromise('res/model/' + item.model + '.json').then(geometry => ({
+				...item,
+				geometry,
+			}))
+		)
+	);
+
+const itemsMatch = (item1, item2) => {
+	if (!item1 || !item1.for) return null;
+	if (!item2 || !item2.for) return null;
+	return item1.for === item2.for;
+};
+
+const makeMesh = (itemsWithGeometry, hovered) => {
+	const item = hovered ? hovered : randomArrKey(itemsWithGeometry);
+	const itemName = hovered ? item.for : null;
+	const maxSpeed = 1;
+	const speed = 1;
+	const direction = Math.random() > 0.5;
+	const maxScale = item.scale;
+
+	const mesh = new THREE.Mesh(
+		item.geometry,
+		hovered ? hovered.material : neutralItem.material
+	);
+
+	Object.entries({
+		x: Math.random() * 10 - 5,
+		y: 2.75,
+		z: Math.random() * 60 - 40,
+	}).forEach(([axis, value]) => {
+		mesh.position[axis] = value;
+	});
+
+	Object.entries({
+		y: Math.random() / 10,
+		z: Math.random() / 10,
+	}).forEach(([axis, value]) => {
+		mesh.rotation[axis] += value;
+	});
+
+	mesh.scale.set(0, 0, 0);
+
+	mesh.userData = {
+		itemName,
+		maxSpeed,
+		speed,
+		maxScale,
+		direction,
+	};
+
+	return mesh;
+};
+
+const updateMesh = (mesh, hovered) => {
+	if (
+		(!hovered && mesh.userData.itemName !== null) ||
+		(hovered && !itemsMatch(hovered, { for: mesh.userData.itemName }))
+	) {
+		mesh.userData.maxSpeed = 10;
 	}
 
-	var getCssColor = function(name) {
-		var color = window
-			.getComputedStyle(document.documentElement)
-			.getPropertyValue('--color-'+name)
-			.replace(/#/g,'')
-			.trim();
-		return parseInt(color,16);
+	if (mesh.userData.maxSpeed > mesh.userData.speed) {
+		mesh.userData.speed += 0.15;
+	}
+	if (mesh.userData.maxSpeed < mesh.userData.speed) {
+		mesh.userData.speed -= 0.15;
 	}
 
-	/*0xff4e18*/
-	var neutralItem = {
-		color: getCssColor('rain'),
-		material: makeMaterial(getCssColor('rain'))
-	};
-	var items = {
-		twitter: {
-			color: 0xeeeeee,
-			model: 'birb',
-			material: makeMaterial(0xcccccc),
-			scale: 1
-		},
-		linkedin: {
-			color: 0xeeeeee,
-			model: 'coffee',
-			material: makeMaterial(0xcccccc),
-			scale: .33
-		},
-		mail: {
-			color: 0xeeeeee,
-			model: 'mail',
-			material: makeMaterial(0xcccccc),
-			scale: 1
-		},
-		itch: {
-			color: 0xeeeeee,
-			model: 'pad',
-			material: makeMaterial(0xcccccc),
-			scale: .33
-		},
-		github: {
-			color: 0xeeeeee,
-			model: 'screen',
-			material: makeMaterial(0xcccccc),
-			scale: 1
-		},
-		flickr: {
-			color: 0xeeeeee,
-			model: 'camera',
-			material: makeMaterial(0xcccccc),
-			scale: 1
-		},
-		behance: {
-			color: 0xeeeeee,
-			model: 'paintbrush',
-			material: makeMaterial(0xcccccc),
-			scale: .2
-		}
+	if (mesh.scale.y < mesh.userData.maxScale) {
+		mesh.scale.set(...Array(3).fill(mesh.scale.y + 0.025));
+	}
 
-	};
+	if (mesh.userData.direction) {
+		mesh.rotation.y += Math.random() / 500;
+		mesh.rotation.z += Math.random() / 500;
+		mesh.rotation.x += Math.random() / 500;
+	} else {
+		mesh.rotation.y -= Math.random() / 500;
+		mesh.rotation.z -= Math.random() / 500;
+		mesh.rotation.x -= Math.random() / 500;
+	}
 
-	var go = function(ev){
+	mesh.position.y -= 0.0075 * mesh.userData.speed;
 
-		var scene = new THREE.Scene();
-		var camera = new THREE.PerspectiveCamera( 5, window.innerWidth/window.innerHeight, 0.1, 1000 );
-		var renderer = new THREE.WebGLRenderer({
-			alpha: true
-		});
+	return mesh;
+};
 
-		renderer.setSize( window.innerWidth, window.innerHeight );
-		document.body.appendChild( renderer.domElement );
-		var directionalLight = new THREE.DirectionalLight( 0xffffff, .25);
-		directionalLight.position.set( 0, 0, .1 );
-		scene.add( directionalLight );
+const onLoad = () =>
+	Promise.all([setup(), getItemsWithGeometry(items)]).then(
+		([{ camera, renderer, scene }, itemsWithGeometry]) => {
+			window.addEventListener('mousemove', function(ev) {
+				const pos = [
+					0.5 - ev.clientX / window.innerWidth,
+					0.5 - ev.clientY / window.innerHeight,
+				];
 
-		var directionalLight = new THREE.DirectionalLight( 0xffffff, .25 );
-		directionalLight.position.set( 0, 1, 0 );
-		scene.add( directionalLight );
+				camera.rotation.z = pos[0] / 100 * -1;
+				camera.rotation.y = pos[0] / 100 * -1;
+				camera.position.z = 25 + pos[1];
+			});
 
-		camera.position.z = 25;
-		window.document.addEventListener('mousemove',function(ev){
-			var pos = [
-				.5 - (ev.clientX / window.innerWidth),
-				.5 - (ev.clientY / window.innerHeight)
-			];
+			window.addEventListener(linkStatusChangeEvent, ev => {
+				hoveredItem =
+					ev.detail && ev.detail.name
+						? itemsWithGeometry.find(_ => _.for === ev.detail.name)
+						: null;
+			});
 
-			camera.rotation.z = pos[0] / 100 * -1;
-			camera.rotation.y = pos[0] / 100 * -1;
-			camera.position.z = 25 + pos[1];
-		});
+			setInterval(() => {
+				const mesh = makeMesh(itemsWithGeometry, hoveredItem);
 
-		var loader = new THREE.JSONLoader();
+				meshes.push(mesh);
+				scene.add(mesh);
 
-		var itemsToLoad = 0;
-		var itemsLoaded = 0;
-
-		for(var i in items) {
-			if(items[i].model) itemsToLoad++;
-			loader.load(
-				'res/model/'+items[i].model+'.json',
-				function(geometry){
-					itemsLoaded++;
-					console.log(this.i);
-					items[this.i]["geometry"] = geometry;
-					if(itemsLoaded >= itemsToLoad) gogogo();
-				}.bind({i:i})
-			);
-
-		}
-
-		var gogogo = function(geometry){
-			var cubes = [];
-			setInterval(function(){
-				var material, geometry, cube, item, from;
-				if(items[window.hovered]) {
-					item = items[window.hovered];
-					material = items[window.hovered].material;
-					from = window.hovered;
-				} else {
-					item = items[Object.keys(items)[Math.floor(Math.random()*Object.keys(items).length)]];
-					material = neutralItem.material;
-					from = 'gen';
-				}
-
-				cube = new THREE.Mesh( item.geometry, material );
-				cube.position.z = Math.random() * 60 - 40;
-				cube.position.y = 2.75;
-				cube.position.x = Math.random() * 10 - 5;
-
-				cube.rotation.z += Math.random() / 10;
-				cube.rotation.y += Math.random() / 10;
-
-				cube._direction = Math.random() > .5;
-				cube._from = from;
-				cube._maxSpeed = 1;
-				cube._speed = 1;
-				cube._maxScale = item.scale;
-
-				cube.scale.set(0,0,0);
-
-				cubes.push(cube);
-				scene.add( cube );
-
-				cubes.map(function(cube){
-					if (cube.position.y < -5) scene.remove(cube);
+				meshes.forEach((mesh, i) => {
+					if (mesh.position.y < -5) {
+						scene.remove(mesh);
+						delete meshes[i];
+					}
 				});
-			},300);
+			}, 300);
 
-			var render = function () {
-				requestAnimationFrame( render );
-
-				cubes.map(function(cube){
-
-					if(window.hovered && window.hovered !== cube._from) {
-						cube._maxSpeed = -5;
-					}
-					if(!window.hovered && cube._from !== 'gen') {
-						cube._maxSpeed = -5;
-					}
-
-					if(cube._maxSpeed > cube._speed) {
-						cube._speed += .25;
-					}
-					if(cube._maxSpeed < cube._speed) {
-						cube._speed -= .25;
-					}
-
-					if(cube.scale.y < cube._maxScale) {
-						var update = cube.scale.y + .025;
-						cube.scale.set(update,update,update);
-					}
-
-					if(cube._direction) {
-						cube.rotation.y += Math.random() / 500;
-						cube.rotation.z += Math.random() / 500;
-						cube.rotation.x += Math.random() / 500;
-					}
-					else {
-						cube.rotation.y -= Math.random() / 500;
-						cube.rotation.z -= Math.random() / 500;
-						cube.rotation.x -= Math.random() / 500;
-					}
-
-					cube.position.y -= 0.0075 * cube._speed;
-				});
-
+			const renderLoop = () => {
+				meshes.forEach(mesh => updateMesh(mesh, hoveredItem));
+				requestAnimationFrame(renderLoop);
 				renderer.render(scene, camera);
 			};
-
-			render();
+			renderLoop();
 		}
+	);
 
-	};
-
-	if(document.readyState === "interactive") go();
-	else window.addEventListener('DOMContentLoaded',go);
-
-};
+export default onLoad;

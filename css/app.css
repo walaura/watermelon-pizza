@@ -1,4 +1,6 @@
-@import 'globals';
+@charset 'utf-8';
+@import 'globals.css';
+@import url('https://fonts.googleapis.com/css?family=Heebo:300,700');
 
 * {
 	margin: 0;
@@ -10,12 +12,11 @@
 	font-weight: inherit;
 	font-family: 'Heebo', sans-serif;
 	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
 }
 
 canvas {
 	position: fixed;
-	top:0;
+	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -28,7 +29,7 @@ h1 {
 
 .🌈 {
 	position: fixed;
-	top:0;
+	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -42,23 +43,25 @@ h1 {
 	background: var(--color-main);
 	opacity: 1;
 	z-index: 7;
-	background-image: linear-gradient(to bottom,var(--color-main),var(--color-main-alt));
+	background-image: linear-gradient(
+		to bottom,
+		var(--color-main),
+		var(--color-main-alt)
+	);
 }
 body {
 	background: #000;
 }
 
 .🌈.🌈--hover {
-	background-image: linear-gradient(to bottom,#ddd,#eee);
+	background-image: linear-gradient(to bottom, #ddd, #eee);
 }
-body.body--hover {
+body[data-hovered] {
 	--color-text: #fff;
 }
-body.body--hover .🌈.🌈--hover {
+body[data-hovered] .🌈.🌈--hover {
 	opacity: 1;
 }
-
-
 
 .🙅🌈 {
 	position: relative;
@@ -74,18 +77,18 @@ body.body--hover .🌈.🌈--hover {
 	padding: 0 2.5em;
 	color: #fff;
 	color: var(--color-text);
-	transition: color .5s linear;
+	transition: color 0.5s linear;
 }
 
 @media (max-width: 40em) {
 	.🎒 {
-		font-size: .5em;
+		font-size: 0.5em;
 	}
 }
 
 .🎒-👄 {
 	margin-top: 5rem;
-	a {
+	& a {
 		font-weight: 600;
 		&:hover {
 			color: var(--color-hover);
@@ -100,45 +103,45 @@ body.body--hover .🌈.🌈--hover {
 }
 
 .🎒-🌎 {
-	.🌎 {
+	& .🌎 {
 		display: block;
 		font-size: 6em;
 		font-weight: 800;
 	}
 
-	.🌎:not(:last-of-type):after {
+	& .🌎:not(:last-of-type):after {
 		content: '\0020';
 		background: #fff;
 		background: var(--color-text);
-		transition: background .5s linear;
+		transition: background 0.5s linear;
 		height: 1px;
-		width: .4em;
+		width: 0.4em;
 		display: block;
 	}
 }
 
-.🌎 .🌎-⏹  {
+.🌎 .🌎-⏹ {
 	display: inline-block;
 }
 
 .🌎:hover .🌎-⏹ {
-	animation: .6s jump infinite linear;
+	animation: 0.6s jump infinite linear;
 }
 
 .🌎:hover .🌎-⏹:nth-child(5n + 1) {
-	color: #FF7575;
+	color: #ff7575;
 }
 .🌎:hover .🌎-⏹:nth-child(5n + 2) {
-	color: #FF9563;
+	color: #ff9563;
 }
 .🌎:hover .🌎-⏹:nth-child(5n + 3) {
-	color: #DEFF65;
+	color: #deff65;
 }
 .🌎:hover .🌎-⏹:nth-child(5n + 4) {
-	color: #A7FF7B;
+	color: #a7ff7b;
 }
 .🌎:hover .🌎-⏹:nth-child(5n + 5) {
-	color: #5AD3FF;
+	color: #5ad3ff;
 }
 
 @keyframes jump {
@@ -146,14 +149,12 @@ body.body--hover .🌈.🌈--hover {
 		transform: translateY(0);
 	}
 	20% {
-		transform: translateY(-.05em);
+		transform: translateY(-0.05em);
 	}
 	80% {
-		transform: translateY(.05em);
+		transform: translateY(0.05em);
 	}
 	100% {
 		transform: translateY(0);
 	}
 }
-
-@import url("https://fonts.googleapis.com/css?family=Heebo:300,700");

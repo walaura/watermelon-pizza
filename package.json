@@ -7,9 +7,14 @@
 		"@babel/preset-env": "^7.0.0-beta.49",
 		"babel-loader": "^8.0.0-beta.3",
 		"concurrently": "^3.5.1",
+		"cssnano": "^3.10.0",
+		"express": "^4.16.3",
 		"extract-zip": "^1.6.7",
 		"fs-extra": "^6.0.1",
-		"rmdir": "^1.2.0",
+		"postcss": "^6.0.22",
+		"postcss-cli": "^5.0.0",
+		"postcss-import": "^11.1.0",
+		"postcss-nesting": "^5.0.0",
 		"sass": "^1.3.2",
 		"webpack": "^4.9.1",
 		"webpack-cli": "^2.1.4"
@@ -17,10 +22,13 @@
 	"scripts": {
 		"install": "npm run make",
 		"make":
-			"concurrently \"npm run css\" \"npm run js\" \"node etc/unpack.js\"",
-		"css":
-			"sass css/app.scss public/watermelon/watermelon.css --no-source-map -s compressed",
-		"js": "webpack"
+			"concurrently \"npm run static\" \"npm run css -- --no-map\" \"npm run js\" \"node etc/unpack.js\"",
+		"watch":
+			"concurrently \"npm run css -- -w\" \"npm run js -- -w --mode=development\" \"npm run static\" \"npm run express\"",
+		"css": "postcss css/app.css -o out/watermelon.css",
+		"js": "webpack",
+		"static": "node etc/build.js",
+		"express": "node app.js"
 	},
 	"repository": {
 		"type": "git",

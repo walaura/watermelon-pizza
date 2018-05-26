@@ -1,34 +1,42 @@
-export default function() {
-	var elementList = [...document.querySelectorAll('.🌎')];
-	var body = document.querySelector('body');
-	window.hovered = undefined;
-	elementList.forEach(link => {
-		var str = link.innerHTML.trim().split('');
-		var i = -1;
-		str = str.map(function(str) {
-			i++;
-			return (
-				'<span class="🌎-⏹"" style="animation-delay:' +
-				i / 15 +
-				's">' +
-				str +
-				'</span>'
+const parseLink = $link => ({
+	name: $link.attributes['data-type'].value,
+});
+
+const linkStatusChangeEvent = 'link-status-change';
+
+const onLoad = () => {
+	window.addEventListener(linkStatusChangeEvent, ev => {
+		if (ev.detail && ev.detail.name) {
+			document.body.dataset.hovered = ev.detail.name;
+		} else {
+			delete document.body.dataset.hovered;
+		}
+	});
+
+	[...document.querySelectorAll('.🌎')].forEach($link => {
+		$link.innerHTML = $link.innerHTML
+			.trim()
+			.split('')
+			.map(
+				(str, i) =>
+					`<span class="🌎-⏹"" style="animation-delay:${(i - 1) / 15}s">
+						${str}
+					</span>`
+			)
+			.join('');
+
+		$link.addEventListener('mouseenter', () => {
+			window.dispatchEvent(
+				new CustomEvent(linkStatusChangeEvent, { detail: parseLink($link) })
 			);
 		});
-		link.innerHTML = str.join('');
-
-		link.addEventListener('mouseenter', function() {
-			try {
-				document.body.className =
-					'body--hover body--hover-' + this.attributes['data-type'].value;
-				hovered = this.attributes['data-type'].value;
-			} catch (e) {
-				console.error('Undefined data-type');
-			}
-		});
-		link.addEventListener('mouseleave', function() {
-			document.body.className = '';
-			hovered = undefined;
+		$link.addEventListener('mouseleave', () => {
+			window.dispatchEvent(
+				new CustomEvent(linkStatusChangeEvent, { detail: null })
+			);
 		});
 	});
-}
+};
+
+export { linkStatusChangeEvent };
+export default onLoad;
