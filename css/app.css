@@ -56,10 +56,10 @@ body {
 .🌈.🌈--hover {
 	background-image: linear-gradient(to bottom, #ddd, #eee);
 }
-body.body--hover {
+body[data-hovered] {
 	--color-text: #fff;
 }
-body.body--hover .🌈.🌈--hover {
+body[data-hovered] .🌈.🌈--hover {
 	opacity: 1;
 }
 
