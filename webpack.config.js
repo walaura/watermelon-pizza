@@ -1,4 +1,5 @@
 const path = require('path');
+const config = require('./.watermelonrc');
 
 module.exports = {
 	module: {
@@ -19,7 +20,7 @@ module.exports = {
 
 	output: {
 		filename: 'watermelon.js',
-		path: path.resolve(__dirname, 'public', 'watermelon'),
+		path: config.files.out,
 	},
 
 	mode: 'production',

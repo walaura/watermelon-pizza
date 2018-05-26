@@ -1,7 +1,4 @@
 node_modules/
 
-public/old
-public/old/*
-
-public/watermelon
-public/watermelon/*
+out
+!out/.gitignore

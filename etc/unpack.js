@@ -1,10 +1,10 @@
 const path = require('path');
-const fs = require('fs');
-const rmdir = require('rmdir');
+const fs = require('fs-extra');
 const extract = require('extract-zip');
+const config = require('./../.watermelonrc');
 
 const sourcePath = path.resolve(__dirname, '..', 'etc', 'old');
-const targetPath = path.resolve(__dirname, '..', 'public', 'old');
+const targetPath = path.resolve(config.files.out, 'old');
 
 const extractPromise = file =>
 	new Promise((yay, nay) => {
@@ -21,8 +21,10 @@ const extractPromise = file =>
 	});
 
 const run = async () => {
-	await new Promise(yay => rmdir(targetPath, {}, () => yay()));
-	fs.mkdirSync(targetPath);
+	try {
+		fs.removeSync(targetPath);
+	} catch (e) {}
+	fs.mkdirsSync(targetPath);
 
 	const files = fs
 		.readdirSync(sourcePath)
