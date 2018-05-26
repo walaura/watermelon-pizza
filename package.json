@@ -1,33 +1,38 @@
 {
-  "name": "watermelon-pizza",
-  "version": "1.0.0",
-  "description": "My personal website!!",
-  "dependencies": {
-    "babel-core": "^6.22.1",
-    "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.22.0",
-    "extract-zip": "^1.6.0",
-    "fs-extra": "^2.0.0",
-    "gulp": "^3.9.1",
-    "gulp-banner": "^0.1.3",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^2.0.1",
-    "gulp-uglifycss": "^1.0.6",
-    "inly": "^1.0.2",
-    "webpack-clear-console": "^1.0.3",
-    "webpack-stream": "^3.2.0"
-  },
-  "scripts": {
-    "gulp": "./node_modules/.bin/gulp",
-    "install": "npm run gulp make",
-    "deploy": "npm run gulp make && ./etc/scripts/deploy.sh"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://walaura@bitbucket.org/walaura/lauragonzalez.cc.git"
-  },
-  "author": "Laura Mayhem",
-  "license": "IT MINE",
-  "homepage": "https://bitbucket.org/walaura/lauragonzalez.cc#readme"
+	"name": "watermelon-pizza",
+	"version": "1.0.0",
+	"description": "My personal website!!",
+	"dependencies": {
+		"@babel/core": "^7.0.0-beta.49",
+		"@babel/preset-env": "^7.0.0-beta.49",
+		"concurrently": "^3.5.1",
+		"sass": "^1.3.2"
+	},
+	"scripts": {
+		"install": "npm run make",
+		"make": "concurrently \"npm run css\" \"npm run js\"",
+		"css":
+			"sass css/app.scss public/watermelon/watermelon.css --no-source-map -s compressed",
+		"js": "webpack"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://walaura@bitbucket.org/walaura/lauragonzalez.cc.git"
+	},
+	"author": "Laura Mayhem",
+	"license": "IT MINE",
+	"homepage": "https://bitbucket.org/walaura/lauragonzalez.cc#readme",
+	"devDependencies": {
+		"babel-core": "^6.26.3",
+		"babel-loader": "^8.0.0-beta.3",
+		"babel-preset-env": "^1.6.1",
+		"css-loader": "^0.28.9",
+		"mini-css-extract-plugin": "^0.4.0",
+		"node-sass": "^4.7.2",
+		"sass-loader": "^6.0.6",
+		"style-loader": "^0.20.1",
+		"uglifyjs-webpack-plugin": "^1.2.5",
+		"webpack": "^4.9.1",
+		"webpack-cli": "^2.1.4"
+	}
 }
