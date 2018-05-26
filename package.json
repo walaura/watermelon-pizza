@@ -7,14 +7,19 @@
 		"@babel/preset-env": "^7.0.0-beta.49",
 		"babel-loader": "^8.0.0-beta.3",
 		"concurrently": "^3.5.1",
+		"extract-zip": "^1.6.7",
+		"fs-extra": "^6.0.1",
+		"rmdir": "^1.2.0",
 		"sass": "^1.3.2",
 		"webpack": "^4.9.1",
 		"webpack-cli": "^2.1.4"
 	},
 	"scripts": {
 		"install": "npm run make",
-		"make": "concurrently \"npm run css\" \"npm run js\"",
-		"css": "sass css/app.scss public/watermelon/watermelon.css --no-source-map -s compressed",
+		"make":
+			"concurrently \"npm run css\" \"npm run js\" \"node etc/unpack.js\"",
+		"css":
+			"sass css/app.scss public/watermelon/watermelon.css --no-source-map -s compressed",
 		"js": "webpack"
 	},
 	"repository": {
