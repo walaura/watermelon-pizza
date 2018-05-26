@@ -5,8 +5,11 @@
 	"dependencies": {
 		"@babel/core": "^7.0.0-beta.49",
 		"@babel/preset-env": "^7.0.0-beta.49",
+		"babel-loader": "^8.0.0-beta.3",
 		"concurrently": "^3.5.1",
-		"sass": "^1.3.2"
+		"sass": "^1.3.2",
+		"webpack": "^4.9.1",
+		"webpack-cli": "^2.1.4"
 	},
 	"scripts": {
 		"install": "npm run make",
@@ -20,18 +23,5 @@
 	},
 	"author": "Laura Mayhem",
 	"license": "IT MINE",
-	"homepage": "https://bitbucket.org/walaura/lauragonzalez.cc#readme",
-	"devDependencies": {
-		"babel-core": "^6.26.3",
-		"babel-loader": "^8.0.0-beta.3",
-		"babel-preset-env": "^1.6.1",
-		"css-loader": "^0.28.9",
-		"mini-css-extract-plugin": "^0.4.0",
-		"node-sass": "^4.7.2",
-		"sass-loader": "^6.0.6",
-		"style-loader": "^0.20.1",
-		"uglifyjs-webpack-plugin": "^1.2.5",
-		"webpack": "^4.9.1",
-		"webpack-cli": "^2.1.4"
-	}
+	"homepage": "https://bitbucket.org/walaura/lauragonzalez.cc#readme"
 }
