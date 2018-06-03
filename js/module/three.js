@@ -1,62 +1,48 @@
-import { items, neutralItem } from './three/items.js';
+import { getItems, getNeutralItem } from './three/items.js';
 import { linkStatusChangeEvent } from './hover.js';
+import { randomArrKey, loadRemote } from 'helper/etc';
+import { loadJsonPromise, itemsMatch } from 'helper/three';
 
-const meshes = [];
-let hoveredItem;
-
-const randomArrKey = items => items[Math.floor(Math.random() * items.length)];
-
-const setup = () => {
-	var scene = new THREE.Scene();
-	var camera = new THREE.PerspectiveCamera(
+const setup = three => {
+	const scene = new three.Scene();
+	const camera = new three.PerspectiveCamera(
 		5,
 		window.innerWidth / window.innerHeight,
 		0.1,
 		1000
 	);
-	var renderer = new THREE.WebGLRenderer({
+	const renderer = new three.WebGLRenderer({
 		alpha: true,
 	});
 
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.body.appendChild(renderer.domElement);
-	var directionalLight = new THREE.DirectionalLight(0xffffff, 0.25);
-	directionalLight.position.set(0, 0, 0.1);
-	scene.add(directionalLight);
 
-	var directionalLight = new THREE.DirectionalLight(0xffffff, 0.25);
-	directionalLight.position.set(0, 1, 0);
-	scene.add(directionalLight);
+	[[0, 0, 0.1], [0, 1, 0]].forEach(lightParams => {
+		const directionalLight = new three.DirectionalLight(0xffffff, 0.25);
+		directionalLight.position.set(...lightParams);
+		scene.add(directionalLight);
+	});
 
 	camera.position.z = 25;
 
 	return { camera, renderer, scene };
 };
 
-const loadJsonPromise = item =>
-	new Promise(yay => {
-		new THREE.JSONLoader().load(item, function(geometry) {
-			yay(geometry);
-		});
-	});
-
-const getItemsWithGeometry = items =>
+const getItemsWithGeometry = (three, items) =>
 	Promise.all(
 		items.map(item =>
-			loadJsonPromise('res/model/' + item.model + '.json').then(geometry => ({
+			loadJsonPromise(
+				three.JSONLoader,
+				'res/model/' + item.model + '.json'
+			).then(geometry => ({
 				...item,
 				geometry,
 			}))
 		)
 	);
 
-const itemsMatch = (item1, item2) => {
-	if (!item1 || !item1.for) return null;
-	if (!item2 || !item2.for) return null;
-	return item1.for === item2.for;
-};
-
-const makeMesh = (itemsWithGeometry, hovered) => {
+const makeMesh = (three, { itemsWithGeometry, neutralItem, hovered }) => {
 	const item = hovered ? hovered : randomArrKey(itemsWithGeometry);
 	const itemName = hovered ? item.for : null;
 	const maxSpeed = 1;
@@ -132,8 +118,23 @@ const updateMesh = (mesh, hovered) => {
 };
 
 const onLoad = () =>
-	Promise.all([setup(), getItemsWithGeometry(items)]).then(
-		([{ camera, renderer, scene }, itemsWithGeometry]) => {
+	loadRemote('https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js')
+		.then(() => {
+			if (!window.THREE) throw new Error('error loading threejs');
+			return window.THREE;
+		})
+		.then(three =>
+			Promise.all([
+				three,
+				setup(three),
+				getItemsWithGeometry(three, getItems(three)),
+			])
+		)
+		.then(([three, { camera, renderer, scene }, itemsWithGeometry]) => {
+			const meshes = [];
+			const neutralItem = getNeutralItem(three);
+			let hovered;
+
 			window.addEventListener('mousemove', function(ev) {
 				const pos = [
 					0.5 - ev.clientX / window.innerWidth,
@@ -146,14 +147,18 @@ const onLoad = () =>
 			});
 
 			window.addEventListener(linkStatusChangeEvent, ev => {
-				hoveredItem =
+				hovered =
 					ev.detail && ev.detail.name
 						? itemsWithGeometry.find(_ => _.for === ev.detail.name)
 						: null;
 			});
 
-			setInterval(() => {
-				const mesh = makeMesh(itemsWithGeometry, hoveredItem);
+			const updateMeshes = setInterval(() => {
+				const mesh = makeMesh(three, {
+					itemsWithGeometry,
+					neutralItem,
+					hovered,
+				});
 
 				meshes.push(mesh);
 				scene.add(mesh);
@@ -167,12 +172,11 @@ const onLoad = () =>
 			}, 300);
 
 			const renderLoop = () => {
-				meshes.forEach(mesh => updateMesh(mesh, hoveredItem));
+				meshes.forEach(mesh => updateMesh(mesh, hovered));
 				requestAnimationFrame(renderLoop);
 				renderer.render(scene, camera);
 			};
 			renderLoop();
-		}
-	);
+		});
 
 export default onLoad;
