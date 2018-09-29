@@ -21,10 +21,8 @@
 	},
 	"scripts": {
 		"install": "npm run make",
-		"make":
-			"concurrently \"npm run static\" \"npm run css -- --no-map\" \"npm run js\" \"node etc/unpack.js\"",
-		"watch":
-			"concurrently \"npm run css -- -w\" \"npm run js -- -w --mode=development\" \"npm run static\" \"npm run express\"",
+		"make": "concurrently \"npm run static\" \"npm run css -- --no-map\" \"npm run js\" \"node etc/unpack.js\"",
+		"watch": "concurrently \"npm run css -- -w\" \"npm run js -- -w --mode=development\" \"npm run static\" \"npm run express\"",
 		"css": "postcss css/app.css -o out/watermelon.css",
 		"js": "webpack",
 		"static": "node etc/build.js",
