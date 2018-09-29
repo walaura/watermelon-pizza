@@ -1,0 +1,30 @@
+fantas:
+  title: Fake Fantas
+  images:
+    - url: 1.jpg
+    - url: 2.jpg
+    - url: 3.jpg
+    - url: 4.jpg
+  about:
+    - I designed & built a Twitter bot that generates random fanta cans. It works by randomly choosing an emoji from <code title="Twitter's emoji library">twemoji</code>, then generating a color pallette from it, and finally putting together an image and tweets it. The whole thing is built as a webpage that gets screenshotted, meaning all you see is CSS & HTML <em>(Turns out CSS can do layer blending modes now!)</em>
+    - All the branding elements are thoughtfully handcrafted, I even obtained the Coca-Cola fonts from their press release to do the <strong>Zero Sugar</strong> bit. Only to then find out Fanta uses a custom variation. This culminated in me tweaking the vectors for hours to get it looking close enough. As far as I'm aware, while the bot receives a lot of criticism for implying clouds are edible, nobody has pointed out the typography is slightly off.
+  links:
+    - title: Follow @fakefantas
+      href: http://example.com
+    - title: See the code on GitHub
+      href: http://example.com
+
+laundrette:
+  title: Laundrette
+  avi: https://cdn.bulbagarden.net/upload/thumb/0/0d/025Pikachu.png/1200px-025Pikachu.png
+  about:
+    - test
+#gu
+#fanta
+#bots
+#jolly
+#verse
+#tnw
+#index
+#constellation
+#wavelert

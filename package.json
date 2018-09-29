@@ -11,10 +11,13 @@
 		"express": "^4.16.3",
 		"extract-zip": "^1.6.7",
 		"fs-extra": "^6.0.1",
+		"js-yaml": "^3.12.0",
 		"postcss": "^6.0.22",
 		"postcss-cli": "^5.0.0",
+		"postcss-color-mod-function": "^3.0.3",
 		"postcss-import": "^11.1.0",
 		"postcss-nesting": "^5.0.0",
+		"postcss-preset-env": "^6.0.7",
 		"sass": "^1.3.2",
 		"webpack": "^4.9.1",
 		"webpack-cli": "^2.1.4"
@@ -26,6 +29,7 @@
 		"css": "postcss css/app.css -o out/watermelon.css",
 		"js": "webpack",
 		"static": "node etc/build.js",
+		"html": "node etc/site-gen.js",
 		"express": "node app.js"
 	},
 	"repository": {
