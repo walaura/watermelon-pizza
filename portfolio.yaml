@@ -1,5 +1,7 @@
 fantas:
   title: Fake Fantas
+  layout: sbs
+  photolayout: card
   images:
     - url: 1.jpg
     - url: 2.jpg
@@ -14,17 +16,49 @@ fantas:
     - title: See the code on GitHub
       href: http://example.com
 
-laundrette:
-  title: Laundrette
-  avi: https://cdn.bulbagarden.net/upload/thumb/0/0d/025Pikachu.png/1200px-025Pikachu.png
+bots:
+  title: Generative Art
+  layout: sbs
+  photolayout: card
+  images:
+    - url: 1.jpg
+      props:
+        - huge
   about:
-    - test
+    - In addition to Fake Fantas I've also built a number of smaller Twitter bots, most of them built around generating HTML & CSS. Some of these work better as code showcases than as functional robots.
+    - Some are very basic, like <strong>@twistmeknickers</strong> which will try to britishize words, to an awful effect. Others like <strong>@textbotbook</strong> try to make textbooks.
+    - <strong>@pancakesorwaffl</strong> <em>(which generates video game moral choices)</em>, has a terrible dictionary, but pushes HTML+CSS to the limit. It has about 10 different UIs recreated in it, with rainbow text or 3D effects.
+  links:
+    - title: All my Twitter bots
+      href: http://example.com
+    - title: All their code
+      href: http://example.com
+
+index:
+  title: TNW Index
+  layout: longread
+  photolayout: longread
+  about:
+    - Index is TNW's data platform. It aggregates information on <strong>startups, brands, and investors</strong>. From 2015 to 2017 I was part of the small team that started it, as client-side developer and designer. In its early stages this project was highly experimental, and had a huge backlog of features and tests the team was keen to run.
+  images:
+    - url: hero.png
+      props:
+        - huge
+      caption:
+        - Despite the complex, Facebook-Like layout and different pages, every component in Index works across all breakpoints without a hitch. Very early on the team championed building every feature from, or into, a library of extremely flexible, responsive, reusable components.
+    - url: edit.png
+      caption:
+        - The design language is powerful yet playful. It scales from simple consumption views to complex multilayered forms.
+    - url: pop.png
+      caption:
+        - While sporting a flashier look, even promotional pages are part of the component system, gaining access to shared buttons, forms, and layout tools.
+
 #gu
+#laundrette
 #fanta
 #bots
 #jolly
 #verse
 #tnw
-#index
 #constellation
 #wavelert

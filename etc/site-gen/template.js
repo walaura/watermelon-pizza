@@ -5,8 +5,8 @@ const arrowSvg = fs.readFileSync(
 	path.resolve(__dirname, '../..', 'static/res/arrow.svg')
 );
 
-const slide = ({ id, title, images, about, links }) => `
-<section class="slide slide--${id}">
+const slide = ({ id, title, images, about, links, layout, photolayout }) => `
+<section class="slide slide--${id} slide--${layout}">
   <div class="slide__wrap">
     <header class="slide__title">
       <h2 class="slide__title__title">${title}</h2>
@@ -14,8 +14,9 @@ const slide = ({ id, title, images, about, links }) => `
     </header>
     <div class="slide__text">
       ${about.map(a => `<p>${a}</p>`).join('')}
-      ${links &&
-				`
+      ${
+				links
+					? `
         <nav class="slide__text__nav">
           <ul>
             ${links
@@ -31,17 +32,20 @@ const slide = ({ id, title, images, about, links }) => `
 							.join('')}
           </ul>
         </nav>
-      `}  
+      `
+					: ''
+			}  
     </div>
     ${images &&
 			`
-      <aside class="slide__pics">
+      <aside class="slide__pics slide__pics--${photolayout}">
         <ul>
           ${images
 						.map(
-							i =>
-								`<li>
-                  <img src="/pf/${id}/${i.url}" />
+							({ url, caption, props }) =>
+								`<li ${props ? `data-props="${props}"` : ''}>
+									<img src="/pf/${id}/${url}" />
+									${caption ? caption.map(c => `<p>${c}</p>`).join('') : ''}
                 </li>`
 						)
 						.join('')}

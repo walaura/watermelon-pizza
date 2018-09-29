@@ -7,7 +7,9 @@
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Artboard-2" transform="translate(-285.000000, -221.000000)" fill="#000000">
             <g id="Group" transform="translate(285.000000, 221.000000)">
-                <polygon id="Combined-Shape" points="9 3.89949494 1.94974747 10.9497475 0.535533906 9.53553391 8.07106781 2 1 2 1 0 11 0 11 10 9 10 9 3.89949494"></polygon>
+                <polygon id="Rectangle-2" points="9 0 11 0 11 10 9 10"></polygon>
+                <polygon id="Rectangle-2-Copy" points="1 2 1 -2.22044605e-16 11 4.4408921e-16 11 2"></polygon>
+                <polygon id="Rectangle-2-Copy" points="1.41421356 10.9497475 0 9.53553391 8.53553391 1 9.94974747 2.41421356"></polygon>
             </g>
         </g>
     </g>
