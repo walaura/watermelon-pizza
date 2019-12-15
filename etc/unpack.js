@@ -2,6 +2,7 @@ const path = require("path");
 const fs = require("fs-extra");
 const extract = require("extract-zip");
 const config = require("./../.watermelonrc");
+const make = require("./template");
 
 const sourcePath = path.resolve(__dirname, "..", "etc", "old");
 const targetPath = path.resolve(config.files.out, "old");
@@ -31,7 +32,9 @@ const run = async () => {
     .readdirSync(sourcePath)
     .filter(file => path.extname(file) === ".zip");
 
-  Promise.all(files.map(extractPromise));
+  await Promise.all(files.map(extractPromise));
+  fs.writeFileSync(path.resolve(targetPath, "index.html"), make(files.length));
+  return;
 };
 
 run().then(() => console.log("unpacked"));
