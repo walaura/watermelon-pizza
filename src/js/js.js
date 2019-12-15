@@ -1,4 +1,5 @@
 import { randomButPrefersEdges } from "./helper";
+import { stickers } from "./stickers";
 
 const maxSize = Math.max(window.innerWidth, window.innerHeight);
 
@@ -13,16 +14,6 @@ let ticks = 0;
 
 const canvasScale = maxSize;
 const stickerSize = 0.15;
-
-const stickers = [
-  require("../stix/thumbos.png"),
-  require("../stix/skull.png"),
-  require("../stix/star.png"),
-  require("../stix/wyld.png"),
-  require("../stix/ace-rat.png"),
-  require("../stix/pronoun.png"),
-  require("../stix/css.png")
-];
 
 const makeSticker = $ctx => {
   const size = canvasScale * stickerSize;
