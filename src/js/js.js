@@ -84,6 +84,7 @@ const main = async () => {
         $sticker.onload = () => {
           yay();
         };
+        $sticker.alt = "";
         $sticker.src = src;
         $stickers.appendChild($sticker);
       });
