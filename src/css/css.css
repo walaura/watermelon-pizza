@@ -79,6 +79,7 @@ footer {
   font-size: 1.5em;
   font-weight: 400;
   margin: 10vmin 0 0;
+  width: 85%;
 }
 
 footer strong {
@@ -89,6 +90,7 @@ footer footer {
   font-size: 1rem;
   margin-top: 10vmin;
   display: block;
+  width: 100%;
 }
 
 footer li {
