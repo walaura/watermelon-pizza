@@ -5,5 +5,7 @@ export const stickers = [
   require("../stix/wyld.png"),
   require("../stix/ace-rat.png"),
   require("../stix/pronoun.png"),
-  require("../stix/css.png")
+  require("../stix/blush.png"),
+  require("../stix/css.png"),
+  require("../stix/luigi-bride.png")
 ];
