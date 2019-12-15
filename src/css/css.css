@@ -8,6 +8,11 @@
   --fg-light: rgba(255, 255, 255, 0.25);
   -webkit-font-smoothing: antialiased;
 }
+@media (max-width: 60em) {
+  :root {
+    font-size: 0.8em;
+  }
+}
 
 * {
   font-size: 1em;
@@ -44,6 +49,7 @@ x-fg {
   top: 0;
   position: fixed;
   overflow: auto;
+  overflow-x: hidden;
   display: block;
 }
 
