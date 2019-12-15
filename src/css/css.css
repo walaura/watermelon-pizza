@@ -63,9 +63,15 @@ x-fg {
 
 .intro {
   color: var(--fg);
-  font-size: 3em;
+  font-size: 1.5em;
   line-height: 1.1;
   margin: 5vmin 0;
+}
+
+@media (min-width: 60em) {
+  .intro {
+    font-size: 3em;
+  }
 }
 
 footer {
