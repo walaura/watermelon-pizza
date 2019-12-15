@@ -2,9 +2,12 @@ const make = count => {
   return `
     <div>hey welcome to the time capsule</div>
 
-    <div>${Array.from(Array(count).keys())
-      .map(index => `<a href="${index + 1}/index.html">${index + 1}</a>`)
-      .join("")}</div>
+    <div>
+      ${Array.from(Array(count).keys())
+        .map(index => `<a href="${index + 1}/index.html">${index + 1}</a>`)
+        .join("")}
+      <a href="..">NOW</a>
+    </div>
 
     <style type="text/css">
       :root {
