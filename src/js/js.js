@@ -40,15 +40,13 @@ const makeSticker = $ctx => {
     size
   );
   $ctx.restore();
-  stickerCount++;
 };
 
 const loop = $ctx => {
   ticks++;
 
   const targetYWithScroll = targetY + $fg.scrollTop / 750;
-  const stickerInterval =
-    stickerCount <= initialStickerRampUp ? 15 : 40 + Math.random() * 10;
+  const stickerInterval = stickerCount <= initialStickerRampUp ? 15 : 50;
 
   x = x + (targetX - x) / 10;
   y = y + (targetYWithScroll - y) / 10;
@@ -57,6 +55,7 @@ const loop = $ctx => {
 
   if (ticks % stickerInterval === 0) {
     makeSticker($ctx);
+    stickerCount++;
   }
 
   $bg.style.transform = `

@@ -5,7 +5,7 @@
   --bg: #556270;
   --bg-dark: #0c1824;
   --fg: #fff;
-  --fg-light: rgba(255, 255, 255, 0.25);
+  --fg-light: rgba(255, 255, 255, 0.5);
   -webkit-font-smoothing: antialiased;
 }
 @media (max-width: 60em) {
@@ -115,21 +115,24 @@ footer a {
   text-decoration-color: var(--fg-light);
 }
 
+footer > a,
 footer a:hover {
   color: var(--pink);
   text-decoration-color: var(--pink);
 }
 
-.intro strong {
+.intro strong,
+.intro em {
   color: var(--pink);
+  cursor: help;
+}
+
+.intro strong {
   font-weight: 500;
 }
 
 .intro em {
   font-style: normal;
-  color: var(--pink);
-  text-decoration-color: rgba(255, 255, 255, 0.5);
-  cursor: help;
 }
 
 .intro s {
@@ -150,6 +153,7 @@ footer a:hover {
   margin: 1vmin 0;
   transition: 0.25s;
   color: var(--bg);
+  box-shadow: inset -4px 0 0 0 var(--pink);
 }
 
 .links a span {
@@ -174,7 +178,7 @@ footer a:hover {
 }
 
 .links a:hover {
-  background-color: var(--pink);
+  box-shadow: inset -100vw 0 0 0 var(--pink);
   transform: scale(1.05);
 }
 
