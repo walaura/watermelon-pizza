@@ -226,6 +226,7 @@ x-bg canvas {
 
 x-glitch {
   z-index: 10;
+  mix-blend-mode: multiply;
   position: fixed;
   top: 0;
   left: 0;
