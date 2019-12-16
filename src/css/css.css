@@ -28,7 +28,6 @@ body {
   font-family: "Rubik", helvetica, arial, sans-serif;
   line-height: 1.1;
   perspective: 10000px;
-  will-change: transform;
   left: 0;
   bottom: 0;
   right: 0;
@@ -37,6 +36,7 @@ body {
   overflow: hidden;
   letter-spacing: -0.05em;
   background-color: var(--bg);
+  background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
 }
 
 x-fg {
@@ -51,11 +51,13 @@ x-fg {
   overflow: auto;
   overflow-x: hidden;
   display: block;
+  contain: content;
 }
 
 .wrapper {
   margin: auto;
   max-width: 42em;
+  will-change: transform;
 }
 
 .chip {
@@ -154,6 +156,7 @@ footer a:hover {
   transition: 0.25s;
   color: var(--bg);
   box-shadow: inset -4px 0 0 0 var(--pink);
+  will-change: transform;
 }
 
 .links a span {
@@ -193,11 +196,22 @@ x-bg {
   top: 0;
   z-index: 9;
   position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  filter: grayscale(0%) brightness(1) contrast(1) opacity(0.2);
-  mix-blend-mode: screen;
+  opacity: 0.2;
+  will-change: transform;
+  background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
+  contain: strict;
+}
+
+x-underbg {
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  z-index: 8;
+  position: fixed;
+  background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
+  transform: translateZ(-40em) scale(2);
+  contain: strict;
 }
 
 x-bg canvas {
@@ -210,17 +224,6 @@ x-bg canvas {
   min-height: 100%;
 }
 
-x-underbg {
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top: 0;
-  z-index: 8;
-  position: fixed;
-  background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
-  transform: translateZ(-40em) scale(2);
-}
-
 x-glitch {
   z-index: 10;
   position: fixed;
@@ -231,7 +234,12 @@ x-glitch {
   background: url(gli.gif);
   background-size: cover;
   z-index: 9;
-  opacity: 0.25;
+  opacity: 0.15;
   pointer-events: none;
-  mix-blend-mode: multiply;
+  will-change: transform;
+  contain: strict;
+}
+
+x-stickers {
+  display: none;
 }

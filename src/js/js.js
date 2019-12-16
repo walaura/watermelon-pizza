@@ -13,7 +13,10 @@ let [targetX, targetY] = [0, 0];
 let stickerCount = 0;
 let ticks = 0;
 
-const canvasScale = maxSize;
+const canvasScale = Math.min(
+  1000,
+  Math.max(window.innerWidth, window.innerHeight)
+);
 const stickerSize = 0.15;
 const initialStickerRampUp = 10;
 
@@ -63,8 +66,8 @@ const loop = $ctx => {
     translateY(${1 * -y}em)
     rotateX(${5 * -y}deg)
     rotateY(${5 * x}deg)
-    translateZ(-20em)
-    scale(1.5)
+    translateZ(-5em)
+    scale(1.2)
   `;
 
   requestAnimationFrame(function() {
@@ -100,9 +103,8 @@ const main = async () => {
   const $ctx = $canvas.getContext("2d");
   $bg.appendChild($canvas);
 
-  $canvas.height = maxSize;
-  $canvas.width = maxSize;
-  $ctx.scale(maxSize / canvasScale, maxSize / canvasScale);
+  $canvas.height = canvasScale;
+  $canvas.width = canvasScale;
   $ctx.shadowColor = "rgba(0,0,0,.5)";
   $ctx.shadowBlur = 5;
 
