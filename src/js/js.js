@@ -10,10 +10,12 @@ const $year = document.querySelector("x-year");
 
 let [x, y] = [0, 0];
 let [targetX, targetY] = [0, 0];
+let stickerCount = 0;
 let ticks = 0;
 
 const canvasScale = maxSize;
 const stickerSize = 0.15;
+const initialStickerRampUp = 10;
 
 const makeSticker = $ctx => {
   const size = canvasScale * stickerSize;
@@ -38,19 +40,22 @@ const makeSticker = $ctx => {
     size
   );
   $ctx.restore();
+  stickerCount++;
 };
 
 const loop = $ctx => {
   ticks++;
 
   const targetYWithScroll = targetY + $fg.scrollTop / 750;
+  const stickerInterval =
+    stickerCount <= initialStickerRampUp ? 15 : 40 + Math.random() * 10;
 
   x = x + (targetX - x) / 10;
   y = y + (targetYWithScroll - y) / 10;
   x = x - (x - targetX) / 10;
   y = y - (y - targetYWithScroll) / 10;
 
-  if (ticks % 50 === 0) {
+  if (ticks % stickerInterval === 0) {
     makeSticker($ctx);
   }
 
@@ -76,6 +81,8 @@ window.onmousemove = ({ clientX, clientY, target }) => {
 };
 
 const main = async () => {
+  $year.innerText = new Date().getFullYear();
+
   await Promise.all(
     stickers.map(src => {
       const $sticker = document.createElement("img");
@@ -91,22 +98,18 @@ const main = async () => {
     })
   );
   const $canvas = document.createElement("canvas");
-  $bg.appendChild($canvas);
   const $ctx = $canvas.getContext("2d");
+  $bg.appendChild($canvas);
 
   $canvas.height = maxSize;
   $canvas.width = maxSize;
   $ctx.scale(maxSize / canvasScale, maxSize / canvasScale);
   $ctx.shadowColor = "rgba(0,0,0,.5)";
   $ctx.shadowBlur = 5;
-  for (let i = 0; i < 10; i++) {
-    makeSticker($ctx);
-  }
+
   requestAnimationFrame(function() {
     loop($ctx);
   });
 };
-
-$year.innerText = new Date().getFullYear();
 
 main();
