@@ -66,7 +66,7 @@ const loop = $ctx => {
     translateY(${1 * -y}em)
     rotateX(${5 * -y}deg)
     rotateY(${5 * x}deg)
-    translateZ(-5em)
+    translateZ(-1em)
     scale(1.2)
   `;
 
@@ -108,9 +108,11 @@ const main = async () => {
   $ctx.shadowColor = "rgba(0,0,0,.5)";
   $ctx.shadowBlur = 5;
 
-  requestAnimationFrame(function() {
-    loop($ctx);
-  });
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    requestAnimationFrame(function() {
+      loop($ctx);
+    });
+  }
 };
 
 main();

@@ -22,6 +22,7 @@
   font-weight: normal;
   color: inherit;
   text-decoration: none;
+  backface-visibility: hidden;
 }
 
 body {
@@ -95,7 +96,7 @@ footer strong {
   font-weight: 700;
 }
 
-footer footer {
+footer section {
   font-size: 1rem;
   margin-top: 10vmin;
   display: block;
@@ -118,7 +119,8 @@ footer a {
 }
 
 footer > a,
-footer a:hover {
+footer a:hover,
+footer a:focus {
   color: var(--pink);
   text-decoration-color: var(--pink);
 }
@@ -180,12 +182,14 @@ footer a:hover {
   margin-left: 1em;
 }
 
-.links a:hover {
+.links a:hover,
+.links a:focus {
   box-shadow: inset -100vw 0 0 0 var(--pink);
   transform: scale(1.05);
 }
 
-.links a:hover strong:after {
+.links a:hover strong:after,
+.links a:focus strong:after {
   transform: translateX(200px);
 }
 
