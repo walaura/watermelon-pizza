@@ -66,7 +66,7 @@ const loop = $ctx => {
     translateY(${1 * -y}em)
     rotateX(${5 * -y}deg)
     rotateY(${5 * x}deg)
-    translateZ(-1em)
+    translateZ(-3em)
     scale(1.2)
   `;
 
