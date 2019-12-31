@@ -2,7 +2,7 @@ import React from "react";
 import "../css/css.css";
 import { Helmet } from "react-helmet";
 
-import Stickers from "./stickers";
+import Stickers from "./stickers/stickers";
 
 export default ({ children, hasThings }) => (
   <>

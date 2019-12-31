@@ -1,6 +1,46 @@
 import React, { useRef, useEffect } from "react";
-import { randomButPrefersEdges } from "../helper";
+import { randomButPrefersEdges } from "../../helper";
 import { stickers } from "./stickers/index";
+
+const canvasScale = Math.min(
+  1000,
+  Math.max(window.innerWidth, window.innerHeight)
+);
+const stickerSize = 0.15;
+const initialStickerRampUp = 10;
+
+const makeSticker = ($stickers, $ctx) => {
+  const size = canvasScale * stickerSize;
+  const $sticker =
+    $stickers.children[Math.floor(Math.random() * $stickers.children.length)];
+
+  const heightDelta = $sticker.height / $sticker.width;
+  const [x, y] = (isPhone
+    ? [
+        Math.random() * canvasScale,
+        Math.random() *
+          canvasScale *
+          (window.innerHeight / window.innerWidth) *
+          0.3
+      ]
+    : [
+        randomButPrefersEdges() * canvasScale,
+        Math.random() * canvasScale * (window.innerHeight / window.innerWidth)
+      ]
+  ).map(val => val - size / 2);
+
+  $ctx.save();
+  $ctx.translate(x, y);
+  $ctx.rotate(Math.random() * 360);
+  $ctx.drawImage(
+    $sticker,
+    size / heightDelta / -2,
+    size / -2,
+    size / heightDelta,
+    size
+  );
+  $ctx.restore();
+};
 
 const withStickers = $root => {
   const $stickers = $root.querySelector("x-stickers");
@@ -11,46 +51,6 @@ const withStickers = $root => {
   let [targetX, targetY] = [0, 0];
   let stickerCount = 0;
   let ticks = 0;
-
-  const canvasScale = Math.min(
-    1000,
-    Math.max(window.innerWidth, window.innerHeight)
-  );
-  const stickerSize = 0.15;
-  const initialStickerRampUp = 10;
-
-  const makeSticker = $ctx => {
-    const size = canvasScale * stickerSize;
-    const $sticker =
-      $stickers.children[Math.floor(Math.random() * stickers.length)];
-
-    const heightDelta = $sticker.height / $sticker.width;
-    const [x, y] = (isPhone
-      ? [
-          Math.random() * canvasScale,
-          Math.random() *
-            canvasScale *
-            (window.innerHeight / window.innerWidth) *
-            0.3
-        ]
-      : [
-          randomButPrefersEdges() * canvasScale,
-          Math.random() * canvasScale * (window.innerHeight / window.innerWidth)
-        ]
-    ).map(val => val - size / 2);
-
-    $ctx.save();
-    $ctx.translate(x, y);
-    $ctx.rotate(Math.random() * 360);
-    $ctx.drawImage(
-      $sticker,
-      size / heightDelta / -2,
-      size / -2,
-      size / heightDelta,
-      size
-    );
-    $ctx.restore();
-  };
 
   const loop = $ctx => {
     ticks++;
@@ -65,7 +65,7 @@ const withStickers = $root => {
     y = y - (y - targetYWithScroll) / 10;
 
     if (ticks % stickerInterval === 0) {
-      makeSticker($ctx);
+      makeSticker($stickers, $ctx);
       stickerCount++;
     }
 
@@ -131,7 +131,7 @@ const withStickers = $root => {
 export default () => {
   const ref = useRef(null);
   useEffect(() => {
-    withStickers(ref);
+    withStickers(ref.current);
   }, []);
   return (
     <x-tomfoolery ref={ref}>
