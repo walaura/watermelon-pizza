@@ -6,6 +6,8 @@
   --bg-dark: #0c1824;
   --fg: #fff;
   --fg-light: rgba(255, 255, 255, 0.5);
+  background-color: var(--bg);
+  background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
   -webkit-font-smoothing: antialiased;
 }
 @media (max-width: 60em) {
@@ -28,37 +30,24 @@
 body {
   font-family: "Rubik", helvetica, arial, sans-serif;
   line-height: 1.1;
-  perspective: 10000px;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top: 0;
-  position: fixed;
-  overflow: hidden;
   letter-spacing: -0.05em;
-  background-color: var(--bg);
-  background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
+  overflow-x: hidden;
 }
 
 x-fg {
   z-index: 20;
-  padding: 10vmin 2em;
-  overflow: visible;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top: 0;
-  position: fixed;
-  overflow: auto;
-  overflow-x: hidden;
-  display: block;
+  position: relative;
   contain: content;
+  overflow: hidden;
 }
 
 .wrapper {
   margin: auto;
   max-width: 42em;
+  padding: 10vmin 2em;
   will-change: transform;
+  z-index: 20;
+  position: relative;
 }
 
 .chip {
@@ -194,57 +183,44 @@ footer a:focus {
 }
 
 x-bg {
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top: 0;
   z-index: 9;
-  position: fixed;
   opacity: 0.2;
-  will-change: transform;
-  background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
-  contain: strict;
 }
 
 x-underbg {
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top: 0;
   z-index: 8;
-  position: fixed;
   background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
-  transform: translateZ(-40em) scale(2);
-  contain: strict;
-}
-
-x-bg canvas {
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top: 0;
-  position: fixed;
-  min-width: 100%;
-  min-height: 100%;
 }
 
 x-glitch {
   z-index: 10;
   mix-blend-mode: multiply;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background: url(gli.gif);
   background-size: cover;
   z-index: 9;
   opacity: 0.15;
-  pointer-events: none;
+}
+
+x-tomfoolery,
+x-tomfoolery > * {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
   will-change: transform;
   contain: strict;
+  pointer-events: none;
+}
+x-tomfoolery {
+  perspective: 10000px;
+  position: fixed;
+}
+x-tomfoolery canvas {
+  width: 100%;
 }
 
 x-stickers {
   display: none;
+  position: absolute;
 }

@@ -19,7 +19,7 @@
   "scripts": {
     "install": "npm run make",
     "make": "parcel build src/index.html -d out && node etc/unpack.js",
-    "watch": "parcel src/index.html -d out"
+    "start": "parcel src/index.html -d out"
   },
   "repository": {
     "type": "git",

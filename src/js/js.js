@@ -1,8 +1,6 @@
 import { randomButPrefersEdges } from "./helper";
 import { stickers } from "./stickers";
 
-const maxSize = Math.max(window.innerWidth, window.innerHeight);
-
 const $stickers = document.querySelector("x-stickers");
 const $bg = document.querySelector("x-bg");
 const $fg = document.querySelector("x-fg");
@@ -48,7 +46,7 @@ const makeSticker = $ctx => {
 const loop = $ctx => {
   ticks++;
 
-  const targetYWithScroll = targetY + $fg.scrollTop / 750;
+  const targetYWithScroll = targetY + document.scrollingElement.scrollTop / 750;
   const stickerInterval = stickerCount <= initialStickerRampUp ? 15 : 50;
 
   x = x + (targetX - x) / 10;
