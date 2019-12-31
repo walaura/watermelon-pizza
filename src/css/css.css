@@ -154,6 +154,7 @@ footer a:focus {
   color: var(--bg);
   box-shadow: inset -4px 0 0 0 var(--pink);
   will-change: transform;
+  contain: content;
 }
 
 .links a span {
@@ -179,7 +180,8 @@ footer a:focus {
 
 .links a:hover,
 .links a:focus {
-  box-shadow: inset -100vw 0 0 0 var(--pink);
+  box-shadow: inset -1em 0 1em 0 var(--pink);
+  background: var(--pink);
   transform: scale(1.05);
 }
 
