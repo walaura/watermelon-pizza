@@ -3,8 +3,6 @@ import { stickers } from "./stickers";
 
 const $stickers = document.querySelector("x-stickers");
 const $bg = document.querySelector("x-bg");
-const $fg = document.querySelector("x-fg");
-const $year = document.querySelector("x-year");
 
 let isPhone = false;
 let [x, y] = [0, 0];
@@ -90,8 +88,6 @@ window.onmousemove = ({ clientX, clientY, target }) => {
 };
 
 const main = async () => {
-  $year.innerText = new Date().getFullYear();
-
   await Promise.all(
     stickers.map(src => {
       const $sticker = document.createElement("img");
