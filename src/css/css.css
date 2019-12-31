@@ -190,6 +190,7 @@ x-bg {
 x-underbg {
   z-index: 8;
   background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
+  transform: translateZ(-10em) scale(2);
 }
 
 x-glitch {
