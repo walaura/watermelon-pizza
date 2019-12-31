@@ -49,6 +49,9 @@ x-fg {
   z-index: 20;
   position: relative;
 }
+:root[data-is-phone="true"] .wrapper {
+  padding-top: 25vh;
+}
 
 .chip {
   background: var(--pink);
@@ -86,19 +89,22 @@ footer strong {
 }
 
 footer section {
-  font-size: 1rem;
   margin-top: 10vmin;
   display: block;
   width: 100%;
 }
 
-footer li {
-  display: inline-block;
-}
-
-footer li:not(:last-child):after {
-  content: "·";
-  padding: 0 0.25em;
+@media (min-width: 60em) {
+  footer section {
+    font-size: 1rem;
+  }
+  footer li {
+    display: inline-block;
+  }
+  footer li:not(:last-child):after {
+    content: "·";
+    padding: 0 0.25em;
+  }
 }
 
 footer a {

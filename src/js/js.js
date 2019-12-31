@@ -6,6 +6,7 @@ const $bg = document.querySelector("x-bg");
 const $fg = document.querySelector("x-fg");
 const $year = document.querySelector("x-year");
 
+let isPhone = false;
 let [x, y] = [0, 0];
 let [targetX, targetY] = [0, 0];
 let stickerCount = 0;
@@ -24,11 +25,19 @@ const makeSticker = $ctx => {
     $stickers.children[Math.floor(Math.random() * stickers.length)];
 
   const heightDelta = $sticker.height / $sticker.width;
-
-  const [x, y] = [
-    randomButPrefersEdges() * canvasScale,
-    Math.random() * canvasScale * (window.innerHeight / window.innerWidth)
-  ].map(val => val - size / 2);
+  const [x, y] = (isPhone
+    ? [
+        Math.random() * canvasScale,
+        Math.random() *
+          canvasScale *
+          (window.innerHeight / window.innerWidth) *
+          0.3
+      ]
+    : [
+        randomButPrefersEdges() * canvasScale,
+        Math.random() * canvasScale * (window.innerHeight / window.innerWidth)
+      ]
+  ).map(val => val - size / 2);
 
   $ctx.save();
   $ctx.translate(x, y);
@@ -110,6 +119,10 @@ const main = async () => {
     requestAnimationFrame(function() {
       loop($ctx);
     });
+  }
+  if (window.matchMedia("(max-aspect-ratio: 1/1)").matches) {
+    isPhone = true;
+    document.documentElement.dataset.isPhone = isPhone;
   }
 };
 
