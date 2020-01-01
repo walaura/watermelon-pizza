@@ -6,8 +6,8 @@
   --bg-dark: #0c1824;
   --fg: #fff;
   --fg-light: rgba(255, 255, 255, 0.5);
-  background-color: var(--bg);
-  background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
+  background-color: var(--bg-dark);
+  color: var(--fg);
   -webkit-font-smoothing: antialiased;
 }
 @media (max-width: 60em) {
@@ -65,7 +65,6 @@ x-fg {
 }
 
 .intro {
-  color: var(--fg);
   font-size: 2em;
   margin: 5vmin 0;
 }
@@ -77,7 +76,6 @@ x-fg {
 }
 
 footer {
-  color: var(--fg);
   font-size: 1.5em;
   font-weight: 400;
   margin: 10vmin 0 0;
