@@ -2,9 +2,7 @@ import React from "react";
 import "../css/css.css";
 import { Helmet } from "react-helmet";
 
-import Stickers from "./stickers/stickers";
-
-export default ({ children, hasThings }) => (
+export default ({ children, outside, inverted }) => (
   <>
     <Helmet>
       <meta charset="utf-8" />
@@ -16,11 +14,9 @@ export default ({ children, hasThings }) => (
       />
       <title>Laura González</title>
       <link rel="shortcut icon" href={require("../css/mushroom.png")}></link>
-      <html class={hasThings && "inverted"} />
+      <html lang="en" class={inverted && "inverted"} />
     </Helmet>
-    {hasThings && <Stickers />}
-    <x-fg>
-      <div className="wrapper">{children}</div>
-    </x-fg>
+    {outside}
+    <div className="wrapper">{children}</div>
   </>
 );

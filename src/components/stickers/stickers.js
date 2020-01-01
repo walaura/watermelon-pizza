@@ -1,10 +1,14 @@
 import React, { useRef, useEffect } from "react";
 import { randomButPrefersEdges } from "../../helper";
 
-const canvasScale = Math.min(
-  1000,
-  Math.max(window.innerWidth, window.innerHeight)
-);
+import styles from "./stickers.module.css";
+
+console.log(styles.stickers);
+
+const getCanvasScale = () =>
+  Math.min(1000, Math.max(window.innerWidth, window.innerHeight));
+const isPhone = () => window.matchMedia("(max-aspect-ratio: 1/1)").matches;
+
 const stickerSize = 0.15;
 const initialStickerRampUp = 10;
 
@@ -27,9 +31,8 @@ const preloadStickers = async $stickers => {
   return $stickers;
 };
 
-const isPhone = () => window.matchMedia("(max-aspect-ratio: 1/1)").matches;
-
 const makeSticker = ($stickers, $ctx) => {
+  const canvasScale = getCanvasScale();
   const size = canvasScale * stickerSize;
   const $sticker =
     $stickers.children[Math.floor(Math.random() * $stickers.children.length)];
@@ -63,8 +66,9 @@ const makeSticker = ($stickers, $ctx) => {
 };
 
 const withStickers = async $root => {
-  const $stickers = $root.querySelector("x-stickers");
-  const $bg = $root.querySelector("x-bg");
+  const canvasScale = getCanvasScale();
+  const $stickers = $root.querySelector("." + styles.stickers);
+  const $bg = $root.querySelector("." + styles.bg);
 
   let [x, y] = [0, 0];
   let [targetX, targetY] = [0, 0];
@@ -137,11 +141,11 @@ export default () => {
     }
   });
   return (
-    <x-tomfoolery ref={ref}>
-      <x-glitch></x-glitch>
-      <x-bg></x-bg>
-      <x-underbg></x-underbg>
-      <x-stickers></x-stickers>
-    </x-tomfoolery>
+    <div className={styles.root} ref={ref}>
+      <div className={styles.glitch} />
+      <div className={styles.bg} />
+      <div className={styles.underbg} />
+      <div className={styles.stickers} />
+    </div>
   );
 };

@@ -1,11 +1,10 @@
 const path = require("path");
 const fs = require("fs-extra");
 const extract = require("extract-zip");
-const config = require("./../.watermelonrc");
 const make = require("./template");
 
 const sourcePath = path.resolve(__dirname, "..", "etc", "old");
-const targetPath = path.resolve(config.files.out, "old");
+const targetPath = path.resolve(__dirname, "..", "public", "old");
 
 const extractPromise = file =>
   new Promise((yay, nay) => {
