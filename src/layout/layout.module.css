@@ -18,3 +18,11 @@
   overflow: hidden;
   position: relative;
 }
+
+.block + .block {
+  mask-image: linear-gradient(#fff, #fff), url(./squiggle.svg);
+  mask-repeat: no-repeat, repeat no-repeat;
+  mask-size: 100% 100%, auto 1.5em;
+  mask-position: 0, -1px -1px;
+  mask-composite: substract;
+}
