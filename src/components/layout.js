@@ -2,7 +2,16 @@ import React from "react";
 import "../css/css.css";
 import { Helmet } from "react-helmet";
 
-export default ({ children, outside, inverted }) => (
+export const WrapBlock = ({ children, outside, inverted }) => {
+  return (
+    <div data-inverted={inverted}>
+      {outside}
+      <div className="wrapper">{children}</div>
+    </div>
+  );
+};
+
+export default ({ children, inverted }) => (
   <>
     <Helmet>
       <meta charset="utf-8" />
@@ -16,7 +25,6 @@ export default ({ children, outside, inverted }) => (
       <link rel="shortcut icon" href={require("../css/mushroom.png")}></link>
       <html lang="en" class={inverted && "inverted"} />
     </Helmet>
-    {outside}
-    <div className="wrapper">{children}</div>
+    {children}
   </>
 );

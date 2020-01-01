@@ -75,49 +75,6 @@ x-fg {
   }
 }
 
-footer {
-  font-size: 1.5em;
-  font-weight: 400;
-  margin: 10vmin 0 0;
-  width: 85%;
-}
-
-footer strong {
-  font-weight: 700;
-}
-
-footer section {
-  margin-top: 10vmin;
-  display: block;
-  width: 100%;
-}
-
-@media (min-width: 60em) {
-  footer section {
-    font-size: 1rem;
-  }
-  footer li {
-    display: inline-block;
-  }
-  footer li:not(:last-child):after {
-    content: "·";
-    padding: 0 0.25em;
-  }
-}
-
-footer a {
-  text-decoration: underline;
-  text-decoration-style: wavy;
-  text-decoration-color: var(--fg-light);
-}
-
-footer > a,
-footer a:hover,
-footer a:focus {
-  color: var(--pink);
-  text-decoration-color: var(--pink);
-}
-
 .intro strong,
 .intro em {
   color: var(--pink);
