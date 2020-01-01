@@ -1,5 +1,5 @@
 .block {
-  --bg: var(--lighter);
+  --bg: var(--light);
   --bg-dark: var(--light);
   --fg: var(--dark);
   --fg-light: var(--darker);
@@ -13,6 +13,7 @@
 
 .block {
   background-color: var(--bg-dark);
+  background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
   color: var(--fg);
   contain: content;
   overflow: hidden;

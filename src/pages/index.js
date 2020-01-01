@@ -1,6 +1,6 @@
 import React from "react";
 import Layout, { WrapBlock } from "../layout/layout";
-import Link, { LinkList } from "./../components/link/link";
+import LinkList, { ChonkyLink } from "./../components/links/links";
 import Footer from "./../components/footer/footer";
 import Stickers from "./../components/stickers/stickers";
 
@@ -68,7 +68,7 @@ export default () => (
       </div>
       <LinkList>
         {links.map(l => (
-          <Link key={l.href} {...l} />
+          <ChonkyLink key={l.href} {...l} />
         ))}
       </LinkList>
       <Footer />

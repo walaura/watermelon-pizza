@@ -1,9 +1,10 @@
 import React from "react";
 
-import styles from "./link.module.css";
+import styles from "./links.module.css";
 
-export default ({ title, href, subtitle }) => (
+const ChonkyLink = ({ title, href, subtitle }) => (
   <a
+    className={styles.link}
     rel="noopener noreferrer"
     target="_blank"
     href={href}
@@ -14,8 +15,8 @@ export default ({ title, href, subtitle }) => (
   </a>
 );
 
-export const LinkList = ({ children }) => (
-  <nav className={styles.root}>
+const LinkList = ({ children, isList = false }) => (
+  <nav className={styles.root} data-is-list={isList}>
     <ul>
       {React.Children.map(children, (child, idx) => (
         <li key={idx}>{child}</li>
@@ -23,3 +24,6 @@ export const LinkList = ({ children }) => (
     </ul>
   </nav>
 );
+
+export default LinkList;
+export { ChonkyLink };
