@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import { randomButPrefersEdges } from "../../helper";
-import { stickers } from "./stickers/index";
 
 const canvasScale = Math.min(
   1000,
@@ -9,13 +8,34 @@ const canvasScale = Math.min(
 const stickerSize = 0.15;
 const initialStickerRampUp = 10;
 
+const preloadStickers = async $stickers => {
+  const list = (await import("./stickers/index")).stickers;
+  await Promise.all(
+    list.map(src => {
+      const $sticker = document.createElement("img");
+
+      return new Promise(yay => {
+        $sticker.onload = () => {
+          yay();
+        };
+        $sticker.alt = "";
+        $sticker.src = src;
+        $stickers.appendChild($sticker);
+      });
+    })
+  );
+  return $stickers;
+};
+
+const isPhone = () => window.matchMedia("(max-aspect-ratio: 1/1)").matches;
+
 const makeSticker = ($stickers, $ctx) => {
   const size = canvasScale * stickerSize;
   const $sticker =
     $stickers.children[Math.floor(Math.random() * $stickers.children.length)];
 
   const heightDelta = $sticker.height / $sticker.width;
-  const [x, y] = (isPhone
+  const [x, y] = (isPhone()
     ? [
         Math.random() * canvasScale,
         Math.random() *
@@ -42,11 +62,10 @@ const makeSticker = ($stickers, $ctx) => {
   $ctx.restore();
 };
 
-const withStickers = $root => {
+const withStickers = async $root => {
   const $stickers = $root.querySelector("x-stickers");
   const $bg = $root.querySelector("x-bg");
 
-  let isPhone = false;
   let [x, y] = [0, 0];
   let [targetX, targetY] = [0, 0];
   let stickerCount = 0;
@@ -90,49 +109,33 @@ const withStickers = $root => {
     }
   };
 
-  const main = async () => {
-    await Promise.all(
-      stickers.map(src => {
-        const $sticker = document.createElement("img");
+  await preloadStickers($stickers);
+  const $canvas = document.createElement("canvas");
+  const $ctx = $canvas.getContext("2d");
+  $bg.appendChild($canvas);
 
-        return new Promise(yay => {
-          $sticker.onload = () => {
-            yay();
-          };
-          $sticker.alt = "";
-          $sticker.src = src;
-          $stickers.appendChild($sticker);
-        });
-      })
-    );
-    const $canvas = document.createElement("canvas");
-    const $ctx = $canvas.getContext("2d");
-    $bg.appendChild($canvas);
+  $canvas.height = canvasScale;
+  $canvas.width = canvasScale;
+  $ctx.shadowColor = "rgba(0,0,0,.5)";
+  $ctx.shadowBlur = 5;
 
-    $canvas.height = canvasScale;
-    $canvas.width = canvasScale;
-    $ctx.shadowColor = "rgba(0,0,0,.5)";
-    $ctx.shadowBlur = 5;
-
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      requestAnimationFrame(function() {
-        loop($ctx);
-      });
-    }
-    if (window.matchMedia("(max-aspect-ratio: 1/1)").matches) {
-      isPhone = true;
-      document.documentElement.dataset.isPhone = isPhone;
-    }
-  };
-
-  main();
+  requestAnimationFrame(function() {
+    loop($ctx);
+  });
 };
 
 export default () => {
   const ref = useRef(null);
   useEffect(() => {
-    withStickers(ref.current);
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      withStickers(ref.current);
+    }
   }, []);
+  useEffect(() => {
+    if (isPhone()) {
+      document.documentElement.dataset.isPhone = isPhone;
+    }
+  });
   return (
     <x-tomfoolery ref={ref}>
       <x-glitch></x-glitch>

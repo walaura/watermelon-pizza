@@ -15,7 +15,7 @@ export default ({ children, hasThings }) => (
 		developer, and overall disgrace."
       />
       <title>Laura González</title>
-      <link rel="shortcut icon" href="/mushroom.png"></link>
+      <link rel="shortcut icon" href={require("../css/mushroom.png")}></link>
       <html class={hasThings && "inverted"} />
     </Helmet>
     {hasThings && <Stickers />}
