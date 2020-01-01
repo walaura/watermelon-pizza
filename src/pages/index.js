@@ -163,10 +163,7 @@ export default () => (
             </a>
           </li>
           <li>
-            <a
-              href="https://www.lauragonzalez.cc/old/index.html"
-              title="Older versions of this website"
-            >
+            <a href="/old/index.html" title="Older versions of this website">
               sssh
             </a>
           </li>
