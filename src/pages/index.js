@@ -1,5 +1,5 @@
 import React from "react";
-import Layout, { WrapBlock } from "../components/layout";
+import Layout, { WrapBlock } from "../layout/layout";
 import Link, { LinkList } from "./../components/link/link";
 import Footer from "./../components/footer/footer";
 import Stickers from "./../components/stickers/stickers";

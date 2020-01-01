@@ -1,15 +1,17 @@
 @import url("https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap");
 
 :root {
+  --darker: #001144;
+  --dark: #2e3947;
+  --light: #fff;
+  --lighter: rgba(255, 255, 255, 0.5);
   --pink: #ff0051;
-  --bg: #2e3947;
-  --bg-dark: #001144;
-  --fg: #fff;
-  --fg-light: rgba(255, 255, 255, 0.5);
-  background-color: var(--bg-dark);
-  color: var(--fg);
+}
+
+:root {
   -webkit-font-smoothing: antialiased;
 }
+
 @media (max-width: 60em) {
   :root {
     font-size: 0.8em;
@@ -32,13 +34,6 @@ body {
   line-height: 1.1;
   letter-spacing: -0.05em;
   overflow-x: hidden;
-}
-
-x-fg {
-  z-index: 20;
-  position: relative;
-  contain: content;
-  overflow: hidden;
 }
 
 .wrapper {

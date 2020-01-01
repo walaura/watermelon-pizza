@@ -1,0 +1,20 @@
+.block {
+  --bg: var(--lighter);
+  --bg-dark: var(--light);
+  --fg: var(--dark);
+  --fg-light: var(--darker);
+}
+.block[data-inverted="true"] {
+  --bg: var(--dark);
+  --bg-dark: var(--darker);
+  --fg: var(--light);
+  --fg-light: var(--lighter);
+}
+
+.block {
+  background-color: var(--bg-dark);
+  color: var(--fg);
+  contain: content;
+  overflow: hidden;
+  position: relative;
+}
