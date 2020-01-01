@@ -24,7 +24,7 @@
     "url": "git+https://github.com/walaura/watermelon-pizza"
   },
   "author": "Laura Mayhem",
-  "license": "IT MINE",
+  "license": "IT-MINE",
   "homepage": "https://github.com/walaura/watermelon-pizza",
   "devDependencies": {
     "prettier": "^1.19.1"
