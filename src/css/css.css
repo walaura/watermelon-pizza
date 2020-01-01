@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap");
 
 :root {
-  --pink: #c7f464;
-  --bg: #556270;
-  --bg-dark: #0c1824;
+  --pink: #ff0051;
+  --bg: #2e3947;
+  --bg-dark: #001144;
   --fg: #fff;
   --fg-light: rgba(255, 255, 255, 0.5);
   background-color: var(--bg-dark);
