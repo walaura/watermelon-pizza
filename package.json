@@ -6,33 +6,30 @@
     "@babel/core": "^7.7.5",
     "extract-zip": "^1.6.7",
     "fs-extra": "^6.0.1",
-    "parcel": "^1.12.4",
-    "prettier": "^1.19.1"
-  },
-  "staticFiles": {
-    "staticPath": "static",
-    "watcherGlob": "**"
+    "gatsby": "^2.18.17",
+    "gatsby-plugin-react-helmet": "^3.1.18",
+    "prettier": "^1.19.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1"
   },
   "browserslist": [
     "last 1 Chrome version"
   ],
   "scripts": {
     "install": "npm run make",
-    "make": "parcel build src/index.html -d out && node etc/unpack.js",
-    "start": "parcel src/index.html -d out"
+    "make": "gatsby build && node etc/unpack.js",
+    "start": "gatsby develop"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://walaura@bitbucket.org/walaura/lauragonzalez.cc.git"
+    "url": "git+https://github.com/walaura/watermelon-pizza"
   },
   "author": "Laura Mayhem",
   "license": "IT MINE",
-  "homepage": "https://bitbucket.org/walaura/lauragonzalez.cc#readme",
+  "homepage": "https://github.com/walaura/watermelon-pizza",
   "devDependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-runtime": "^6.26.0",
-    "cssnano": "^4.1.10",
-    "parcel-plugin-imagemin": "^3.0.0",
-    "parcel-plugin-static-files-copy": "^2.2.1"
+    "babel-runtime": "^6.26.0"
   }
 }
