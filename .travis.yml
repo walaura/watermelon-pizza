@@ -1,13 +1,13 @@
 language: node_js
 node_js:
-- node
+  - node
 sudo: false
 install:
-- npm install -g travis-ci-cloudfront-invalidation
-- npm install
+  - npm install -g travis-ci-cloudfront-invalidation
+  - npm install
 cache:
   directories:
-  - node_modules
+    - node_modules
 notifications:
   email: false
 deploy:
@@ -16,7 +16,7 @@ deploy:
   secret_access_key: $AWS_SECRET_KEY
   bucket: lauragonzalez-cc
   skip-cleanup: true
-  local-dir: out
+  local-dir: public
   acl: public_read
   on:
     branch: master
