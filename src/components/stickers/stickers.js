@@ -31,26 +31,37 @@ const preloadStickers = async $stickers => {
   return $stickers;
 };
 
-const makeSticker = ($stickers, $ctx) => {
+const makeSticker = ($stickers, $ctx, { avoidBackground }) => {
   const canvasScale = getCanvasScale();
   const size = canvasScale * stickerSize;
   const $sticker =
     $stickers.children[Math.floor(Math.random() * $stickers.children.length)];
 
   const heightDelta = $sticker.height / $sticker.width;
-  const [x, y] = (isPhone()
-    ? [
-        Math.random() * canvasScale,
-        Math.random() *
-          canvasScale *
-          (window.innerHeight / window.innerWidth) *
-          0.3
-      ]
-    : [
-        randomButPrefersEdges() * canvasScale,
-        Math.random() * canvasScale * (window.innerHeight / window.innerWidth)
-      ]
-  ).map(val => val - size / 2);
+
+  let x, y;
+
+  if (!avoidBackground) {
+    [x, y] = [
+      Math.random() * canvasScale,
+      (Math.random() / 2 - 0.1) * canvasScale
+    ];
+  } else if (isPhone()) {
+    [x, y] = [
+      Math.random() * canvasScale,
+      Math.random() *
+        canvasScale *
+        (window.innerHeight / window.innerWidth) *
+        0.3
+    ];
+  } else {
+    [x, y] = [
+      randomButPrefersEdges() * canvasScale,
+      Math.random() * canvasScale * (window.innerHeight / window.innerWidth)
+    ];
+  }
+
+  [x, y] = [x, y].map(val => val - size / 2);
 
   $ctx.save();
   $ctx.translate(x, y);
@@ -65,7 +76,7 @@ const makeSticker = ($stickers, $ctx) => {
   $ctx.restore();
 };
 
-const withStickers = async $root => {
+const withStickers = async ($root, { avoidBackground }) => {
   const canvasScale = getCanvasScale();
   const $stickers = $root.querySelector("." + styles.stickers);
   const $bg = $root.querySelector("." + styles.bg);
@@ -88,7 +99,7 @@ const withStickers = async $root => {
     y = y - (y - targetYWithScroll) / 10;
 
     if (ticks % stickerInterval === 0) {
-      makeSticker($stickers, $ctx);
+      makeSticker($stickers, $ctx, { avoidBackground });
       stickerCount++;
     }
 
@@ -128,16 +139,16 @@ const withStickers = async $root => {
   });
 };
 
-export default () => {
+export default ({ avoidBackground = true }) => {
   const ref = useRef(null);
   useEffect(() => {
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      withStickers(ref.current);
+      withStickers(ref.current, { avoidBackground });
     }
-  }, []);
+  }, [avoidBackground]);
   useEffect(() => {
     if (isPhone()) {
-      document.documentElement.dataset.isPhone = isPhone;
+      document.documentElement.dataset.isPhone = true;
     }
   });
   return (
