@@ -34,6 +34,7 @@ body {
   line-height: 1.1;
   letter-spacing: -0.05em;
   overflow-x: hidden;
+  will-change: scroll-position;
 }
 
 .wrapper {
@@ -52,11 +53,12 @@ body {
   background: var(--pink);
   color: var(--bg-dark);
   padding: 0.5em 0.75em;
+  font-weight: 400;
   display: inline-flex;
   text-transform: uppercase;
   font-size: 1em;
   border-radius: 2px;
-  letter-spacing: 1px;
+  letter-spacing: 0.1em;
 }
 
 .intro {
