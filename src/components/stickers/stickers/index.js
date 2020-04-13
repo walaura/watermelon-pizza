@@ -9,4 +9,6 @@ export const stickers = [
 	require('./vsco.png'),
 	require('./css.png'),
 	require('./luigi-bride.png'),
+	require('./rice.png'),
+	require('./selfis.png')
 ];
