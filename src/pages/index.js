@@ -63,7 +63,7 @@ export default () => (
         <s aria-hidden="true" title="oh man this was an interesting one">
           The Guardian
         </s>{" "}
-        <em title="FACEBOOK the company not facebook the app">Facebook</em>,
+        <em title="strictly speaking @ workplace, fb's team chat product">Facebook</em>,
         and&nbsp;in my free time I'm up to a lot:
       </div>
       <LinkList>
