@@ -4,7 +4,7 @@ node_js:
 sudo: false
 install:
   - npm install -g travis-ci-cloudfront-invalidation
-  - npm install
+  - npm install --openssl-legacy-provider
 cache:
   directories:
     - node_modules
