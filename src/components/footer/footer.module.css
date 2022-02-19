@@ -1,42 +1,42 @@
 .root {
-  font-size: 1.5em;
-  font-weight: 400;
-  margin: 10vmin 0 0;
-  width: 85%;
+	font-size: 1.5em;
+	font-weight: 400;
+	margin: 10vmin 0 0;
+	width: 85%;
+	color: #999;
 }
 
 .root strong {
-  font-weight: 700;
+	font-weight: 900;
 }
 
 .root section {
-  margin-top: 10vmin;
-  display: block;
-  width: 100%;
+	margin-top: 10vmin;
+	display: block;
+	width: 100%;
 }
 
 @media (min-width: 60em) {
-  .root section {
-    font-size: 1rem;
-  }
-  .root li {
-    display: inline-block;
-  }
-  .root li:not(:last-child):after {
-    content: "·";
-    padding: 0 0.25em;
-  }
+	.root section {
+		font-size: 1rem;
+	}
+	.root li {
+		display: inline-block;
+	}
+	.root li:not(:last-child):after {
+		content: '·';
+		padding: 0 0.25em;
+	}
 }
 
 .root a {
-  text-decoration: underline;
-  text-decoration-style: wavy;
-  text-decoration-color: var(--fg-light);
+	text-decoration: underline;
+	text-decoration-style: wavy;
+	text-decoration-color: rgba(0, 0, 0, 0.5);
 }
 
 .root > a,
 .root a:hover,
 .root a:focus {
-  color: var(--pink);
-  text-decoration-color: var(--pink);
+	text-decoration-color: rgba(0, 0, 0, 0.5);
 }
