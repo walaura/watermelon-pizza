@@ -17,7 +17,7 @@ deploy:
   bucket: lauragonzalez-cc
   skip-cleanup: true
   local-dir: public
-  cache_control: "max-age=31536000"
+  cache_control: 'max-age=31536000'
   acl: public_read
   on:
     branch: master
