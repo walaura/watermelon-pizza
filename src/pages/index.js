@@ -61,7 +61,7 @@ export default () => (
 					<s title="miss em everyday">TNW</s>{' '}
 					<s title="oh man this was an interesting one">The Guardian</s>{' '}
 					<s title="ITS NOT A PHASE MOM">Facebook</s>{' '}
-					<em title="strictly speaking @ horizon workrooms, giving meetings legs">
+					<em title="cursing web browsers with ui infra">
 						Meta
 					</em>
 					, and&nbsp;in my free time I'm up to a lot:
