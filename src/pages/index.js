@@ -6,9 +6,9 @@ import Stickers from './../components/stickers/stickers';
 
 const links = [
 	{
-		href: 'https://twitter.com/freezydorito',
+		href: 'https://www.threads.net/@freezydorito',
 		subtitle: 'Comedy & tragedy',
-		title: 'Twitter',
+		title: 'Threads',
 	},
 	{
 		href: 'https://github.com/walaura',
@@ -45,6 +45,11 @@ const links = [
 		subtitle: 'Games',
 		title: 'Itch.io',
 	},
+	{
+		href: 'https://x.com/freezydorito',
+		subtitle: 'Man remember Twitter',
+		title: 'X',
+	},
 ];
 
 export default () => (
@@ -61,7 +66,7 @@ export default () => (
 					<s title="miss em everyday">TNW</s>{' '}
 					<s title="oh man this was an interesting one">The Guardian</s>{' '}
 					<s title="ITS NOT A PHASE MOM">Facebook</s>{' '}
-					<em title="strictly speaking @ horizon workrooms, giving meetings legs">
+					<em title="cursing web browsers with ui infra">
 						Meta
 					</em>
 					, and&nbsp;in my free time I'm up to a lot:
