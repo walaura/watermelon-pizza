@@ -6,9 +6,9 @@ import Stickers from './../components/stickers/stickers';
 
 const links = [
 	{
-		href: 'https://twitter.com/freezydorito',
+		href: 'https://www.threads.net/@freezydorito',
 		subtitle: 'Comedy & tragedy',
-		title: 'Twitter',
+		title: 'Threads',
 	},
 	{
 		href: 'https://github.com/walaura',
@@ -44,6 +44,11 @@ const links = [
 		href: 'https://walaura.itch.io/',
 		subtitle: 'Games',
 		title: 'Itch.io',
+	},
+	{
+		href: 'https://x.com/freezydorito',
+		subtitle: 'Man remember Twitter',
+		title: 'X',
 	},
 ];
 
