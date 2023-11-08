@@ -45,11 +45,6 @@ const links = [
 		subtitle: 'Games',
 		title: 'Itch.io',
 	},
-	{
-		href: 'https://x.com/freezydorito',
-		subtitle: 'Man remember Twitter',
-		title: 'X',
-	},
 ];
 
 export default () => (
