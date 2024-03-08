@@ -61,7 +61,7 @@ export default () => (
 					<s title="miss em everyday">TNW</s>{' '}
 					<s title="oh man this was an interesting one">The Guardian</s>{' '}
 					<s title="ITS NOT A PHASE MOM">Facebook</s>{' '}
-					<em title="cursing web browsers with ui infra">
+					<em title="cross platform design systems and the cursed infra to make them run on web">
 						Meta
 					</em>
 					, and&nbsp;in my free time I'm up to a lot:
