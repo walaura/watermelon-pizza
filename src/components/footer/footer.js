@@ -15,27 +15,23 @@ const LinkBlank = ({ href, children }) => (
 
 export default () => (
   <footer className={root}>
-    <strong>Kthxbye!</strong> If you wanna get in touch with me, you&nbsp;can
+    <strong>Kthxbye!</strong> If you wanna get in touch you&nbsp;can
     drop me a line via{" "}
     <LinkBlank href="mailto:hi@laura.monster">email</LinkBlank> or add me on{" "}
     <LinkBlank href="http://linkedin.com/in/walaura">LinkedIn</LinkBlank>.
     <section>
       <ul>
         <li>
-          ©{new Date().getFullYear()} me lol (
-          <LinkBlank href="https://creativecommons.org/licenses/by-sa/3.0/">
-            cc-by-sa
-          </LinkBlank>
-          )
+          ©{new Date().getFullYear()}
         </li>
         <li>
           <LinkBlank href="https://github.com/walaura/watermelon-pizza">
-            check out the source code
+            Source
           </LinkBlank>
         </li>
         <li>
           <a href="/old/index.html" title="Older versions of this website">
-            sssh
+            Sssh
           </a>
         </li>
       </ul>
