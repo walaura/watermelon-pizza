@@ -22,7 +22,8 @@
 }
 
 body {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   overflow-x: hidden;
 }
 
@@ -130,7 +131,7 @@ footer a:focus {
 .links {
   display: flex;
   flex-direction: row;
-  overflow: scroll
+  overflow: scroll;
 }
 
 .links ul {
@@ -163,7 +164,7 @@ footer a:focus {
   color: var(--bg-dark);
   transform-origin: 0 0;
   transform: translateY(100%) rotate(-90deg);
-  height:10em;
+  height: 10em;
 }
 
 .links a strong:after {
