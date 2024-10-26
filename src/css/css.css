@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap");
-
 :root {
   --pink: #c7f464;
   --bg: #556270;
@@ -10,11 +8,6 @@
   background-color: var(--bg);
   background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
   -webkit-font-smoothing: antialiased;
-}
-@media (max-width: 60em) {
-  :root {
-    font-size: 0.8em;
-  }
 }
 
 * {
@@ -29,9 +22,7 @@
 }
 
 body {
-  font-family: "Rubik", helvetica, arial, sans-serif;
-  line-height: 1.1;
-  letter-spacing: -0.05em;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
   overflow-x: hidden;
 }
 
@@ -149,10 +140,11 @@ footer a:focus {
 .links a {
   padding: var(--basis);
   display: inline-flex;
+  box-shadow: inset 0 0 0 0 transparent;
   border: 1px solid white;
   flex-direction: column;
   margin-right: -1px;
-  transition: 0.25s;
+  transition: 0.75s;
   color: var(--bg);
 }
 
@@ -182,13 +174,7 @@ footer a:focus {
 
 .links a:hover,
 .links a:focus {
-  box-shadow: inset -100vw 0 0 0 var(--pink);
-  transform: scale(1.05);
-}
-
-.links a:hover strong:after,
-.links a:focus strong:after {
-  transform: translateX(200px);
+  box-shadow: inset 0 -50vw 0 0 var(--pink);
 }
 
 x-bg {
