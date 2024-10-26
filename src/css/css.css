@@ -1,7 +1,7 @@
 :root {
-  --pink: #c7f464;
-  --bg: #556270;
-  --bg-dark: #0c1824;
+  --color-accent: #ffde21;
+  --bg: #20205e;
+  --bg-dark: #20205e;
   --fg: #fff;
   --fg-light: rgba(255, 255, 255, 0.5);
   --basis: 3rem;
@@ -47,32 +47,25 @@ x-fg {
   will-change: transform;
   z-index: 20;
   position: relative;
-  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
+  @media (orientation: landscape) {
+    height: 100vh;
+  }
 }
 
 .wrapper > .links {
-  flex: 1 1 0;
+  @media (orientation: landscape) {
+    flex: 1 1 0;
+  }
   color: var(--color-text);
-}
-
-.chip {
-  background: var(--pink);
-  color: var(--bg-dark);
-  padding: 0.5em 0.75em;
-  display: inline-flex;
-  text-transform: uppercase;
-  font-size: 1em;
-  border-radius: 2px;
-  letter-spacing: 1px;
 }
 
 .intro {
   color: var(--fg);
-  font-size: 2em;
-  margin: var(--basis);
+  font-size: 1.4rem;
+  margin: calc(var(--basis) * 2) var(--basis);
 }
 
 footer {
@@ -118,7 +111,7 @@ footer a:focus {
 
 .intro strong,
 .intro em {
-  color: var(--pink);
+  color: var(--color-accent);
   cursor: help;
 }
 
@@ -131,7 +124,7 @@ footer a:focus {
   white-space: nowrap;
   text-decoration: line-through;
   text-decoration-style: wavy;
-  color: var(--pink);
+  color: var(--color-accent);
   cursor: help;
 }
 
@@ -144,8 +137,11 @@ footer a:focus {
 
 .links ul {
   display: flex;
-  flex-direction: row;
-  height: 100%;
+  flex-direction: column;
+  @media (orientation: landscape) {
+    flex-direction: row;
+    height: 100%;
+  }
 }
 
 .links li {
@@ -158,37 +154,53 @@ footer a:focus {
   justify-content: space-between;
   box-shadow: inset 0 0 0 0 transparent;
   flex-direction: column;
-  transition: 0.75s;
+  transition: 0.5s;
   contain: content;
-  width: 12rem;
   flex: 0 0 auto;
-}
-
-.links ul li + li a {
-  border-left: 1px solid var(--color-border);
-}
-
-.links a span {
-  text-transform: uppercase;
-  font-size: .8rem;
-  letter-spacing: .2em;
-  font-weight: 200;
-  opacity: .5
-}
-
-.links a strong {
-  font-size: 8vh;
-  font-weight: 800;
-  transform-origin: 0 0;
-  transform: translateY(100%) rotate(-90deg);
-  height: 10em;
-  line-height: 1cap;
+  @media (orientation: landscape) {
+    width: 12rem;
+  }
 }
 
 .links a:hover,
 .links a:focus {
-  box-shadow: inset 0 -100cqh 0 0 var(--pink);
+  @media (orientation: landscape) {
+    box-shadow: inset 0 100vh 0 0 var(--color-accent);
+  }
+  @media (orientation: portrait) {
+    box-shadow: inset 100vw 0 0 0 var(--color-accent);
+  }
   color: var(--color-text-on-contrast);
+  filter: blur(0.5px);
+}
+
+.links ul li + li a {
+  @media (orientation: portrait) {
+    border-top: 1px solid var(--color-border);
+  }
+  @media (orientation: landscape) {
+    border-left: 1px solid var(--color-border);
+  }
+}
+
+.links a span {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  font-weight: 200;
+  opacity: 0.5;
+}
+
+.links a strong {
+  font-weight: 800;
+  transform-origin: 0 0;
+  font-size: 8vw;
+  @media (orientation: landscape) {
+    line-height: 1cap;
+    transform: translateY(100%) rotate(-90deg);
+    font-size: 8vh;
+    height: 10em;
+  }
 }
 
 x-bg {
