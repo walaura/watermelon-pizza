@@ -6,6 +6,7 @@
   --bg-dark: #0c1824;
   --fg: #fff;
   --fg-light: rgba(255, 255, 255, 0.5);
+  --basis: 3rem;
   background-color: var(--bg);
   background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
   -webkit-font-smoothing: antialiased;
@@ -43,8 +44,6 @@ x-fg {
 
 .wrapper {
   margin: auto;
-  max-width: 42em;
-  padding: 10vmin 2em;
   will-change: transform;
   z-index: 20;
   position: relative;
@@ -64,7 +63,7 @@ x-fg {
 .intro {
   color: var(--fg);
   font-size: 2em;
-  margin: 5vmin 0;
+  margin: var(--basis);
 }
 
 @media (min-width: 60em) {
@@ -137,17 +136,24 @@ footer a:focus {
   cursor: help;
 }
 
+.links {
+  display: flex;
+  flex-direction: row;
+  overflow: scroll
+}
+
+.links ul {
+  display: contents;
+}
+
 .links a {
-  padding: 0.5em 0.75em;
+  padding: var(--basis);
   display: inline-flex;
-  border-radius: 2px;
-  background: var(--fg);
+  border: 1px solid white;
   flex-direction: column;
-  margin: 1vmin 0;
+  margin-right: -1px;
   transition: 0.25s;
   color: var(--bg);
-  box-shadow: inset -4px 0 0 0 var(--pink);
-  will-change: transform;
 }
 
 .links a span {
@@ -163,6 +169,9 @@ footer a:focus {
   line-height: 0.9;
   margin-left: -0.05em;
   color: var(--bg-dark);
+  transform-origin: 0 0;
+  transform: translateY(100%) rotate(-90deg);
+  height:10em;
 }
 
 .links a strong:after {
