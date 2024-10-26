@@ -6,7 +6,7 @@
     "@babel/core": "^7.7.5",
     "extract-zip": "^1.6.7",
     "fs-extra": "^6.0.1",
-    "parcel": "^1.12.4",
+    "parcel": "^2.12.0",
     "prettier": "^1.19.1"
   },
   "staticFiles": {
@@ -18,8 +18,8 @@
   ],
   "scripts": {
     "install": "npm run make",
-    "make": "parcel build src/index.html -d out && node etc/unpack.js",
-    "start": "parcel src/index.html -d out"
+    "make": "parcel build src/index.html && node etc/unpack.js",
+    "start": "parcel serve src/index.html"
   },
   "repository": {
     "type": "git",
@@ -31,8 +31,8 @@
   "devDependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-runtime": "^6.26.0",
-    "cssnano": "^4.1.10",
-    "parcel-plugin-imagemin": "^3.0.0",
-    "parcel-plugin-static-files-copy": "^2.2.1"
+    "cssnano": "^7.0.6",
+    "parcel-plugin-imagemin": "^4.0.2",
+    "parcel-plugin-static-files-copy": "^2.6.0"
   }
 }
