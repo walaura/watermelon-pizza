@@ -5,6 +5,13 @@
   --fg: #fff;
   --fg-light: rgba(255, 255, 255, 0.5);
   --basis: 3rem;
+  --color-text-rgb: 255, 255, 255;
+  --color-text-on-contrast-rgb: 0, 0, 0;
+  --color-text: rgb(var(--color-text-rgb));
+  --color-border: white;
+  --color-contrast: white;
+  --color-text-on-contrast: rgb(var(--color-text-on-contrast-rgb));
+
   background-color: var(--bg);
   background: linear-gradient(to bottom right, var(--bg-dark), var(--bg));
   -webkit-font-smoothing: antialiased;
@@ -32,6 +39,7 @@ x-fg {
   position: relative;
   contain: content;
   overflow: hidden;
+  mix-blend-mode: color-dodge;
 }
 
 .wrapper {
@@ -39,6 +47,15 @@ x-fg {
   will-change: transform;
   z-index: 20;
   position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper > .links {
+  flex: 1 1 0;
+  color: var(--color-text);
 }
 
 .chip {
@@ -58,29 +75,19 @@ x-fg {
   margin: var(--basis);
 }
 
-@media (min-width: 60em) {
-  .intro {
-    font-size: 3em;
-  }
-}
-
 footer {
-  color: var(--fg);
-  font-size: 1.5em;
+  color: var(--color-text-on-contrast);
+  font-size: 0.8rem;
   font-weight: 400;
-  margin: 10vmin 0 0;
-  width: 85%;
+  padding: calc(var(--basis) / 4) var(--basis);
+  background-color: var(--color-contrast);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 footer strong {
   font-weight: 700;
-}
-
-footer section {
-  font-size: 1rem;
-  margin-top: 10vmin;
-  display: block;
-  width: 100%;
 }
 
 footer li {
@@ -95,24 +102,24 @@ footer li:not(:last-child):after {
 footer a {
   text-decoration: underline;
   text-decoration-style: wavy;
-  text-decoration-color: var(--fg-light);
+  font-weight: 800;
+  text-decoration-color: rgb(var(--color-text-on-contrast-rgb), 0.5);
 }
 
 footer > a,
 footer a:hover,
 footer a:focus {
-  color: var(--pink);
-  text-decoration-color: var(--pink);
+  text-decoration-color: var(--color-text-on-contrast);
+}
+
+.intro h1 {
+  display: inline;
 }
 
 .intro strong,
 .intro em {
   color: var(--pink);
   cursor: help;
-}
-
-.intro strong {
-  font-weight: 500;
 }
 
 .intro em {
@@ -129,53 +136,59 @@ footer a:focus {
 }
 
 .links {
-  display: flex;
-  flex-direction: row;
   overflow: scroll;
+  border: 1px solid var(--color-border);
+  border-left: 0;
+  border-right: 0;
 }
 
 .links ul {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.links li {
   display: contents;
 }
 
 .links a {
   padding: var(--basis);
-  display: inline-flex;
+  display: flex;
+  justify-content: space-between;
   box-shadow: inset 0 0 0 0 transparent;
-  border: 1px solid white;
   flex-direction: column;
-  margin-right: -1px;
   transition: 0.75s;
-  color: var(--bg);
+  contain: content;
+  width: 12rem;
+  flex: 0 0 auto;
+}
+
+.links ul li + li a {
+  border-left: 1px solid var(--color-border);
 }
 
 .links a span {
   text-transform: uppercase;
-  font-size: 1em;
-  letter-spacing: 0.5px;
-  font-weight: 400;
+  font-size: .8rem;
+  letter-spacing: .2em;
+  font-weight: 200;
+  opacity: .5
 }
 
 .links a strong {
-  font-size: 3em;
-  font-weight: 700;
-  line-height: 0.9;
-  margin-left: -0.05em;
-  color: var(--bg-dark);
+  font-size: 8vh;
+  font-weight: 800;
   transform-origin: 0 0;
   transform: translateY(100%) rotate(-90deg);
   height: 10em;
-}
-
-.links a strong:after {
-  content: "➜";
-  font-size: 0.8em;
-  margin-left: 1em;
+  line-height: 1cap;
 }
 
 .links a:hover,
 .links a:focus {
-  box-shadow: inset 0 -50vw 0 0 var(--pink);
+  box-shadow: inset 0 -100cqh 0 0 var(--pink);
+  color: var(--color-text-on-contrast);
 }
 
 x-bg {
