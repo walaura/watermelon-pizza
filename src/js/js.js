@@ -82,35 +82,6 @@ window.onmousemove = ({ clientX, clientY, target }) => {
 
 const main = async () => {
   $year.innerText = new Date().getFullYear();
-
-  await Promise.all(
-    stickers.map(src => {
-      const $sticker = document.createElement("img");
-
-      return new Promise(yay => {
-        $sticker.onload = () => {
-          yay();
-        };
-        $sticker.alt = "";
-        $sticker.src = src;
-        $stickers.appendChild($sticker);
-      });
-    })
-  );
-  const $canvas = document.createElement("canvas");
-  const $ctx = $canvas.getContext("2d");
-  $bg.appendChild($canvas);
-
-  $canvas.height = canvasScale;
-  $canvas.width = canvasScale;
-  $ctx.shadowColor = "rgba(0,0,0,.5)";
-  $ctx.shadowBlur = 5;
-
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    requestAnimationFrame(function() {
-      loop($ctx);
-    });
-  }
 };
 
 main();
