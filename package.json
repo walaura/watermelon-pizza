@@ -7,6 +7,7 @@
     "extract-zip": "^1.6.7",
     "fs-extra": "^6.0.1",
     "parcel": "^2.12.0",
+    "parcel-reporter-static-files-copy": "^1.5.3",
     "prettier": "^1.19.1"
   },
   "staticFiles": {
@@ -18,7 +19,7 @@
   ],
   "scripts": {
     "install": "npm run make",
-    "make": "parcel build src/index.html && node etc/unpack.js",
+    "make": "node etc/unpack.js && parcel build src/index.html",
     "start": "parcel serve src/index.html"
   },
   "repository": {
@@ -32,7 +33,6 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-runtime": "^6.26.0",
     "cssnano": "^7.0.6",
-    "parcel-plugin-imagemin": "^4.0.2",
-    "parcel-plugin-static-files-copy": "^2.6.0"
+    "parcel-plugin-imagemin": "^4.0.2"
   }
 }

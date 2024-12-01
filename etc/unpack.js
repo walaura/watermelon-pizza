@@ -4,7 +4,7 @@ const extract = require("extract-zip");
 const make = require("./template");
 
 const sourcePath = path.resolve(__dirname, "..", "etc", "old");
-const targetPath = path.resolve(__dirname, "..", "public", "old");
+const targetPath = path.resolve(__dirname, "..", "static", "old");
 
 const extractPromise = file =>
   new Promise((yay, nay) => {
