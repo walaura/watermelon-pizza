@@ -232,6 +232,7 @@ x-bg {
   z-index: 8;
   background: url(gli.jpg);
   background-size: cover;
+  background-position: top center;
 }
 
 x-glitch {
@@ -248,7 +249,7 @@ x-tomfoolery>* {
   left: 0;
   right: 0;
   bottom: 0;
-  position: absolute;
+  position: fixed;
   will-change: transform;
   contain: strict;
   pointer-events: none;
