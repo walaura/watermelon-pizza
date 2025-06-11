@@ -8,7 +8,7 @@
     "fs-extra": "^6.0.1",
     "parcel": "^2.12.0",
     "parcel-reporter-static-files-copy": "^1.5.3",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
     "svgo": "^3.3.2"
   },
   "staticFiles": {
