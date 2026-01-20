@@ -100,7 +100,8 @@ x-fg {
 }
 
 .links {
-  overflow: scroll;
+  overflow: auto;
+  overflow-y: hidden;
   border: 1px solid var(--color-border);
   border-left: 0;
   border-right: 0;
