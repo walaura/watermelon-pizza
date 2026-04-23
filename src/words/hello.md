@@ -8,6 +8,8 @@ garbo
   font-smooth: never;
   -webkit-font-smoothing: none;
   -moz-font-smoothing: none;
+
+  --color-highlight: cyan;
 }
 
 h1 {
