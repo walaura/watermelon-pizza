@@ -20,8 +20,8 @@
   ],
   "scripts": {
     "install": "npm run make",
-    "make": "node etc/unpack.js && parcel build src/index.html src/words/*.md",
-    "start": "parcel serve src/index.html src/words/*.md"
+    "make": "node etc/unpack.js && parcel build src/index.html src/words/index.html src/words/*.md",
+    "start": "parcel serve src/index.html src/words/index.html src/words/*.md"
   },
   "repository": {
     "type": "git",
