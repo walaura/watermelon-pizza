@@ -14,10 +14,14 @@
   --color-highlight: var(--color-accent);
   --color-text: #000;
   --color-bg: #fff;
+  --color-flood-inverted: hsl(
+    from var(--color-flood) calc(h - 180) s calc(100 - l) / 100%
+  );
 
-  --basis-header-link-pill-padding-h: calc(var(--basis) * 0.5);
-  --basis-padding: calc(var(--basis-header-link-pill-padding-h) + 2px);
-  --basis-header-sp: calc(var(--basis) * 0.75);
+  --basis-min-width: calc(var(--basis) * 14);
+
+  --basis-padding: min(calc(var(--basis) * 0.5), 5vw);
+  --basis-header-sp: calc(var(--basis-padding) * 2);
 
   background-color: var(--color-bg);
   color: var(--color-text);
@@ -43,7 +47,7 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: calc(var(--basis) * 0.25);
+  padding: var(--basis-padding);
   position: sticky;
   top: 0;
   left: 0;
@@ -52,19 +56,23 @@ header {
   width: 100%;
   box-sizing: border-box;
   mix-blend-mode: exclusion;
+  pointer-events: none;
 
-  &:hover a {
-    backdrop-filter: blur(var(--basis));
-  }
   a {
+    pointer-events: all;
     font-size: 1rem;
-    padding: calc(var(--basis) * 0.25) var(--basis-header-link-pill-padding-h);
+    padding: calc(var(--basis-padding) * 0.75) calc(var(--basis-padding) * 0.5);
+    margin: calc(var(--basis-padding) * -0.5);
     border-radius: 100vmax;
-    border: 2px solid hsl(0, 0%, 25%);
-    color: #fff;
+    background: var(--color-flood-inverted);
+    color: #000;
     display: block;
     transition-duration: 0.2s;
     transition-property: background, color;
+
+    &.header-scream {
+      font-weight: bold;
+    }
 
     &:hover {
       background: #fff;
@@ -80,8 +88,12 @@ header {
   padding-bottom: 9px;
   overflow: hidden;
   display: block;
-  padding-left: calc(var(--basis) * 0.25);
-  padding-right: calc(var(--basis) * 0.25);
+  & > :first-child {
+    margin-top: min(
+      max(calc(var(--basis-min-width) - 90vw), calc(var(--basis) * -1)),
+      var(--basis-padding)
+    );
+  }
 }
 
 .article-zone {
@@ -89,9 +101,9 @@ header {
 }
 
 article {
-  max-width: calc(var(--basis) * 14);
+  max-width: var(--basis-min-width);
   margin: 0 auto 20px;
-  padding: var(--basis-padding);
+  padding: 0 var(--basis-padding) var(--basis-padding);
   line-height: 1.4;
 
   date {
@@ -138,7 +150,7 @@ article {
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   h2 {

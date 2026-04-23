@@ -18,16 +18,14 @@ h1 {
 }
 
 article {
-  padding: 0;
   color: #fff;
 }
 
-.article-zone + .article-zone {
+.article-zone {
   margin-top: var(--basis-header-sp);
-}
-
-.article-zone > :first-child {
-  margin-top: 0;
+  & > :first-child {
+    margin-top: 0;
+  }
 }
 
 article-zone-2 {
