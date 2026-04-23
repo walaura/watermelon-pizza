@@ -20,8 +20,9 @@ export const parseMd = async (
         const text = this.parser.parseInline(tokens);
 
         return `
-        </article-zone-${depth}>
-        <article-zone-${depth} class="article-zone"><h${depth}>
+          </article-zone-${depth}>
+          <article-zone-${depth} class="article-zone">
+            <h${depth}>
               ${text}
             </h${depth}>`;
       },

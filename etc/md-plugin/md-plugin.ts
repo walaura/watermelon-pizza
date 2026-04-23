@@ -45,7 +45,8 @@ module.exports = new Transformer({
               : "") +
             html.htmlContent,
         )
-        .replaceAll("#LINK#", encodeURIComponent(html.meta.permalink)),
+        .replaceAll("#LINK#", encodeURIComponent(html.meta.permalink))
+        .replaceAll("#TITLE#", html.meta.title),
     );
     return [asset];
   },

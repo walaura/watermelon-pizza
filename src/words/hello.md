@@ -24,6 +24,10 @@ article {
   margin-top: var(--basis-header-sp);
 }
 
+.article-zone > :first-child {
+  margin-top: 0;
+}
+
 article-zone-2 {
   background: #fff;
   color: #000;
@@ -31,8 +35,10 @@ article-zone-2 {
   padding: var(--basis-padding);
 }
 
-article-zone-2 h2 {
-  margin-top: 0;
+article-zone-3 {
+  background-color: #ffffea;
+  padding: calc(var(--basis-padding) * 0.5);
+  border: 2px outset grey;
 }
 
 h2 {
@@ -95,6 +101,27 @@ Including [this one](https://github.com/walaura/watermelon-pizza/blob/main/src/w
 3. **is this a json block?** parse it and assume its the data or die trying (hey if i break my blog ill notice lol)
 
 And parsing is linear so as soon as theres data its just regular parsing.
+
+## these little blocksies
+
+In a moment of enlightement i figured i could want boxes around my headings. Nesting is one of the hardest problems in computer science - alongside with getting any GPU to count the number of r in starberbwrirrrberry - but guess what turns out i don't have to! because all i do is hijack my headings to do this cursed-ass thing
+
+```js
+heading({ tokens, depth }) {
+  const text = this.parser.parseInline(tokens);
+
+  return `
+    </article-zone-${depth}>
+    <article-zone-${depth} class="article-zone">
+      <h${depth}>
+        ${text}
+      </h${depth}>`;
+}
+```
+
+Every time I make a heading I try to close the 'box' for the previous one in that level. I don't really give a shit if there's one already open and neither does your browser, it just works and Leverages The Web Platform™ by using their apis instead of reinventing the wheel in javascript.
+
+Anyway then i can style these, it's pretty cool. i can also nest em, look:
 
 ### is this a good way to do this?
 
