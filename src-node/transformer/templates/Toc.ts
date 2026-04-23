@@ -17,6 +17,7 @@ const Toc = ({ posts }: { posts: Post[] }) => {
 
   const body = `<div class="article-wrapper">
       <article>
+        <div class="article-heading"><h1>All posts</h1></div>
         <ul>${list}</ul>
       </article>
     </div>`;

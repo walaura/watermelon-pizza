@@ -28,9 +28,10 @@ export const Shell = ({
   </head>
 
   <body>
-    <header>
-      <div class="header-innie">
-        <a href="${backHref}" class="header-bk">
+    ${body}
+    <footer>
+      <div class="footer-actual">
+        <a href="${backHref}" class="footer-bk">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 47 17"
@@ -43,9 +44,10 @@ export const Shell = ({
             />
           </svg>
         </a>
+        <div class="footer-flex"></div>
         ${accessory}
-      </div>
-    </header>
-    ${body}
+        </div>
+    </footer>
+    <article class="footer-past"> hi :) You got to the end</article>
   </body>
 </html>`;

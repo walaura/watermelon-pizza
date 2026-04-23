@@ -25,8 +25,8 @@ const BlogPost = ({ post }: { post: Post }) => {
   const dateForMeta = dateObj.toISOString();
 
   const htmlContent =
-    `<date datetime="${dateForMeta}">${dateForHumans}</date>` +
-    `<h1>${post.meta.title}</h1>` +
+    `<div class="article-heading"><date datetime="${dateForMeta}">${dateForHumans}</date>` +
+    `<h1>${post.meta.title}</h1></div>` +
     (post.maybeCss
       ? `<style>.article-wrapper { ${post.maybeCss} }</style>`
       : "") +
