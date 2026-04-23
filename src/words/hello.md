@@ -31,4 +31,4 @@ Not much from me this time around, if you are curious about how this works you s
 
 The site is built on [parcel](https://parceljs.org). ~Always was~ It was on gatsby for a bit that was wild. Anyway its just a litle bundler that was around the last time i freshened up my coding skills. It's neat! You build your stuff like its the 90s raedogging html and js and it turns it into a 'modern' 'web' 'app'. they arent paying me to say this.
 
-For the static part this was always easy, just some HTML. For this blog of sorts...well, i mean, its a bunch of Markdown of course
+For the static part this was always easy, just some HTML. For this blog well guess what its fucking markdown. I got this little script that
