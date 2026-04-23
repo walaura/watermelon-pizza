@@ -14,6 +14,11 @@
     "prettier": "^1.19.1",
     "svgo": "^3.3.2"
   },
+  "source": [
+    "src/index.html",
+    "src/words/index.html",
+    "src/words/*.md"
+  ],
   "staticFiles": {
     "staticPath": "static",
     "watcherGlob": "**"
@@ -23,9 +28,10 @@
   ],
   "scripts": {
     "install": "npm run make",
-    "make": "node etc/unpack.js && parcel build src/index.html src/words/index.html src/words/*.md",
-    "start": "parcel serve src/index.html src/words/index.html src/words/*.md",
-    "clean": "rm -rf dist .parcel-cache"
+    "make": "node etc/unpack.js && parcel build",
+    "start": "parcel serve",
+    "clean": "rm -rf dist .parcel-cache",
+    "now": "node -e 'console.log(new Date().getTime())'"
   },
   "repository": {
     "type": "git",
