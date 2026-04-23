@@ -1,0 +1,3 @@
+dist/**/*.css
+etc/**/*.css
+static/old/**/*.css

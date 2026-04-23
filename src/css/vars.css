@@ -1,8 +1,11 @@
 :root {
+  /* color */
   --color-flood: #060a36;
   --color-text-over-flood: white;
   --color-accent: #ff3573;
+  --color-text-over-accent: var(--color-flood);
 
+  /* size */
   --basis: 3rem;
 }
 
