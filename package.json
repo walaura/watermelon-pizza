@@ -2,6 +2,7 @@
   "name": "watermelon-pizza",
   "version": "1.0.0",
   "description": "My personal website!!",
+  "node": ">=24.14.0",
   "dependencies": {
     "@babel/core": "^7.7.5",
     "extract-zip": "^1.6.7",
