@@ -1,9 +1,9 @@
 {
   "extends": ["@parcel/config-default"],
   "reporters":  ["...", "parcel-reporter-static-files-copy"],
+  "runtimes": [],
   "transformers": {
     "*.md": ["...", "./src-node/transformer/md.ts"],
-    "*.magic": ["...", "./src-node/transformer/magic-pages.ts"],
-    "*.html": ["...", "./src-node/transformer/toc.ts"]
+    "*.*": ["./src-node/transformer/magic-pages.ts","..."]
   }
 }

@@ -1,16 +1,13 @@
 import { marked } from "marked";
-import { Meta } from "../md";
+
 import path from "path";
 import { TOP_LEVEL_DOMAIN } from "../../paths";
+import { Meta, Post } from "./md.t";
 
 export const parseMd = async (
   filePath: string,
-  content: string,
-): Promise<{
-  htmlContent: string;
-  meta: Meta;
-  maybeCss: string;
-}> => {
+  content: string
+): Promise<Post> => {
   let meta = {};
   let maybeCss = "";
 
@@ -25,9 +22,9 @@ export const parseMd = async (
             <h${depth}>
               ${text}
             </h${depth}>`;
-      },
+      }
     },
-    walkTokens: (token) => {
+    walkTokens: token => {
       if (token.type === "code" && token.lang === "json") {
         const parsed = (JSON.parse(token.text) as any) as {
           date: string;
@@ -37,8 +34,8 @@ export const parseMd = async (
           date: new Date(parseInt(parsed.date, 10) * 1000),
           permalink: `${TOP_LEVEL_DOMAIN}/words/${path.basename(
             filePath,
-            ".md",
-          )}`,
+            ".md"
+          )}`
         };
         token.type = "space";
         return;
@@ -49,19 +46,19 @@ export const parseMd = async (
       if (!("date" in meta)) {
         token.type = "space";
       }
-    },
+    }
   });
   const htmlContent = await marked.parse(content);
   if (!("date" in meta)) {
     meta = {
       ...meta,
-      date: new Date(0),
+      date: new Date(0)
     };
   }
 
   return {
     htmlContent,
     meta: meta as Meta,
-    maybeCss,
+    maybeCss
   };
 };

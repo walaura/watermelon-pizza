@@ -1,36 +1,25 @@
 import { Transformer } from "@parcel/plugin";
-import * as path from "path";
-import * as fs from "fs/promises";
 
 import feed from "./magic-pages/feed";
-import { dirname } from "path";
+import toc from "./magic-pages/toc";
+import { MagicPage } from "./magic-pages/magic-pages";
 
-const PAGES = [feed];
+const PAGES: {
+  [key: string]: MagicPage;
+} = { feed, toc };
 
 module.exports = new Transformer({
   async transform({ asset }) {
-    console.log(23432324);
-    console.log(12, asset.filePath);
-    console.log(23432324);
+    const code = await asset.getCode();
+    if (code.substring(0, 5) !== "MAGIC") {
+      return [asset];
+    }
+    const load = PAGES[code.split(":")[1].trim()];
 
-    asset.setCode("12212");
+    const { type, content } = await load.render();
+    asset.setCode(content);
+    asset.type = type;
 
-    const allAssets = await Promise.all(
-      PAGES.map(async ({ route, render }) => {
-        const uniqueKey = "test/feed.xml";
-        const r = await render();
-        asset.addDependency({
-          specifier: uniqueKey,
-          specifierType: "esm"
-        });
-        return {
-          ...r,
-          uniqueKey,
-          filePath: dirname(asset.filePath) + "test.html",
-          bundleBehavior: "isolated"
-        };
-      })
-    );
-    return [asset, ...allAssets];
+    return [asset];
   }
 });

@@ -1,0 +1,67 @@
+import { Post } from "../md/md.t";
+import { Shell } from "./internal/Shell";
+
+const BlogPost = ({ post }: { post: Post }) => {
+  const head = `
+    <meta property="og:image" content="/src/og-image-fallback.png" />
+    <meta property="og:title" content="${post.meta.title}" />
+`;
+
+  const accessory = `
+    <a
+        class="header-scream"
+        href="https://bsky.app/search?q=${encodeURIComponent(
+          post.meta.permalink
+        )}+from%3Afreezydorito.lol"
+        ><small>Done reading?</small> <span>Scream back at me!</span></a
+    >`;
+
+  const dateObj = post.meta.date;
+  const dateForHumans = dateObj.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+  const dateForMeta = dateObj.toISOString();
+
+  const htmlContent =
+    `<date datetime="${dateForMeta}">${dateForHumans}</date>` +
+    `<h1>${post.meta.title}</h1>` +
+    (post.maybeCss
+      ? `<style>.article-wrapper { ${post.maybeCss} }</style>`
+      : "") +
+    post.htmlContent;
+
+  const body = `<div class="article-wrapper">
+      <article>
+        ${htmlContent}
+      </article>
+      <article>
+        <p>
+          <strong
+            >Thanks for coming! if you got thoughts
+            <a href="https://bsky.app/search?q=${encodeURIComponent(
+              post.meta.permalink
+            )}+from%3Afreezydorito.lol"
+              >I have probably posted this on bluesky</a
+            >
+            and you can respond there! And if I haven't just ping me there or
+            <a href="mailto:hi@laura.monster">email me</a>.
+          </strong>
+        </p>
+        <p>
+        I don't know how to set up a newsletter but you wake up with back pain and know what an rss feed is <a href="/src/rss.xml">you can sub here</a> and get updates as they come.
+        </p>
+      </article>
+    </div>`;
+
+  return Shell({
+    head,
+    title: post.meta.title,
+    accessory,
+    body,
+    backHref: "/words"
+  });
+};
+
+export default BlogPost;

@@ -17,8 +17,7 @@
   "source": [
     "src/index.html",
     "src/words/index.html",
-    "src/words/*.md",
-    "src/lol.magic"
+    "src/words/*.md"
   ],
   "staticFiles": {
     "staticPath": "static",
@@ -42,8 +41,9 @@
   "license": "IT-MINE",
   "homepage": "https://github.com/walaura/watermelon-pizza",
   "devDependencies": {
+    "@parcel/packager-xml": "^2.16.4",
     "@parcel/plugin": "^2.16.4",
-    "@parcel/transformer-xml": "^2.13.2",
+    "@parcel/transformer-xml": "^2.16.4",
     "@types/node": "^25.6.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-runtime": "^6.26.0",
