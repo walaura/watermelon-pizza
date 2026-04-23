@@ -96,8 +96,8 @@ header {
     justify-content: center;
     pointer-events: all;
     font-size: 0.875rem;
-    padding: 0 calc(var(--basis-padding) * 0.5);
-    margin: calc(var(--basis-padding) * -0.5);
+    padding: 0 calc(var(--basis-padding) * 0.75);
+    margin: calc(var(--basis-padding) * -0.75);
     border-radius: calc(var(--basis) * 1);
     transition-duration: 0.2s;
     transition-property: background, color;
@@ -134,7 +134,7 @@ header {
     }
 
     &:active {
-      transform: scaleX(0.9) scaleY(0.8);
+      transform: scale(1.1);
     }
   }
 }
