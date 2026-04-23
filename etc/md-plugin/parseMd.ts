@@ -1,6 +1,6 @@
 import { marked } from "marked";
 import { Meta } from "./md-plugin";
-import path from "path/win32";
+import path from "path";
 import { TOP_LEVEL_DOMAIN } from "../paths";
 
 export const parseMd = async (
@@ -15,12 +15,22 @@ export const parseMd = async (
   let maybeCss = "";
 
   marked.use({
+    renderer: {
+      heading({ tokens, depth }) {
+        const text = this.parser.parseInline(tokens);
+
+        return `
+        </article-zone-${depth}>
+        <article-zone-${depth} class="article-zone"><h${depth}>
+              ${text}
+            </h${depth}>`;
+      },
+    },
     walkTokens: (token) => {
       if (token.type === "code" && token.lang === "json") {
         const parsed = (JSON.parse(token.text) as any) as {
           date: string;
         };
-        console.log(12, filePath, path.basename(filePath, ".md"));
         meta = {
           ...parsed,
           date: new Date(parseInt(parsed.date, 10) * 1000),
@@ -41,7 +51,6 @@ export const parseMd = async (
     },
   });
   const htmlContent = await marked.parse(content);
-
   if (!("date" in meta)) {
     meta = {
       ...meta,

@@ -1,10 +1,26 @@
-@import "/src/css/css.css";
+@import "/src/css/vars.css";
+
+* {
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-weight: 300;
+  text-decoration: none;
+  backface-visibility: hidden;
+}
 
 :root {
-  background-color: #fff;
-  color: #000;
-  --header-link-pill-padding-h: calc(var(--basis) * 0.5);
   --color-highlight: var(--color-accent);
+  --color-text: #000;
+  --color-bg: #fff;
+
+  --basis-header-link-pill-padding-h: calc(var(--basis) * 0.5);
+  --basis-padding: calc(var(--basis-header-link-pill-padding-h) + 2px);
+  --basis-header-sp: calc(var(--basis) * 0.75);
+
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 body {
@@ -42,7 +58,7 @@ header {
   }
   a {
     font-size: 1rem;
-    padding: calc(var(--basis) * 0.25) var(--header-link-pill-padding-h);
+    padding: calc(var(--basis) * 0.25) var(--basis-header-link-pill-padding-h);
     border-radius: 100vmax;
     border: 2px solid hsl(0, 0%, 25%);
     color: #fff;
@@ -68,11 +84,14 @@ header {
   padding-right: calc(var(--basis) * 0.25);
 }
 
+.article-zone {
+  display: block;
+}
+
 article {
-  --padding: calc(var(--header-link-pill-padding-h) + 2px);
   max-width: calc(var(--basis) * 14);
   margin: 0 auto 20px;
-  padding: var(--padding) var(--padding) calc(var(--basis) * 1);
+  padding: var(--basis-padding);
   line-height: 1.4;
 
   date {
@@ -83,7 +102,10 @@ article {
     margin-bottom: 0;
   }
 
-  & > * {
+  p,
+  ul,
+  ol,
+  pre {
     margin-bottom: 1rem;
   }
 
@@ -100,17 +122,19 @@ article {
     text-decoration-thickness: 3px;
   }
 
-  & > h1,
-  & > h2,
-  & > h3,
-  & > h4,
-  & > h5,
-  & > h6 {
+  h1 {
     font-weight: 600;
-    margin-top: 2rem;
-    &:nth-child(2) {
-      margin-top: 0;
-    }
+    margin-bottom: var(--basis-header-sp);
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
   }
 
   h1 {
@@ -123,5 +147,30 @@ article {
 
   h3 {
     font-size: 1.25rem;
+  }
+
+  pre {
+    background: hsl(from var(--color-text) h s l / 5%);
+    border-radius: calc(var(--basis) * 0.25);
+    padding: calc(var(--basis) * 0.25);
+    margin-left: calc(var(--basis) * -0.25);
+    margin-right: calc(var(--basis) * -0.25);
+    overflow-x: auto;
+  }
+
+  ol,
+  ul {
+    padding-left: calc(var(--basis) * 0.5);
+  }
+  li {
+    list-style-position: outside;
+    display: list-item;
+    margin-bottom: 0.25em;
+  }
+  ol li {
+    list-style-type: decimal;
+  }
+  ul li {
+    list-style-type: disc;
   }
 }

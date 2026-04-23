@@ -22,12 +22,6 @@
   backface-visibility: hidden;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  overflow-x: hidden;
-}
-
 x-fg {
   z-index: 20;
   position: relative;
@@ -153,7 +147,7 @@ x-fg {
         box-shadow: inset 100vw 0 0 0 var(--color-accent);
       }
 
-      color: var(--color-text-on-neutral-on-contrast);
+      color: var(--color-text-on-contrast);
       filter: blur(0.5px);
     }
   }
@@ -181,7 +175,7 @@ x-fg {
 }
 
 footer {
-  color: var(--color-text-on-neutral-on-contrast);
+  color: var(--color-text-on-contrast);
   font-size: 0.8rem;
   font-weight: 400;
   padding: calc(var(--basis) / 3) var(--basis);
@@ -211,10 +205,7 @@ footer {
   a {
     text-decoration: underline;
     font-weight: 800;
-    text-decoration-color: rgb(
-      var(--color-text-on-neutral-on-contrast-rgb),
-      0.5
-    );
+    text-decoration-color: rgb(var(--color-text-on-contrast-rgb), 0.5);
 
     &:hover,
     &:focus {
