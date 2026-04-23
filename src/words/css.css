@@ -1,0 +1,83 @@
+@import "../css/css.css";
+
+:root {
+  background-color: #fff;
+  color: #000;
+  --color-border: hsl(from var(--color-flood) h s l / 0.25);
+
+  --header-link-pill-padding-h: calc(var(--basis) * 0.5);
+}
+
+body {
+  scroll-timeline: --main-timeline;
+  border-top: calc(var(--basis) / 4) solid var(--color-flood);
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(var(--basis) * 0.5);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  opacity: 0.75;
+  transition: opacity 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+
+  a {
+    font-size: 1rem;
+    padding: calc(var(--basis) * 0.25) var(--header-link-pill-padding-h);
+    border-radius: 100vmax;
+    border: 1px solid var(--color-border);
+    color: hsla(from var(--color-flood) h calc(s / 2) l / 0.8);
+    display: block;
+    backdrop-filter: blur(3px);
+    &:hover {
+      background: var(--color-flood);
+      color: var(--color-text-over-flood);
+    }
+  }
+}
+
+article {
+  max-width: calc(var(--basis) * 14);
+  margin: var(--basis) auto;
+  padding: 0
+    calc((var(--basis) * 0.5) + var(--header-link-pill-padding-h) + 1px);
+  line-height: 1.4;
+
+  & > * {
+    margin-bottom: 1rem;
+  }
+
+  & > h1,
+  & > h2,
+  & > h3,
+  & > h4,
+  & > h5,
+  & > h6 {
+    margin-top: 2rem;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}

@@ -1,16 +1,14 @@
-:root {
-  --bg: #020417;
-  --basis: 3rem;
-  --color-accent: #FF3573;
-  --color-text-rgb: 255, 255, 255;
-  --color-text-on-contrast-rgb: 0, 0, 0;
-  --color-text: rgb(var(--color-text-rgb));
-  --color-border: rgba(255, 255, 255, 0.6);
-  --color-contrast: white;
-  --color-text-on-contrast: rgb(var(--color-text-on-contrast-rgb));
+@import "./vars.css";
 
-  background-color: var(--bg);
-  color: var(--color-text);
+:root {
+  background-color: var(--color-flood);
+  color: var(--color-text-over-flood);
+
+  --color-border: rgba(255, 255, 255, 0.6);
+  --color-text-rgb: 255, 255, 255;
+  --color-text: rgb(var(--color-text-rgb));
+  --color-text-on-contrast-rgb: 0, 0, 0;
+  --color-text-on-contrast: rgb(var(--color-text-on-contrast-rgb));
 }
 
 * {
@@ -52,12 +50,12 @@ x-fg {
   }
 }
 
-.wrapper>.links {
+.wrapper > .links {
   @media (orientation: landscape) {
     flex: 1 1 0;
   }
 
-  color: var(--color-text);
+  color: var(--color-text-on-neutral);
 }
 
 .intro {
@@ -65,14 +63,14 @@ x-fg {
   margin: calc(var(--basis) * 1.5) var(--basis);
 
   img {
-    height: .8em;
-    margin-right: .1em;
+    height: 0.8em;
+    margin-right: 0.1em;
   }
 
   & .intro-para {
     margin-bottom: calc(var(--basis) * 0.5);
 
-    +.intro-para {
+    + .intro-para {
       margin-bottom: 0;
     }
   }
@@ -119,7 +117,7 @@ x-fg {
       display: contents;
     }
 
-    & li+li a {
+    & li + li a {
       @media (orientation: portrait) {
         border-top: 1px solid var(--color-border);
       }
@@ -155,7 +153,7 @@ x-fg {
         box-shadow: inset 100vw 0 0 0 var(--color-accent);
       }
 
-      color: var(--color-text-on-contrast);
+      color: var(--color-text-on-neutral-on-contrast);
       filter: blur(0.5px);
     }
   }
@@ -182,13 +180,12 @@ x-fg {
   }
 }
 
-
 footer {
-  color: var(--color-text-on-contrast);
+  color: var(--color-text-on-neutral-on-contrast);
   font-size: 0.8rem;
   font-weight: 400;
   padding: calc(var(--basis) / 3) var(--basis);
-  background-color: var(--color-contrast);
+  background-color: var(--color-text-over-flood);
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -214,7 +211,10 @@ footer {
   a {
     text-decoration: underline;
     font-weight: 800;
-    text-decoration-color: rgb(var(--color-text-on-contrast-rgb), 0.5);
+    text-decoration-color: rgb(
+      var(--color-text-on-neutral-on-contrast-rgb),
+      0.5
+    );
 
     &:hover,
     &:focus {
@@ -240,11 +240,11 @@ x-glitch {
   background: url(gli.gif);
   background-size: cover;
   z-index: 9;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 x-tomfoolery,
-x-tomfoolery>* {
+x-tomfoolery > * {
   top: 0;
   left: 0;
   right: 0;

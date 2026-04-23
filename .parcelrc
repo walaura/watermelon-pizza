@@ -1,4 +1,7 @@
 {
   "extends": ["@parcel/config-default"],
-  "reporters":  ["...", "parcel-reporter-static-files-copy"]
+  "reporters":  ["...", "parcel-reporter-static-files-copy"],
+  "transformers": {
+    "*.md": ["...", "./etc/md-plugin/parcel-transformer-md.ts"]
+  }
 }
