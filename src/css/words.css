@@ -19,35 +19,55 @@
   );
 
   --basis-min-width: calc(var(--basis) * 14);
-
   --basis-padding: min(calc(var(--basis) * 0.5), 5vw);
-  --basis-header-sp: calc(var(--basis-padding) * 2);
+  --basis-header-sp: calc(var(--basis-padding) * 1.5);
+  --basis-header-height: calc(
+    (0.75rem + 3rem) * 1.2
+  ); /* date + 1 line of heading + a bit higher */
 
   background-color: var(--color-bg);
   color: var(--color-text);
 }
 
-body {
-  &:before {
-    content: "hey";
-    width: 100%;
-    height: calc(var(--basis) / 2);
-    background: var(--color-flood);
-    z-index: 20;
-    position: relative;
-    display: block;
-    background: url("../css/gli.gif") 0 / cover,
-      url("../css/gli.jpg") center / cover;
-    background-blend-mode: color-dodge;
+@keyframes bloops {
+  0%,
+  100% {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid transparent;
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 1);
+  }
+  2%,
+  98% {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(255, 255, 255, 0.25);
   }
 }
 
+body {
+  &:before {
+    content: "";
+    width: 100%;
+    height: calc(var(--basis-padding) / 2);
+    background: var(--color-flood);
+    z-index: 20;
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: url("../css/gli.gif") 0 / cover,
+      url("../css/gli.jpg") center / cover;
+    background-blend-mode: color-dodge;
+    border-bottom: 1px solid color-mix(in lab, #fff, transparent 50%);
+  }
+
+  margin-top: calc(var(--basis-padding) / 2);
+  padding-top: min(calc(90vw - var(--basis-min-width)), 60px);
+}
+
 header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--basis-padding);
   position: sticky;
   top: 0;
   left: 0;
@@ -55,45 +75,84 @@ header {
   z-index: 10;
   width: 100%;
   box-sizing: border-box;
-  mix-blend-mode: exclusion;
   pointer-events: none;
+  padding: 0;
+  height: 0;
+
+  .header-innie {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--basis-padding);
+    height: var(--basis-header-height);
+  }
 
   a {
+    display: flex;
+    height: min(4em, 20vw);
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     pointer-events: all;
-    font-size: 1rem;
-    padding: calc(var(--basis-padding) * 0.75) calc(var(--basis-padding) * 0.5);
+    font-size: 0.875rem;
+    padding: 0 calc(var(--basis-padding) * 0.5);
     margin: calc(var(--basis-padding) * -0.5);
-    border-radius: 100vmax;
-    background: var(--color-flood-inverted);
-    color: #000;
-    display: block;
+    border-radius: calc(var(--basis) * 1);
     transition-duration: 0.2s;
     transition-property: background, color;
+    transition-timing-function: ease-in-out;
+    color: var(--color-flood);
+    backdrop-filter: blur(10px);
+    animation-timeline: scroll(root);
+    animation-name: bloops;
+    animation-duration: auto;
+    animation-timing-function: linear;
+
+    svg {
+      height: 0.8em;
+    }
 
     &.header-scream {
-      font-weight: bold;
+      align-items: flex-end;
+      flex-direction: column;
+      small {
+        font-size: 0.75em;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      span {
+        text-decoration: underline;
+        text-decoration-style: wavy;
+        text-decoration-thickness: 2px;
+        text-decoration-color: hsl(from currentColor h s l / 50%);
+      }
     }
 
     &:hover {
-      background: #fff;
-      color: #000;
+      background: var(--color-accent) !important;
+      color: var(--color-flood);
+    }
+
+    &:active {
+      transform: scaleX(0.9) scaleY(0.8);
     }
   }
 }
 
 .article-wrapper {
   z-index: 9;
-  padding-top: calc(var(--basis) * 4);
+  --small-padding-top: calc(
+    var(--basis-header-height) + calc(var(--basis-header-sp))
+  );
+  --extra: min(
+    max(calc(var(--basis-min-width) - 80vw), 0px),
+    var(--small-padding-top)
+  );
+  padding-top: calc(var(--extra) + (var(--basis) * 4));
   margin-top: calc(var(--basis) * -4);
   padding-bottom: 9px;
   overflow: hidden;
   display: block;
-  & > :first-child {
-    margin-top: min(
-      max(calc(var(--basis-min-width) - 90vw), calc(var(--basis) * -1)),
-      var(--basis-padding)
-    );
-  }
 }
 
 .article-zone {
