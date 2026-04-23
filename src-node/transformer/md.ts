@@ -1,6 +1,6 @@
 import { Transformer } from "@parcel/plugin";
 import * as path from "path";
-import { parseMd } from "./parseMd";
+import { parseMd } from "./md/parse-md";
 
 export type Meta = {
   date: Date;
@@ -18,7 +18,7 @@ module.exports = new Transformer({
       return [asset];
     }
 
-    const templatePath = path.join(__dirname, "template.html");
+    const templatePath = path.join(__dirname, "./md/template.html");
     const template = await asset.fs.readFile(templatePath, "utf-8");
 
     const code = await asset.getCode();
@@ -30,7 +30,7 @@ module.exports = new Transformer({
     const dateForHumans = dateObj.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
-      day: "numeric",
+      day: "numeric"
     });
     const dateForMeta = dateObj.toISOString();
 
@@ -43,11 +43,11 @@ module.exports = new Transformer({
             (html.maybeCss
               ? `<style>.article-wrapper { ${html.maybeCss} }</style>`
               : "") +
-            html.htmlContent,
+            html.htmlContent
         )
         .replaceAll("#LINK#", encodeURIComponent(html.meta.permalink))
-        .replaceAll("#TITLE#", html.meta.title),
+        .replaceAll("#TITLE#", html.meta.title)
     );
     return [asset];
-  },
+  }
 });

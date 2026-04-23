@@ -17,7 +17,8 @@
   "source": [
     "src/index.html",
     "src/words/index.html",
-    "src/words/*.md"
+    "src/words/*.md",
+    "src/lol.magic"
   ],
   "staticFiles": {
     "staticPath": "static",
@@ -31,7 +32,7 @@
     "make": "node etc/unpack.js && parcel build",
     "start": "parcel serve",
     "clean": "rm -rf dist .parcel-cache",
-    "now": "node -e 'console.log(new Date().getTime())'"
+    "now": "node -e 'console.log(parseInt(new Date().getTime()/1000))'"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
   "homepage": "https://github.com/walaura/watermelon-pizza",
   "devDependencies": {
     "@parcel/plugin": "^2.16.4",
+    "@parcel/transformer-xml": "^2.13.2",
     "@types/node": "^25.6.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-runtime": "^6.26.0",

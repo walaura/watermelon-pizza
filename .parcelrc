@@ -2,7 +2,8 @@
   "extends": ["@parcel/config-default"],
   "reporters":  ["...", "parcel-reporter-static-files-copy"],
   "transformers": {
-    "*.md": ["...", "./etc/md-plugin/md-plugin.ts"],
-    "*.html": ["...", "./etc/toc-plugin/toc-plugin.ts"]
+    "*.md": ["...", "./src-node/transformer/md.ts"],
+    "*.magic": ["...", "./src-node/transformer/magic-pages.ts"],
+    "*.html": ["...", "./src-node/transformer/toc.ts"]
   }
 }

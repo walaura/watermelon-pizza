@@ -1,7 +1,7 @@
 import { marked } from "marked";
-import { Meta } from "./md-plugin";
+import { Meta } from "../md";
 import path from "path";
-import { TOP_LEVEL_DOMAIN } from "../paths";
+import { TOP_LEVEL_DOMAIN } from "../../paths";
 
 export const parseMd = async (
   filePath: string,
