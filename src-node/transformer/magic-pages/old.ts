@@ -1,6 +1,7 @@
 import { readdirSync } from "fs";
-import { DATA_ROOT, TOP_LEVEL_DOMAIN } from "../../paths";
+import { DATA_ROOT, PARCEL_SRC_ROOT, TOP_LEVEL_DOMAIN } from "../../paths";
 import { MagicPage } from "./magic-pages";
+import path from "path";
 
 const IndexTpl = (count: number) => {
   return `
@@ -40,7 +41,7 @@ const IndexTpl = (count: number) => {
 
 const oldPage: MagicPage = {
   render: async () => {
-    const dirPath = DATA_ROOT + "src/old";
+    const dirPath = path.join(PARCEL_SRC_ROOT, "old");
 
     const entries = await readdirSync(dirPath, { withFileTypes: true });
     const files = entries.filter(

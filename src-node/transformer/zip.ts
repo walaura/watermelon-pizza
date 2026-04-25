@@ -3,6 +3,7 @@ import * as path from "path";
 
 import extract from "extract-zip";
 import { dirname } from "path";
+import { DATA_ROOT, DIST_ROOT, PARCEL_SRC_ROOT } from "../paths";
 
 const extractPromise = (sourcePath: string, targetPath: string) =>
   new Promise((yay, nay) => {
@@ -12,19 +13,22 @@ const extractPromise = (sourcePath: string, targetPath: string) =>
         dir: targetPath
       },
       function(err) {
-        if (err) nay(err);
+        if (err) {
+          nay(err);
+          return;
+        }
         yay(sourcePath);
       }
     );
   });
 
 module.exports = new Transformer({
-  async transform({ asset, options }) {
-    if (options.serveOptions == false) {
-      throw "no";
-    }
+  async transform({ asset, options, config }) {
+    const targetPath = path.join(
+      DIST_ROOT,
+      dirname(asset.filePath.replace(PARCEL_SRC_ROOT, ""))
+    );
 
-    const targetPath = options.serveOptions.distDir + "/" + "old";
     const name = path.basename(asset.filePath, ".zip");
 
     await extractPromise(asset.filePath, targetPath);
@@ -33,7 +37,6 @@ module.exports = new Transformer({
       {
         type: "html",
         isSource: false,
-        filePath: asset.filePath.replace(".zip", "/index.html"),
         content: `<meta http-equiv="refresh" content="0; url=./${name}/index.html" />`,
         pipeline: undefined
       }
