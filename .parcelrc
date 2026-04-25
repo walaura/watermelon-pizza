@@ -4,6 +4,7 @@
   "runtimes": [],
   "transformers": {
     "*.md": ["...", "./src-node/transformer/md.ts"],
+    "*.zip": ["...", "./src-node/transformer/zip.ts"],
     "*.*": ["./src-node/transformer/magic-pages.ts","..."]
   }
 }
