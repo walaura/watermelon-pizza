@@ -4,23 +4,35 @@ const url = new URL(
   `https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${process.env.STEAM_API}&steamid=${process.env.STEAM_USER_ID}&format=json`,
 );
 
-const steamWidget: Widget<{
+type Recent = {
   url: string;
   name: string;
   playtime: number;
-}> = {
+};
+
+const steamWidget: Widget<Recent[]> = {
   name: "steam-last-game",
   fetchFrom: [url, {}],
   unmangle: async (data) => {
     const results = JSON.parse(data);
-    console.log(results.response.games[0]);
-    const last = results.response.games[0];
-
-    return {
-      name: last.name,
-      url: `https://store.steampowered.com/app/${last.appid}/`,
-      playtime: last.playtime_forever,
+    const miniUnmangle = (last: {
+      name: any;
+      appid: any;
+      playtime_forever: any;
+    }) => {
+      return {
+        name: last.name,
+        url: `https://store.steampowered.com/app/${last.appid}/`,
+        playtime: last.playtime_forever,
+      };
     };
+
+    return [
+      miniUnmangle(results.response.games[0]),
+      miniUnmangle(results.response.games[1]),
+      miniUnmangle(results.response.games[2]),
+      miniUnmangle(results.response.games[3]),
+    ];
   },
 };
 
