@@ -3,6 +3,7 @@
   "type": "module",
   "name": "local-fetcher",
   "dependencies": {
+    "commander": "^14.0.3",
     "html-to-json": "^0.6.0"
   },
   "exports": {
