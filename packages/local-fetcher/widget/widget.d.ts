@@ -1,5 +1,7 @@
+export type FetchFrom = [URL, RequestInit];
+
 export type Widget<Data extends {}> = {
   name: string;
-  fetchFromUrl: URL;
+  fetchFrom: FetchFrom;
   unmangle: (string: string) => Promise<Data>;
 };

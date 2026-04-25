@@ -2,7 +2,9 @@
   "main": "fetcher.ts",
   "type": "module",
   "name": "local-fetcher",
-  "dependencies": {},
+  "dependencies": {
+    "html-to-json": "^0.6.0"
+  },
   "exports": {
     "./fetcher": "./fetcher.ts"
   },

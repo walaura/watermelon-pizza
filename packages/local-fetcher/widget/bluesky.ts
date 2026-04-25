@@ -7,8 +7,8 @@ const params = new URLSearchParams({
   collection: "app.bsky.feed.post",
   limit: "1"
 });
-const fetchFromUrl = new URL(baseUrl);
-fetchFromUrl.search = params.toString();
+const url = new URL(baseUrl);
+url.search = params.toString();
 
 const blueskyWidget: Widget<{
   url: string;
@@ -16,7 +16,7 @@ const blueskyWidget: Widget<{
   date: Date;
 }> = {
   name: "bluesky",
-  fetchFromUrl,
+  fetchFrom: [url, {}],
   unmangle: async data => {
     const results = JSON.parse(data);
     const twoot = results.records[0];
