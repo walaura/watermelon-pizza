@@ -1,0 +1,10 @@
+{
+  "main": "fetcher.ts",
+  "type": "module",
+  "name": "local-fetcher",
+  "dependencies": {},
+  "exports": {
+    "./fetcher": "./fetcher.ts"
+  },
+  "bin": "./fetcher.ts"
+}

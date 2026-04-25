@@ -1,0 +1,32 @@
+import type { Widget } from "./widget.d.ts";
+
+const baseUrl =
+  "https://shiitake.us-east.host.bsky.network/xrpc/com.atproto.repo.listRecords";
+const params = new URLSearchParams({
+  repo: "did:plc:7zxb4jzotsbgdppi52ikz3ur",
+  collection: "app.bsky.feed.post",
+  limit: "1"
+});
+const fetchFromUrl = new URL(baseUrl);
+fetchFromUrl.search = params.toString();
+
+const blueskyWidget: Widget<{
+  url: string;
+  text: string;
+  date: Date;
+}> = {
+  name: "bluesky",
+  fetchFromUrl,
+  unmangle: async data => {
+    const results = JSON.parse(data);
+    const twoot = results.records[0];
+    const [_, __, username, ___, postId] = (twoot.uri as string).split("/");
+    const url = `https://bsky.app/profile/${username}/post/${postId}`;
+    const { text } = twoot.value;
+    const date = new Date(twoot.value.createdAt);
+
+    return { url, text, date };
+  }
+};
+
+export default blueskyWidget;
