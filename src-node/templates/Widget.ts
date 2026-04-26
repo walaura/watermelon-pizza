@@ -37,12 +37,12 @@ const WidgetRenderer = (widget: HydratedWidget) => {
       <h3>${title}</h3>
       <div class="colophon-widget-flex">
         <div class="colophon-widget-big-number">
-          ${widget.data.temp[0]}
-          <span class="colophon-widget-xs colophon-widget-alpha">f</span>
+        ${widget.data.temp[1].toFixed(1)}
+        <span class="colophon-widget-xs colophon-widget-alpha">c</span>
         </div>
         <div class="colophon-widget-big-number">
-          ${widget.data.temp[1].toFixed(1)}
-          <span class="colophon-widget-xs colophon-widget-alpha">c</span>
+          ${widget.data.temp[0]}
+          <span class="colophon-widget-xs colophon-widget-alpha">f</span>
         </div>
         <div class="colophon-widget-flex">
           <div class="colophon-widget-s">
