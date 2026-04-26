@@ -44,13 +44,7 @@ const BlogPost = ({
       <article>
         ${htmlContent}
       </article>
-    </div>`;
-
-  const colophon = `
-    ${AllWidgets({
-      widgets,
-    })}
-    <article class="article-colophon">
+      <article>
         <p>
           <strong
             >Thanks for coming! if you got thoughts
@@ -63,6 +57,14 @@ const BlogPost = ({
             <a href="mailto:hi@laura.monster">email me</a>.
           </strong>
         </p>
+      </article>
+    </div>`;
+
+  const colophon = `
+    ${AllWidgets({
+      widgets,
+    })}
+    <article class="article-colophon">
         <p>
         I don't know how to set up a newsletter but if you wake up with back pain and thus know what an rss feed is <a href="/src/rss.xml">you can sub here</a> and get updates as they come.
         </p>
