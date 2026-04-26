@@ -138,6 +138,7 @@
     inset: 0;
     position: absolute;
     transform: scale(var(--scale, 1));
+    filter: grayscale(0.75) brightness(125%);
   }
 }
 
