@@ -15,6 +15,8 @@ const weatherWidget: Widget<
   {
     temp: [fah: number, celsius: number];
     type: string;
+    sunsetAt: string;
+    moon: string;
   }
 > = {
   fetchFrom,

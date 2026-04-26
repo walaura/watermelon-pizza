@@ -5,3 +5,14 @@ export type Widget<Name extends string, Data extends {}> = {
   fetchFrom: FetchFrom;
   unmangle: (string: string) => Promise<Data>;
 };
+
+export type HydratedWidgetFor<W extends Widget<string, {}>> =
+  | {
+      data: Awaited<ReturnType<W["unmangle"]>>;
+      name: W["name"];
+      error: false;
+    }
+  | {
+      name: W["name"];
+      error: true;
+    };

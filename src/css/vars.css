@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+
 :root {
   /* color */
   --color-flood: #060a36;
@@ -9,8 +11,39 @@
   --basis: 3rem;
 }
 
+/* 
+im lazy heres some globals 
+*/
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   overflow-x: hidden;
+}
+
+.🧃-glitchbox {
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  justify-content: stretch;
+  gap: 1px;
+  background:
+    url("../css/gli.gif") 0 / cover,
+    url("../css/gli.jpg") center / cover;
+  background-blend-mode: color-dodge;
+  padding: 1px 0;
+  color: #000;
+
+  .🧃-glitchbox-flex {
+    flex: 1 1 0;
+  }
+
+  & > * {
+    mix-blend-mode: color-dodge;
+    display: flex;
+    align-items: center;
+    padding: calc(var(--basis-padding) * 0.75) var(--basis-padding);
+    background: #fff;
+  }
 }

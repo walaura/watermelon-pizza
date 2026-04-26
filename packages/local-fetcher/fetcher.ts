@@ -1,14 +1,11 @@
 #!/usr/bin/env node
 
 import { fetchWithCache } from "./src/fetch.ts";
-import blueskyWidget from "./widget/bluesky.ts";
-import steamWidget from "./widget/steam.ts";
-import weatherWidget from "./widget/weather.ts";
 import { program as commander } from "commander";
 import { inspect } from "util";
-import ytWidget from "./widget/yt.ts";
 import path from "path";
 import { writeFile } from "fs/promises";
+import { HydratedWidget, WIDGETS } from "./widgets.ts";
 
 commander
   .option("-d, --debug", "Print to terminal instead of saving.")
@@ -18,10 +15,9 @@ commander
 
 const options = commander.opts();
 
-const WIDGETS = [blueskyWidget, weatherWidget, steamWidget, ytWidget];
-const hydratedWidgets = await Promise.all(
-  WIDGETS.map(async ({ fetchFrom: [fetchUrl, fetchParams], unmangle, name }) =>
-    (async () => {
+const hydratedWidgets: HydratedWidget[] = await Promise.all(
+  WIDGETS.map(
+    async ({ fetchFrom: [fetchUrl, fetchParams], unmangle, name }) => {
       try {
         const rawData = await fetchWithCache(
           options.clean != null,
@@ -29,12 +25,12 @@ const hydratedWidgets = await Promise.all(
           fetchParams,
         );
         const data = await unmangle(await rawData.text());
-        return { data, name };
+        return { data, name } as HydratedWidget;
       } catch (e) {
         console.error(e);
-        return { name, error: true };
+        return { name, error: true } as HydratedWidget;
       }
-    })(),
+    },
   ),
 );
 
@@ -55,3 +51,5 @@ if (options.saveTo) {
 }
 
 export { hydratedWidgets };
+
+export type { HydratedWidget };

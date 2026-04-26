@@ -46,7 +46,8 @@ body {
     z-index: 20;
     display: block;
     position: relative;
-    background: url("../css/gli.gif") 0 / cover,
+    background:
+      url("../css/gli.gif") 0 / cover,
       url("../css/gli.jpg") center / cover;
     background-blend-mode: color-dodge;
     border-bottom: 1px solid color-mix(in lab, #fff, transparent 50%);
@@ -66,38 +67,26 @@ footer {
   }
 
   .footer-actual {
-    display: flex;
-    align-items: stretch;
-    flex-direction: row;
-    justify-content: stretch;
-    gap: 1px;
-    background: url("../css/gli.gif") 0 / cover,
-      url("../css/gli.jpg") center / cover;
-    background-blend-mode: color-dodge;
-    padding: 1px 0;
     animation-timeline: scroll(root);
     animation-name: bloops;
     animation-duration: auto;
     animation-timing-function: linear;
 
-    .footer-flex {
-      flex: 1 1 0;
-    }
-
-    & > * {
-      mix-blend-mode: color-dodge;
-      box-shadow: inset 0 0 0 0 var(--color-accent), inset 0 20vh 0 0 white;
-      display: flex;
-      align-items: center;
-      padding: calc(var(--basis-padding) * 0.75) var(--basis-padding);
-      color: #000;
+    & > a {
+      color: inherit;
+      background: transparent;
+      box-shadow:
+        inset 0 0 0 0 var(--color-accent),
+        inset 0 20vh 0 0 white;
     }
 
     & > a:hover {
       color: #fff;
       transition: 0.25s;
       transition-property: box-shadow;
-      box-shadow: inset 0 -20vh 0 0 var(--color-accent), inset 0 20vh 0 0 white;
+      box-shadow:
+        inset 0 -20vh 0 0 var(--color-accent),
+        inset 0 20vh 0 0 white;
     }
   }
 

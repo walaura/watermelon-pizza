@@ -1,0 +1,50 @@
+@import url("vars.css");
+
+.colophon-widgets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+  padding-block: 1em;
+}
+
+.colophon-widget {
+  overflow: hidden;
+  flex-direction: column;
+  align-items: start;
+  gap: calc(var(--basis) / 4);
+
+  h3 {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    font-weight: 800;
+    opacity: 0.75;
+  }
+
+  small {
+    opacity: 0.75;
+    font-size: 0.8em;
+  }
+
+  a {
+    font-weight: bold;
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 1px;
+    text-decoration-color: hsl(from currentcolor h s l / 12.5%);
+  }
+}
+
+.colophon-widget-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+}
+
+.colophon-widget-big-number {
+  font-size: 4em;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+}

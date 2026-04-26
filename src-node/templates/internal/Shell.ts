@@ -2,11 +2,13 @@ export const Shell = ({
   head = "",
   title,
   accessory = "",
+  colophon = "",
   body = "",
-  backHref = "/"
+  backHref = "/",
 }: {
   backHref?: string;
   head?: string;
+  colophon?: string;
   title: string;
   accessory?: string;
   body: string;
@@ -30,7 +32,7 @@ export const Shell = ({
   <body>
     ${body}
     <footer>
-      <div class="footer-actual">
+      <div class="footer-actual 🧃-glitchbox">
         <a href="${backHref}" class="footer-bk">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -44,10 +46,11 @@ export const Shell = ({
             />
           </svg>
         </a>
-        <div class="footer-flex"></div>
+        <div class="🧃-glitchbox-flex"></div>
         ${accessory}
         </div>
     </footer>
+    ${colophon}
     <article class="footer-past"> hi :) You got to the end</article>
   </body>
 </html>`;

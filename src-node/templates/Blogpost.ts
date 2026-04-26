@@ -1,7 +1,15 @@
+import { HydratedWidget } from "local-fetcher/fetcher";
 import { Post } from "../transformer/md/md.t";
 import { Shell } from "./internal/Shell";
+import { AllWidgets } from "./Widget";
 
-const BlogPost = ({ post }: { post: Post }) => {
+const BlogPost = ({
+  post,
+  widgets,
+}: {
+  post: Post;
+  widgets: HydratedWidget[];
+}) => {
   const head = `
     <meta property="og:image" content="/src/og-image-fallback.png" />
     <meta property="og:title" content="${post.meta.title}" />
@@ -36,7 +44,13 @@ const BlogPost = ({ post }: { post: Post }) => {
       <article>
         ${htmlContent}
       </article>
-      <article>
+    </div>`;
+
+  const colophon = `
+    ${AllWidgets({
+      widgets,
+    })}
+    <article>
         <p>
           <strong
             >Thanks for coming! if you got thoughts
@@ -53,10 +67,11 @@ const BlogPost = ({ post }: { post: Post }) => {
         I don't know how to set up a newsletter but you wake up with back pain and know what an rss feed is <a href="/src/rss.xml">you can sub here</a> and get updates as they come.
         </p>
       </article>
-    </div>`;
+    `;
 
   return Shell({
     head,
+    colophon,
     title: post.meta.title,
     accessory,
     body,
