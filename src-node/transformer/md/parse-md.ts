@@ -6,13 +6,28 @@ import { Meta, Post } from "./md.t";
 
 export const parseMd = async (
   filePath: string,
-  content: string
+  content: string,
 ): Promise<Post> => {
   let meta = {};
   let maybeCss = "";
+  let maybeGlobalCss = "";
 
   marked.use({
     renderer: {
+      image({ href, title, text }) {
+        const img = `<img
+              src="${href}"
+              alt="${text}" />`;
+
+        if (!text) {
+          return img;
+        }
+        return `
+          <figure>
+              ${img}
+            <figcaption>${text}</figcaption>
+          </figure>`;
+      },
       heading({ tokens, depth }) {
         const text = this.parser.parseInline(tokens);
 
@@ -22,11 +37,15 @@ export const parseMd = async (
             <h${depth}>
               ${text}
             </h${depth}>`;
-      }
+      },
     },
-    walkTokens: token => {
+    walkTokens: (token) => {
+      if ("date" in meta) {
+        return;
+      }
+
       if (token.type === "code" && token.lang === "json") {
-        const parsed = (JSON.parse(token.text) as any) as {
+        const parsed = JSON.parse(token.text) as any as {
           date: string;
         };
         meta = {
@@ -34,8 +53,8 @@ export const parseMd = async (
           date: new Date(parseInt(parsed.date, 10) * 1000),
           permalink: `${TOP_LEVEL_DOMAIN}/words/${path.basename(
             filePath,
-            ".md"
-          )}`
+            ".md",
+          )}`,
         };
         token.type = "space";
         return;
@@ -43,22 +62,26 @@ export const parseMd = async (
       if (token.type === "code" && token.lang === "css") {
         maybeCss = token.text;
       }
+      if (token.type === "code" && token.lang === "css-glob") {
+        maybeGlobalCss = token.text;
+      }
       if (!("date" in meta)) {
         token.type = "space";
       }
-    }
+    },
   });
   const htmlContent = await marked.parse(content);
   if (!("date" in meta)) {
     meta = {
       ...meta,
-      date: new Date(0)
+      date: new Date(0),
     };
   }
 
   return {
     htmlContent,
     meta: meta as Meta,
-    maybeCss
+    maybeCss,
+    maybeGlobalCss,
   };
 };

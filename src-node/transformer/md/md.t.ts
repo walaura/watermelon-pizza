@@ -8,5 +8,6 @@ export type Meta = {
 export type Post = {
   htmlContent: string;
   meta: Meta;
-  maybeCss: string;
+  maybeCss: string | null | undefined;
+  maybeGlobalCss: string | null | undefined;
 };

@@ -38,6 +38,7 @@ const BlogPost = ({
     (post.maybeCss
       ? `<style>.article-wrapper { ${post.maybeCss} }</style>`
       : "") +
+    (post.maybeGlobalCss ? `<style>${post.maybeGlobalCss}</style>` : "") +
     post.htmlContent;
 
   const body = `<div class="article-wrapper">
@@ -47,7 +48,7 @@ const BlogPost = ({
       <article>
         <p>
           <strong
-            >Thanks for coming! if you got thoughts
+            >Thanks for coming!</strong> if you got thoughts
             <a href="https://bsky.app/search?q=${encodeURIComponent(
               post.meta.permalink,
             )}+from%3Afreezydorito.lol"

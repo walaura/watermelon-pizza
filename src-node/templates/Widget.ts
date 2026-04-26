@@ -109,7 +109,7 @@ const getWidgetContent = (widget: HydratedWidget) => {
   }
 
   return `
-    <p>sorry im lazy and this widget doesnt have a renderer. heres the data, just imagine it:</p>
+    <p>sorry im lazy and this widget doesn't have a renderer. heres the data, just imagine it:</p>
     <pre class="widget-xs">
       ${JSON.stringify(widget.data, null, 2)}
     </pre>
