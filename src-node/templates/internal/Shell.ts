@@ -51,6 +51,6 @@ export const Shell = ({
         </div>
     </footer>
     ${colophon}
-    <article class="footer-past"> hi :) You got to the end</article>
+    <article class="footer-past">you got to the end :) this is everything.</article>
   </body>
 </html>`;

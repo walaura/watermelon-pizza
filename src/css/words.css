@@ -114,6 +114,11 @@ footer {
   }
 }
 
+.article-colophon {
+  margin-top: var(--basis-header-sp);
+  font-size: 1.25em;
+}
+
 .footer-past {
   margin-top: var(--basis-header-sp);
   text-align: center;
@@ -125,7 +130,6 @@ footer {
   z-index: 9;
   padding-top: calc(var(--basis) * 4);
   margin-top: calc(var(--basis) * -4);
-  padding-bottom: 9px;
   overflow: hidden;
   display: block;
 }

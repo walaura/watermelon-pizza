@@ -50,7 +50,7 @@ const BlogPost = ({
     ${AllWidgets({
       widgets,
     })}
-    <article>
+    <article class="article-colophon">
         <p>
           <strong
             >Thanks for coming! if you got thoughts
