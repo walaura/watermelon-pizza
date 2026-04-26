@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -7,15 +8,12 @@ const miniFetchResult = (contents: string) => ({
 });
 
 export const fetchWithCache = async (
+  shouldBypassCache: boolean,
   url: string,
   params: RequestInit | undefined,
 ) => {
-  const cacheAt = path.join(
-    import.meta.dirname,
-    "..",
-    "tmp",
-    btoa(url) + ".url",
-  );
+  const name = createHash("sha1").update(url).digest("base64");
+  const cacheAt = path.join(import.meta.dirname, "..", "tmp", name + ".url");
 
   try {
     await mkdir(path.dirname(cacheAt));
@@ -23,7 +21,7 @@ export const fetchWithCache = async (
 
   try {
     const maybeCachedFile = (await readFile(cacheAt)).toString();
-    if (maybeCachedFile) {
+    if (!shouldBypassCache && maybeCachedFile) {
       return miniFetchResult(maybeCachedFile);
     }
   } catch (e) {
