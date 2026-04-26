@@ -4,7 +4,7 @@ import { objectivelyCorrectDateFormat } from "../dates";
 const WIDGET_NAMES: {
   [key in HydratedWidget["name"]]: string;
 } = {
-  bluesky: "Skeeted before when this was posted",
+  bluesky: "Skeeted before this was posted",
   "steam-last-game": `I've been playing this`,
   weather: `Weather at time of posting`,
   "yt-top-songs": `Some banging tunes`,
@@ -38,17 +38,21 @@ const WidgetRenderer = (widget: HydratedWidget) => {
       <div class="colophon-widget-flex">
         <div class="colophon-widget-big-number">
           ${widget.data.temp[0]}
-          <small>F</small>
+          <span class="colophon-widget-xs colophon-widget-alpha">f</span>
         </div>
         <div class="colophon-widget-big-number">
           ${widget.data.temp[1].toFixed(1)}
-          <small>C</small>
+          <span class="colophon-widget-xs colophon-widget-alpha">c</span>
         </div>
-        <div>
-          <small>MOON</small>
-          <p>${widget.data.moon}</p><br/><br/>
-          <small>SUNSET</small>
-          <p>${widget.data.sunsetAt}</p><br/><br/>
+        <div class="colophon-widget-flex">
+          <div class="colophon-widget-s">
+            <div class="colophon-widget-alpha">MOON</div>
+            <p>${widget.data.moon}</p>
+          </div>
+          <div class="colophon-widget-s">
+            <div class="colophon-widget-alpha">SUNSET</div>
+            <p>${widget.data.sunsetAt}</p>
+          </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@
 .colophon-widgets {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
-  padding-block: 1em;
 }
 
 .colophon-widget {
@@ -11,18 +10,27 @@
   flex-direction: column;
   align-items: start;
   gap: calc(var(--basis) / 4);
+  padding-block: calc(var(--basis) / 2);
+  background-color: #696969; /* hehehehehhehehe */
+  color: #fff;
+
+  transition: background 100ms linear;
+
+  &:hover {
+    background-color: var(--color-accent);
+  }
 
   h3 {
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     letter-spacing: 0.1em;
-    font-weight: 800;
-    opacity: 0.75;
+    color: hsl(from currentcolor h s calc(l - 20));
+    margin-bottom: calc(var(--basis) / 2);
   }
 
   small {
-    opacity: 0.75;
-    font-size: 0.8em;
+    color: hsl(from currentcolor h s calc(l - 30));
+    font-size: 0.75em;
   }
 
   a {
@@ -31,8 +39,20 @@
     text-decoration: underline;
     text-decoration-style: wavy;
     text-decoration-thickness: 1px;
-    text-decoration-color: hsl(from currentcolor h s l / 12.5%);
+    text-decoration-color: hsl(from currentcolor h s l / 50%);
   }
+}
+
+.colophon-widget-s {
+  font-size: 0.75em;
+}
+
+.colophon-widget-xs {
+  font-size: 0.5em;
+}
+
+.colophon-widget-alpha {
+  color: hsl(from currentcolor h s calc(l - 30));
 }
 
 .colophon-widget-flex {
@@ -41,10 +61,21 @@
   justify-content: space-between;
   flex-direction: row;
   width: 100%;
+  gap: 1em;
+
+  & > :last-child {
+    text-align: end;
+    align-items: end;
+  }
+
+  .colophon-widget-flex {
+    flex-direction: column;
+  }
 }
 
 .colophon-widget-big-number {
   font-size: 4em;
   font-weight: 800;
   letter-spacing: -0.05em;
+  text-wrap: nowrap;
 }

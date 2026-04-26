@@ -115,7 +115,7 @@ footer {
 }
 
 .article-colophon {
-  margin-top: var(--basis-header-sp);
+  margin-top: calc(var(--basis-header-sp) * 2);
   font-size: 1.25em;
 }
 
