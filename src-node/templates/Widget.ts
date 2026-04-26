@@ -62,8 +62,8 @@ const WidgetRenderer = (widget: HydratedWidget) => {
   return `
   <div class="colophon-widget">
     <h3>${WIDGET_NAMES[widget.name]}</h3>
-    <p>sorry im an idiot and never wrote this. heres the data, just imagine it:</p>
-    <pre>${JSON.stringify(widget.data, null, 2)}</pre>
+    <p>sorry im lazy and this widget doesnt have a renderer. heres the data, just imagine it:</p>
+    <pre class="colophon-widget-xs">${JSON.stringify(widget.data, null, 2)}</pre>
   </div>
     `;
 };
