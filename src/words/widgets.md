@@ -65,7 +65,7 @@ a {
 ```
 
 Wanted to throw some personality at the bottom of posts while staying within the limits of my Netlify account, which was grandfathered into the free forever plan and can basically do anything static and will die immediately when doing anything dynamic. The solution? WIDGETS.
-![You can also scroll all the way down to see what they look like now](./pix/widgets-safari.png)
+![You can also scroll all the way down to see what they look like now](./pix/widgets-safari.png?as=webp)
 
 ## Leveraging static data in the post-myspace era
 
@@ -85,7 +85,7 @@ When i run the posts I just go through all of them and find the [closest one in 
 
 As you may have imagined, the hardest part was getting typescript to cooperate. It did tho and now it can autofill stuff when I am authoring the widgets!!
 
-![Critical if your brain is cooked](./pix/widgets-vsc.png)
+![Critical if your brain is cooked](./pix/widgets-vsc.png?as=webp)
 
 I also took the chance to improve some stuff around the blog, added descriptions, there's even a secret index page if you can find it! By the way - this is super unrelated but css is getting crazy. See those wavy underlines on the links? see how the color is slightly lighter than the link color? But posts have custom colors right?
 
