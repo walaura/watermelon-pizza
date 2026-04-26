@@ -1,8 +1,8 @@
 import { Transformer } from "@parcel/plugin";
 import * as path from "path";
 import { parseMd } from "./md/parse-md";
-import BlogPost from "./templates/Blogpost";
-import Blogpost from "./templates/Blogpost";
+import BlogPost from "../templates/Blogpost";
+import Blogpost from "../templates/Blogpost";
 
 module.exports = new Transformer({
   async transform({ asset }) {
@@ -21,10 +21,10 @@ module.exports = new Transformer({
     asset.type = "html";
     asset.setCode(
       Blogpost({
-        post
-      })
+        post,
+      }),
     );
 
     return [asset];
-  }
+  },
 });

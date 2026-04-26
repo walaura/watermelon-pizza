@@ -15,12 +15,13 @@ const url = new URL(baseUrl);
 url.search = params.toString();
 
 type Recent = {
+  song: string;
+  artist: string;
+  thumb: string | null | undefined;
   url: string;
-  name: string;
-  playtime: number;
 };
 
-const ytWidget: Widget<Recent[]> = {
+const ytWidget: Widget<"yt-top-songs", Recent[]> = {
   name: "yt-top-songs",
   fetchFrom: [url, {}],
   unmangle: async (data) => {

@@ -1,5 +1,5 @@
 import listBlogEntries from "../../list-blog-entries";
-import Toc from "../templates/Toc";
+import Toc from "../../templates/Toc";
 import { MagicPage } from "./magic-pages";
 
 const tocPage: MagicPage = {
@@ -8,10 +8,10 @@ const tocPage: MagicPage = {
     return {
       type: "html",
       content: Toc({
-        posts
-      })
+        posts,
+      }),
     };
-  }
+  },
 };
 
 export default tocPage;

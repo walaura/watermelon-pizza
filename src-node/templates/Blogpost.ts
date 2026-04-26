@@ -1,4 +1,4 @@
-import { Post } from "../md/md.t";
+import { Post } from "../transformer/md/md.t";
 import { Shell } from "./internal/Shell";
 
 const BlogPost = ({ post }: { post: Post }) => {
@@ -11,7 +11,7 @@ const BlogPost = ({ post }: { post: Post }) => {
     <a
         class="header-scream"
         href="https://bsky.app/search?q=${encodeURIComponent(
-          post.meta.permalink
+          post.meta.permalink,
         )}+from%3Afreezydorito.lol"
         ><small>Done reading?</small> <span>Scream back at me!</span></a
     >`;
@@ -20,7 +20,7 @@ const BlogPost = ({ post }: { post: Post }) => {
   const dateForHumans = dateObj.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
-    day: "numeric"
+    day: "numeric",
   });
   const dateForMeta = dateObj.toISOString();
 
@@ -41,7 +41,7 @@ const BlogPost = ({ post }: { post: Post }) => {
           <strong
             >Thanks for coming! if you got thoughts
             <a href="https://bsky.app/search?q=${encodeURIComponent(
-              post.meta.permalink
+              post.meta.permalink,
             )}+from%3Afreezydorito.lol"
               >I have probably posted this on bluesky</a
             >
@@ -60,7 +60,7 @@ const BlogPost = ({ post }: { post: Post }) => {
     title: post.meta.title,
     accessory,
     body,
-    backHref: "/words"
+    backHref: "/words",
   });
 };
 

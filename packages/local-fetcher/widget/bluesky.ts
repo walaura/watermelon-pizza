@@ -10,11 +10,14 @@ const params = new URLSearchParams({
 const url = new URL(baseUrl);
 url.search = params.toString();
 
-const blueskyWidget: Widget<{
-  url: string;
-  text: string;
-  date: Date;
-}> = {
+const blueskyWidget: Widget<
+  "bluesky",
+  {
+    url: string;
+    text: string;
+    date: Date;
+  }
+> = {
   name: "bluesky",
   fetchFrom: [url, {}],
   unmangle: async (data) => {

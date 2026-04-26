@@ -10,7 +10,7 @@ type Recent = {
   playtime: number;
 };
 
-const steamWidget: Widget<Recent[]> = {
+const steamWidget: Widget<"steam-last-game", Recent[]> = {
   name: "steam-last-game",
   fetchFrom: [url, {}],
   unmangle: async (data) => {

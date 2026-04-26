@@ -10,10 +10,13 @@ const convertToCelsius = (fahrenheit: number) => {
   return ((fahrenheit - 32) * 5) / 9;
 };
 
-const weatherWidget: Widget<{
-  temp: [fah: number, celsius: number];
-  type: string;
-}> = {
+const weatherWidget: Widget<
+  "weather",
+  {
+    temp: [fah: number, celsius: number];
+    type: string;
+  }
+> = {
   fetchFrom,
   name: "weather",
   unmangle: async (string) => {

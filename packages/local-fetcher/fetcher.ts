@@ -54,4 +54,4 @@ if (options.saveTo) {
   console.info(dir);
 }
 
-export {};
+export { hydratedWidgets };
