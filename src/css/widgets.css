@@ -1,20 +1,23 @@
 @import url("vars.css");
 
-.colophon-widgets {
+.widgets {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
 }
 
-.colophon-widget {
+.widget {
   overflow: hidden;
   flex-direction: column;
   align-items: start;
   gap: calc(var(--basis) / 4);
   padding-block: calc(var(--basis) / 2);
   background-color: #696969; /* hehehehehhehehe */
-  color: #fff;
-
   transition: background 100ms linear;
+  color: var(--color-text-over-flood);
+
+  a {
+    color: var(--color-text-over-flood);
+  }
 
   &:hover {
     background-color: var(--color-accent);
@@ -32,32 +35,32 @@
     color: hsl(from currentcolor h s calc(l - 30));
     font-size: 0.75em;
   }
-
-  a {
-    font-weight: bold;
-    color: inherit;
-    text-decoration: underline;
-    text-decoration-style: wavy;
-    text-decoration-thickness: 1px;
-    text-decoration-color: hsl(from currentcolor h s l / 50%);
-  }
 }
 
-.colophon-widget-s {
+.widget-text-link {
+  font-weight: bold;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-thickness: 1px;
+  text-decoration-color: hsl(from currentcolor h s l / 50%);
+}
+
+.widget-s {
   font-size: 0.75em;
 }
 
-.colophon-widget-xs {
+.widget-xs {
   font-size: 0.5em;
 }
 
-.colophon-widget-alpha {
+.widget-alpha {
   color: hsl(from currentcolor h s calc(l - 30));
 }
 
-.colophon-widget-flex {
+.widget-flex {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
   flex-direction: row;
   width: 100%;
@@ -67,15 +70,85 @@
     text-align: end;
     align-items: end;
   }
+}
 
-  .colophon-widget-flex {
+.widget-rows {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1em;
+  flex-direction: column;
+  align-items: start;
+}
+
+.widget-cols {
+  display: flex;
+  align-items: start;
+  justify-content: stretch;
+  flex-direction: row;
+  width: 100%;
+  gap: 1em;
+
+  > a {
+    margin: -1px;
+    padding: 1px;
+    box-shadow: inset 0 0 0 0 #000;
+    transition: box-shadow 0.125s linear;
+
+    &:hover {
+      box-shadow: inset 0 -20vh 0 0 #000;
+    }
+  }
+
+  .widget-flex,
+  .widget-cols {
     flex-direction: column;
+    align-items: start;
+  }
+
+  & > * {
+    flex: 1 1 0;
+    overflow: hidden;
   }
 }
 
-.colophon-widget-big-number {
-  font-size: 4em;
+.widget-big-number {
+  font-size: 5em;
   font-weight: 800;
   letter-spacing: -0.05em;
   text-wrap: nowrap;
+}
+
+.widget-image {
+  width: calc(100% - 2px);
+  max-height: calc(var(--basis) * 3);
+  aspect-ratio: 1;
+  overflow: hidden;
+  position: relative;
+  border-radius: 1px;
+  background: var(--color-text-over-flood);
+  border: 1px solid #fff;
+
+  &::before {
+    background: var(--img);
+    aspect-ratio: 1;
+    background-size: cover;
+    background-position: center;
+    content: "";
+    inset: 0;
+    position: absolute;
+    transform: scale(var(--scale, 1));
+  }
+}
+
+.widget-lines-1,
+.widget-lines-2 {
+  height: 1lh;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: flex;
+
+  &.widget-lines-2 {
+    height: 2lh;
+  }
 }

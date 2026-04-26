@@ -18,7 +18,6 @@ const getClosestWidget = async (date: Date): Promise<HydratedWidget[]> => {
     })
     .sort((a, b) => a[1] - b[1])
     .shift() ?? [])[0];
-  console.log(1212);
 
   if (!closestFile) {
     return [];

@@ -10,10 +10,7 @@
   },
   {
     "data": {
-      "temp": [
-        46,
-        7.777777777777778
-      ],
+      "temp": [46, 7.777777777777778],
       "type": "Partly Cloudy",
       "sunsetAt": "8:17 PM",
       "moon": "Waxing gibbous"
@@ -25,21 +22,25 @@
       {
         "name": "2025: Mosaic Retrospective",
         "url": "https://store.steampowered.com/app/4266120/",
+        "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4266120/18ab7f0e306c6575ac6fb2a019bd2cdfd98bed92.jpg",
         "playtime": 1957
       },
       {
         "name": "Aseprite",
         "url": "https://store.steampowered.com/app/431730/",
+        "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4266120/18ab7f0e306c6575ac6fb2a019bd2cdfd98bed92.jpg",
         "playtime": 13040
       },
       {
         "name": "The Evil Within 2",
         "url": "https://store.steampowered.com/app/601430/",
+        "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4266120/18ab7f0e306c6575ac6fb2a019bd2cdfd98bed92.jpg",
         "playtime": 253
       },
       {
         "name": "PowerWash Simulator 2",
         "url": "https://store.steampowered.com/app/2968420/",
+        "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4266120/18ab7f0e306c6575ac6fb2a019bd2cdfd98bed92.jpg",
         "playtime": 1844
       }
     ],

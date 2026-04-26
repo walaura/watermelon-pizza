@@ -1,5 +1,6 @@
 import { HydratedWidget } from "local-fetcher/fetcher";
 import { objectivelyCorrectDateFormat } from "../dates";
+import { title } from "node:process";
 
 const WIDGET_NAMES: {
   [key in HydratedWidget["name"]]: string;
@@ -7,69 +8,123 @@ const WIDGET_NAMES: {
   bluesky: "Skeeted before this was posted",
   "steam-last-game": `I've been playing this`,
   weather: `Weather at time of posting`,
-  "yt-top-songs": `Some banging tunes`,
+  "yt-top-songs": `Some banging tunes I got on repeat`,
 };
 
-const WidgetRenderer = (widget: HydratedWidget) => {
+const WidgetRenderer = ({
+  title,
+  content,
+}: {
+  title: string;
+  content: string;
+}) => {
+  return `
+    <div class="widget">
+      <h3>${title}</h3>
+      ${content}
+    </div>
+    `;
+};
+
+const getWidgetContent = (widget: HydratedWidget) => {
   if (widget.error) {
-    return `<div class="colophon-widget">
-    <h3>${WIDGET_NAMES[widget.name]}</h3><p>Lol this failed to load?? lmk</div>`;
+    return `<p>Lol this failed to load?? lmk</p>`;
   }
-  const title = WIDGET_NAMES[widget.name];
+
+  if (widget.name == "yt-top-songs") {
+    return `
+      <div class="widget-cols">
+      ${widget.data
+        .map(
+          (song) =>
+            `<a class="widget-s widget-rows" href="${song.url}" target='_blank'>
+              <div class="widget-image" style="
+                --img: url('${song.thumb}');
+                --scale: 1.4;
+              " ></div>
+              <strong class="widget-lines-2">${song.song}</strong>
+              <span class="widget-alpha widget-s widget-lines-2">${song.artist}</span>
+            </a>`,
+        )
+        .join("")}
+      </div>
+    `;
+  }
+
+  if (widget.name == "steam-last-game") {
+    return `
+      <div class="widget-cols">
+      ${widget.data
+        .map(
+          (game) =>
+            `<a class="widget-s widget-rows" href="${game.url}" target='_blank'>
+              <div class="widget-image" style="--img: url('${game.iconUrl}')" ></div>
+              <span class="widget-alpha widget-lines-1">${Math.floor(game.playtime / 60)} hours</span>
+              <strong class="widget-lines-2">${game.name}</strong>
+            </a>`,
+        )
+        .join("")}
+      </div>
+    `;
+  }
 
   if (widget.name == "bluesky") {
     widget.data.date = new Date(widget.data.date);
     return `
-    <div class="colophon-widget">
-      <h3>${title}</h3>
       <p>${widget.data.text}</p>
-      <small class="colophon-widget-flex">
+      <small class="widget-flex">
         <span>${widget.data.date.toLocaleTimeString()} - ${objectivelyCorrectDateFormat(widget.data.date)}</span>
-        <a href="${widget.data.url}">Check it out</a>
+        <a class="widget-text-link" href="${widget.data.url}">Check it out</a>
       </small>
-    </div>
     `;
   }
 
   if (widget.name == "weather") {
     return `
-    <div class="colophon-widget">
-      <h3>${title}</h3>
-      <div class="colophon-widget-flex">
-        <div class="colophon-widget-big-number">
-        ${widget.data.temp[1].toFixed(1)}
-        <span class="colophon-widget-xs colophon-widget-alpha">c</span>
+      <div class="widget-flex">
+        <div class="widget-rows">
+          <span class="widget-alpha widget-s">CELSIS</span>
+          <div class="widget-big-number">
+          ${widget.data.temp[1].toFixed(1)}
+          </div>
         </div>
-        <div class="colophon-widget-big-number">
-          ${widget.data.temp[0]}
-          <span class="colophon-widget-xs colophon-widget-alpha">f</span>
+        <div class="widget-rows">
+          <span class="widget-alpha widget-s">FAHRIS</span>
+          <div class="widget-big-number">
+          ${widget.data.temp[0].toFixed(0)}
+          </div>
         </div>
-        <div class="colophon-widget-flex">
-          <div class="colophon-widget-s">
-            <div class="colophon-widget-alpha">MOON</div>
+        <div class="widget-rows">
+          <div class="widget-s">
+            <div class="widget-alpha">MOON</div>
             <p>${widget.data.moon}</p>
           </div>
-          <div class="colophon-widget-s">
-            <div class="colophon-widget-alpha">SUNSET</div>
+          <div class="widget-s">
+            <div class="widget-alpha">SUNSET</div>
             <p>${widget.data.sunsetAt}</p>
           </div>
         </div>
       </div>
-    </div>
     `;
   }
 
   return `
-  <div class="colophon-widget">
-    <h3>${WIDGET_NAMES[widget.name]}</h3>
     <p>sorry im lazy and this widget doesnt have a renderer. heres the data, just imagine it:</p>
-    <pre class="colophon-widget-xs">${JSON.stringify(widget.data, null, 2)}</pre>
-  </div>
+    <pre class="widget-xs">
+      ${JSON.stringify(widget.data, null, 2)}
+    </pre>
     `;
 };
 
 export const AllWidgets = ({ widgets }: { widgets: HydratedWidget[] }) => {
   return `
   <link rel="stylesheet" href="/src/css/widgets.css" />
-  <div class="colophon-widgets 🧃-glitchbox">${widgets.map(WidgetRenderer).join("")}</div>`;
+  <div class="widgets 🧃-glitchbox">${widgets
+    .map((widget) => {
+      return WidgetRenderer({
+        title: WIDGET_NAMES[widget.name],
+        content: getWidgetContent(widget),
+      });
+    })
+    .join("")}</div>`;
 };

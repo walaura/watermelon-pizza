@@ -18,16 +18,17 @@ const makeFeed = (items: Post[]) => `<?xml version="1.0" ?>
 
 	${items
     .map(
-      i => `
+      (i) => `
 		<item>
 			<title>${i.meta.title}</title>
 			<link>${i.meta.permalink}</link>
+			<description>${i.meta.desc ?? i.meta.title}</description>
 			<pubDate>${i.meta.date.toUTCString()}</pubDate>
 			<guid isPermaLink="true">${i.meta.permalink}</guid>
 			<dc:creator>Laura</dc:creator>
 			<category>Blog</category>
 		</item>
-	`
+	`,
     )
     .join("")}
   </channel>
@@ -39,9 +40,9 @@ const feedPage: MagicPage = {
     const items = await listBlogEntries();
     return {
       type: "xml",
-      content: makeFeed(items)
+      content: makeFeed(items),
     };
-  }
+  },
 };
 
 export default feedPage;

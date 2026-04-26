@@ -5,7 +5,8 @@ import { program as commander } from "commander";
 import { inspect } from "util";
 import path from "path";
 import { writeFile } from "fs/promises";
-import { HydratedWidget, WIDGETS } from "./widgets.ts";
+import { WIDGETS } from "./widgets.ts";
+import type { HydratedWidget } from "./widgets.ts";
 
 commander
   .option("-d, --debug", "Print to terminal instead of saving.")

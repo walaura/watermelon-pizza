@@ -8,6 +8,7 @@ type Recent = {
   url: string;
   name: string;
   playtime: number;
+  iconUrl: string;
 };
 
 const steamWidget: Widget<"steam-last-game", Recent[]> = {
@@ -19,10 +20,12 @@ const steamWidget: Widget<"steam-last-game", Recent[]> = {
       name: any;
       appid: any;
       playtime_forever: any;
+      img_icon_url: any;
     }) => {
       return {
         name: last.name,
         url: `https://store.steampowered.com/app/${last.appid}/`,
+        iconUrl: `https://media.steampowered.com/steamcommunity/public/images/apps/${last.appid}/${last.img_icon_url}.jpg`,
         playtime: last.playtime_forever,
       };
     };

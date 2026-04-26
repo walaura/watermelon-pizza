@@ -9,6 +9,35 @@
     "name": "bluesky"
   },
   {
+    "data": [
+      {
+        "name": "2025: Mosaic Retrospective",
+        "url": "https://store.steampowered.com/app/4266120/",
+        "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4266120/18ab7f0e306c6575ac6fb2a019bd2cdfd98bed92.jpg",
+        "playtime": 1957
+      },
+      {
+        "name": "Aseprite",
+        "url": "https://store.steampowered.com/app/431730/",
+        "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/431730/da61bd2806f69205a97609dcdd4ca27df3baf800.jpg",
+        "playtime": 13040
+      },
+      {
+        "name": "The Evil Within 2",
+        "url": "https://store.steampowered.com/app/601430/",
+        "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/601430/823f7bef429bc85a7a68dba32d6f47938fc3b689.jpg",
+        "playtime": 253
+      },
+      {
+        "name": "PowerWash Simulator 2",
+        "url": "https://store.steampowered.com/app/2968420/",
+        "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2968420/22c3afc784b39c76ac7c0a5c4771ce68b548e431.jpg",
+        "playtime": 1844
+      }
+    ],
+    "name": "steam-last-game"
+  },
+  {
     "data": {
       "temp": [
         46,
@@ -19,31 +48,6 @@
       "moon": "Waxing gibbous"
     },
     "name": "weather"
-  },
-  {
-    "data": [
-      {
-        "name": "2025: Mosaic Retrospective",
-        "url": "https://store.steampowered.com/app/4266120/",
-        "playtime": 1957
-      },
-      {
-        "name": "Aseprite",
-        "url": "https://store.steampowered.com/app/431730/",
-        "playtime": 13040
-      },
-      {
-        "name": "The Evil Within 2",
-        "url": "https://store.steampowered.com/app/601430/",
-        "playtime": 253
-      },
-      {
-        "name": "PowerWash Simulator 2",
-        "url": "https://store.steampowered.com/app/2968420/",
-        "playtime": 1844
-      }
-    ],
-    "name": "steam-last-game"
   },
   {
     "data": [

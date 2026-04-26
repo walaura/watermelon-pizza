@@ -1,13 +1,13 @@
-import blueskyWidget from "./widget/bluesky";
-import steamWidget from "./widget/steam";
-import weatherWidget from "./widget/weather";
-import { HydratedWidgetFor } from "./widget/widget";
-import ytWidget from "./widget/yt";
+import blueskyWidget from "./widget/bluesky.ts";
+import steamWidget from "./widget/steam.ts";
+import weatherWidget from "./widget/weather.ts";
+import type { HydratedWidgetFor } from "./widget/widget.d.ts";
+import ytWidget from "./widget/yt.ts";
 
 export const WIDGETS = [
   blueskyWidget,
-  weatherWidget,
   steamWidget,
+  weatherWidget,
   ytWidget,
 ] as const;
 

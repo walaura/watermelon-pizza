@@ -7,11 +7,14 @@ const Toc = ({ posts }: { posts: Post[] }) => {
       (item) =>
         `<li><a href="${item.meta.permalink}">${
           item.meta.title
-        }</a> - ${item.meta.date.toLocaleDateString("en-us", {
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        })}</li>`,
+        }</a>${item.meta.desc ? ` &middot; ${item.meta.desc}` : ""} <br/><small>${item.meta.date.toLocaleDateString(
+          "en-us",
+          {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          },
+        )}<small></li>`,
     )
     .join("\n");
 

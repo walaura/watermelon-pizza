@@ -1,6 +1,7 @@
 export type Meta = {
   date: Date;
   title: string;
+  desc: string;
   permalink: string;
 };
 

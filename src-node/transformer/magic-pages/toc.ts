@@ -5,6 +5,7 @@ import { MagicPage } from "./magic-pages";
 const tocPage: MagicPage = {
   render: async () => {
     const posts = await listBlogEntries();
+    console.log(posts.length);
     return {
       type: "html",
       content: Toc({
