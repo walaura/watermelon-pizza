@@ -3,10 +3,11 @@
   "type": "module",
   "name": "local-og-o-matic",
   "dependencies": {
-    "painbrush": "1.3"
+    "painbrush": "1.3",
+    "prettier-plugin-multiline-arrays": "^4.1.7"
   },
   "scripts": {
-    "pack-font": "painbrush-font-packer"
+    "pack-font": "painbrush-font-packer -f raws/babushka && node index.ts"
   },
   "exports": {
     "/": "./index.ts"
