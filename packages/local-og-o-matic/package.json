@@ -1,0 +1,15 @@
+{
+  "main": "index.ts",
+  "type": "module",
+  "name": "local-og-o-matic",
+  "dependencies": {
+    "painbrush": "1.3"
+  },
+  "scripts": {
+    "pack-font": "painbrush-font-packer"
+  },
+  "exports": {
+    "/": "./index.ts"
+  },
+  "bin": "./bin.ts"
+}
