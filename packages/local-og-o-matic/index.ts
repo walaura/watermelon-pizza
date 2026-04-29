@@ -6,7 +6,7 @@ import { exportImage } from "painbrush/image";
 import { getDefaultFontHandleNode, useFont } from "painbrush/font";
 
 const POXEL = await useFont(getDefaultFontHandleNode());
-const BABU = await useFont(readFile("./fonts/babushka.pxfont"));
+const BABU = await useFont(readFile("./fonts/babushka-bold.pxfont"));
 
 const pangram = "Portez ce vieux whisky au juge blond qui fume"
   .normalize("NFD")
@@ -37,4 +37,4 @@ let lbUTpRETTY = transformLayer.setBackground(
   brush.solidFill(0xff3573),
 );
 
-await writeFile("./img.bmp", exportImage(lbUTpRETTY));
+await writeFile("./img.bmp", exportImage(l));
