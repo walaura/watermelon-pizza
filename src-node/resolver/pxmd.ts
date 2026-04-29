@@ -16,11 +16,6 @@ module.exports = new Resolver({
       "words",
       fileName + ".md",
     );
-    const assetFilePath = path.resolve(
-      PARCEL_SRC_ROOT,
-      "words",
-      fileName + ".bmp",
-    );
     const supportingMDFile = await readFile(supportingMDFilePath);
 
     if (!supportingMDFile) {
@@ -31,22 +26,25 @@ module.exports = new Resolver({
     const postData = await parseMd(supportingMDFilePath, post);
 
     const title = (postData.meta.title ?? "hey")
+      .trim()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
+      .split("\n")
+      .filter(Boolean)
+      .join("")
       .trim();
     const desc = (postData.meta.desc ?? "hey")
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-
-    console.log(import.meta.dirname);
-    console.log(assetFilePath);
-    console.log(assetFilePath);
-    console.log(import.meta.dirname);
+      .replace(/[\u0300-\u036f]/g, "")
+      .split("\n")
+      .filter(Boolean)
+      .join("")
+      .trim();
     return {
-      filePath: "/hello.bp",
+      filePath: PARCEL_SRC_ROOT + "/words/" + fileName + ".pxmd",
       code: JSON.stringify({
-        title: "sdfgdfg",
-        desc: "1212",
+        title,
+        desc,
       }),
     };
   },

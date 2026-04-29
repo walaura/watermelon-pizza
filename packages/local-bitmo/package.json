@@ -11,7 +11,7 @@
     "pack-font": "painbrush-font-packer -f raws/babushka-bold && node f.ts"
   },
   "exports": {
-    "/flog": "./bitmo.ts"
+    ".": "./bitmo.ts"
   },
   "bin": "./bitmo.ts",
   "devDependencies": {

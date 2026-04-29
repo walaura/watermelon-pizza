@@ -3,9 +3,9 @@
 import { readFile } from "node:fs/promises";
 import { brush, convertColor, SET_COLORS } from "painbrush/color";
 
-import { composeLayer, makeLayer, transformLayer } from "painbrush/layer";
+import { makeLayer, transformLayer } from "painbrush/layer";
 import { exportImage } from "painbrush/image";
-import { getDefaultFontHandleNode, useFont } from "painbrush/font";
+import { useFont } from "painbrush/font";
 import { getXYCoords } from "painbrush/pixel";
 
 export const prep = async () => {
@@ -27,13 +27,16 @@ export const prep = async () => {
     const axis = Math.random() > 0.5 ? "x" : "y";
     const counterAxis = axis === "x" ? "y" : "x";
 
+    console.log("-" + heado + "-");
+
     let ogImageLayer = transformLayer.setBackground(
       transformLayer.pad(
         transformLayer.stackVertical(
           [
             transformLayer.scale(
-              makeLayer.text(heado, BABUBO, brush.solidFill(TEXT_COLOR), {
-                maxLengthPx: 110,
+              makeLayer.text(heado + ".", BABUBO, brush.solidFill(TEXT_COLOR), {
+                maxLengthPx: 120,
+                minLengthPx: 120,
               }),
               {
                 x: 2,
@@ -46,7 +49,7 @@ export const prep = async () => {
           ],
           12,
         ),
-        { x: 90, y: 90 },
+        { x: 100, y: 90 },
       ),
       (index, data) => {
         let BG_H_ = BG_H;
@@ -78,14 +81,14 @@ export const prep = async () => {
     );
 
     const targetSize = { x: 440, y: 240 };
-    // center ogImageLayer in the middle
     const offset = {
-      x: (targetSize.x - ogImageLayer.x) / 2,
-      y: (targetSize.y - ogImageLayer.y) / 2,
+      x: Math.floor((targetSize.x - ogImageLayer.x) / 2),
+      y: Math.floor((targetSize.y - ogImageLayer.y) / 2),
     };
 
-    const target = makeLayer.blankWithAlpha({ x: 440, y: 240 });
-    return exportImage(ogImageLayer);
+    return exportImage(
+      transformLayer.crop(ogImageLayer, targetSize, { offset }),
+    );
   };
   const heado = "Ok i lied i know how to make these just fine BUT";
   const subbo = "Read on for tales on bitmap generation";
