@@ -24,12 +24,6 @@ module.exports = new Transformer({
     const wasmBytes = await readFile(wasmLocation);
     await initializeImageMagick(wasmBytes);
 
-    console.log(Magick.imageMagickVersion);
-    console.log("Delegates:", Magick.delegates);
-    console.log("Features:", Magick.features);
-    console.log("Quantum:", Quantum.depth);
-
-    console.log("");
     const magick = await new Promise((yay, nay) => {
       ImageMagick.read(imageBmp, (image) => {
         image.resize(440 * 3, 240 * 3, 1);

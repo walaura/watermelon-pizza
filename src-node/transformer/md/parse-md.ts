@@ -47,9 +47,11 @@ export const parseMd = async (
       if (token.type === "code" && token.lang === "json") {
         const parsed = JSON.parse(token.text) as any as {
           date: string;
+          [key: string]: unknown;
         };
         meta = {
           ...parsed,
+          isDraft: Boolean(parsed.draft),
           date: new Date(parseInt(parsed.date, 10) * 1000),
           permalink: `${TOP_LEVEL_DOMAIN}/words/${path.basename(
             filePath,

@@ -27,16 +27,14 @@ export const prep = async () => {
     const axis = Math.random() > 0.5 ? "x" : "y";
     const counterAxis = axis === "x" ? "y" : "x";
 
-    console.log("-" + heado + "-");
-
     let ogImageLayer = transformLayer.setBackground(
       transformLayer.pad(
         transformLayer.stackVertical(
           [
             transformLayer.scale(
               makeLayer.text(heado + ".", BABUBO, brush.solidFill(TEXT_COLOR), {
-                maxLengthPx: 120,
-                minLengthPx: 120,
+                maxLengthPx: 140,
+                minLengthPx: 140,
               }),
               {
                 x: 2,
@@ -44,7 +42,7 @@ export const prep = async () => {
               },
             ),
             makeLayer.text(subbo, BABU, brush.solidFill(TEXT_COLOR_ALT), {
-              maxLengthPx: 200,
+              maxLengthPx: 260,
             }),
           ],
           12,

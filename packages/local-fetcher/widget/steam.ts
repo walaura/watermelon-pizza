@@ -1,5 +1,8 @@
 import type { Widget } from "./widget.d.ts";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 const url = new URL(
   `https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${process.env.STEAM_API}&steamid=${process.env.STEAM_USER_ID}&format=json`,
 );

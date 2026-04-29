@@ -19,9 +19,11 @@ const listBlogEntries = async (): Promise<Post[]> => {
         return await parseMd(filePath, content);
       }),
     )
-  ).sort(
-    (itemA, itemB) => itemB.meta.date.getTime() - itemA.meta.date.getTime(),
-  );
+  )
+    .filter((item) => !item.meta.isDraft)
+    .sort(
+      (itemA, itemB) => itemB.meta.date.getTime() - itemA.meta.date.getTime(),
+    );
 };
 
 export default listBlogEntries;

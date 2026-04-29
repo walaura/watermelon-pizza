@@ -4,6 +4,7 @@ export type Meta = {
   desc: string;
   permalink: string;
   filename: string;
+  isDraft: boolean;
 };
 
 export type Post = {
