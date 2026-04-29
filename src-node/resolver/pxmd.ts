@@ -1,7 +1,6 @@
-import { Resolver, Transformer } from "@parcel/plugin";
+import { Resolver } from "@parcel/plugin";
 import * as path from "path";
 import { parseMd } from "../transformer/md/parse-md";
-import Blogpost from "../templates/Blogpost";
 import { PARCEL_SRC_ROOT } from "../paths";
 import { readFile } from "fs/promises";
 
@@ -16,6 +15,11 @@ module.exports = new Resolver({
       PARCEL_SRC_ROOT,
       "words",
       fileName + ".md",
+    );
+    const assetFilePath = path.resolve(
+      PARCEL_SRC_ROOT,
+      "words",
+      fileName + ".bmp",
     );
     const supportingMDFile = await readFile(supportingMDFilePath);
 
@@ -33,8 +37,13 @@ module.exports = new Resolver({
     const desc = (postData.meta.desc ?? "hey")
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
+
+    console.log(import.meta.dirname);
+    console.log(assetFilePath);
+    console.log(assetFilePath);
+    console.log(import.meta.dirname);
     return {
-      filePath: "/words/og/" + fileName + ".pxmd",
+      filePath: "/hello.bp",
       code: JSON.stringify({
         title: "sdfgdfg",
         desc: "1212",
