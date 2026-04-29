@@ -3,7 +3,8 @@
   "type": "module",
   "name": "local-og-o-matic",
   "dependencies": {
-    "painbrush": "1.3",
+    "fast-bmp": "^4.0.1",
+    "painbrush": "^3.2.2",
     "prettier-plugin-multiline-arrays": "^4.1.7"
   },
   "scripts": {
