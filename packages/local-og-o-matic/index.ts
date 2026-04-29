@@ -1,15 +1,11 @@
 import { readFile, writeFile } from "node:fs/promises";
-import {
-  makeRectangleLayer,
-  makeTextLayer,
-  overlayLayerOver,
-  padLayer,
-} from "painbrush/layer";
-import { loadBuiltInFont, useFont } from "painbrush/typography";
-import { borderBrush, COLOR_BLACK, solidFillBrush } from "painbrush/color";
-import { toImage } from "painbrush/image";
+import { brush, SET_COLORS } from "painbrush/color";
 
-const POXEL = await loadBuiltInFont();
+import { makeLayer, transformLayer } from "painbrush/layer";
+import { exportImage } from "painbrush/image";
+import { getDefaultFontHandleNode, useFont } from "painbrush/font";
+
+const POXEL = await useFont(getDefaultFontHandleNode());
 const BABU = await useFont(readFile("./fonts/babushka.pxfont"));
 
 const pangram = "Portez ce vieux whisky au juge blond qui fume"
@@ -24,25 +20,21 @@ const body =
   "0123456789" +
   "?!()[]><@+-.,'";
 
-const l = padLayer(
-  makeTextLayer(body, BABU, solidFillBrush(COLOR_BLACK), {
+const l = transformLayer.pad(
+  makeLayer.text(body, BABU, brush.solidFill(SET_COLORS.BLACK), {
     maxLengthPx: 200,
-    letterPlateBrush: borderBrush(1, [255, 0, 255]),
+    letterPlateBrush: brush.border(1, SET_COLORS.GREEN),
   }),
   { x: 10, y: 10 },
 );
-let lbUTpRETTY = padLayer(
-  makeTextLayer(body, BABU, solidFillBrush([6, 10, 54]), {
-    maxLengthPx: 260,
-  }),
-  { x: 20, y: 20 },
-);
-lbUTpRETTY = overlayLayerOver(
-  makeRectangleLayer(
-    { x: lbUTpRETTY.width, y: lbUTpRETTY.height },
-    solidFillBrush([255, 53, 115]),
+let lbUTpRETTY = transformLayer.setBackground(
+  transformLayer.pad(
+    makeLayer.text(body, BABU, brush.solidFill(0x060a36), {
+      maxLengthPx: 260,
+    }),
+    { x: 20, y: 20 },
   ),
-  lbUTpRETTY,
+  brush.solidFill(0xff3573),
 );
 
-await writeFile("./img.bmp", toImage(lbUTpRETTY));
+await writeFile("./img.bmp", exportImage(lbUTpRETTY));
