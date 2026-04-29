@@ -78,6 +78,11 @@ export const parseMd = async (
     };
   }
 
+  meta = {
+    ...meta,
+    filename: path.basename(filePath, ".md"),
+  };
+
   return {
     htmlContent,
     meta: meta as Meta,

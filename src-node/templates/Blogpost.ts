@@ -11,7 +11,7 @@ const BlogPost = ({
   widgets: HydratedWidget[];
 }) => {
   const head = `
-    <meta property="og:image" content="/src/og-image-fallback.png" />
+    <meta property="og:image" content="${post.meta.filename}.pxmd" />
     <meta property="og:title" content="${post.meta.title}" />
 `;
 

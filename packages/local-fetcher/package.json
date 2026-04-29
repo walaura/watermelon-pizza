@@ -4,6 +4,7 @@
   "name": "local-fetcher",
   "dependencies": {
     "@types/cheerio": "^0.22.35",
+    "@types/node": "^25.6.0",
     "cheerio": "^1.2.0",
     "commander": "^14.0.3",
     "html-to-json": "^0.6.0"

@@ -3,6 +3,7 @@ export type Meta = {
   title: string;
   desc: string;
   permalink: string;
+  filename: string;
 };
 
 export type Post = {

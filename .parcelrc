@@ -1,10 +1,32 @@
 {
-  "extends": ["@parcel/config-default"],
-  "reporters":  ["...", "parcel-reporter-static-files-copy"],
+  "extends": [
+    "@parcel/config-default"
+  ],
+  "reporters": [
+    "...",
+    "parcel-reporter-static-files-copy"
+  ],
   "runtimes": [],
+  "resolvers": [
+    "...",
+    "./src-node/resolver/pxmd.ts"
+  ],
   "transformers": {
-    "*.md": ["...", "./src-node/transformer/md.ts"],
-    "*.zip": ["...", "./src-node/transformer/zip.ts"],
-    "*.*": ["./src-node/transformer/magic-pages.ts","..."]
+    "*.pxmd": [
+      "...",
+      "./src-node/transformer/pxmd.ts"
+    ],
+    "*.md": [
+      "...",
+      "./src-node/transformer/md.ts"
+    ],
+    "*.zip": [
+      "...",
+      "./src-node/transformer/zip.ts"
+    ],
+    "*.*": [
+      "./src-node/transformer/magic-pages.ts",
+      "..."
+    ]
   }
 }
