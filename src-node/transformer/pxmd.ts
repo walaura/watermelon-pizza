@@ -1,6 +1,5 @@
 import { Transformer } from "@parcel/plugin";
-
-import { prep } from "../../packages/local-ogomatic/f";
+import { prep } from "local-bitmo";
 
 module.exports = new Transformer({
   async transform({ asset, options, config }) {

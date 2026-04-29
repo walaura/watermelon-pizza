@@ -1,7 +1,7 @@
 {
-  "main": "f.ts",
+  "main": "bitmo.ts",
   "type": "module",
-  "name": "local-ogomatic",
+  "name": "local-bitmo",
   "dependencies": {
     "fast-bmp": "^4.0.1",
     "painbrush": "^3.2.2",
@@ -11,9 +11,9 @@
     "pack-font": "painbrush-font-packer -f raws/babushka-bold && node f.ts"
   },
   "exports": {
-    "/flog": "./f.ts"
+    "/flog": "./bitmo.ts"
   },
-  "bin": "./f.ts",
+  "bin": "./bitmo.ts",
   "devDependencies": {
     "@types/node": "^25.6.0"
   }

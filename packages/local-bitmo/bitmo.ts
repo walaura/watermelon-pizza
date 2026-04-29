@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { readFile } from "node:fs/promises";
 import { brush, convertColor, SET_COLORS } from "painbrush/color";
 
