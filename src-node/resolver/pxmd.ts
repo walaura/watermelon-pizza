@@ -25,7 +25,7 @@ module.exports = new Resolver({
     const post = await supportingMDFile.toString();
     const postData = await parseMd(supportingMDFilePath, post);
 
-    const title = (postData.meta.title ?? "hey")
+    const title = (postData.meta.title ?? "")
       .trim()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
@@ -33,7 +33,7 @@ module.exports = new Resolver({
       .filter(Boolean)
       .join("")
       .trim();
-    const desc = (postData.meta.desc ?? "hey")
+    const desc = (postData.meta.desc ?? "")
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .split("\n")

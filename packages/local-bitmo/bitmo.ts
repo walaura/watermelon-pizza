@@ -47,7 +47,7 @@ export const prep = async () => {
           ],
           12,
         ),
-        { x: 100, y: 90 },
+        { x: 100, y: 120 },
       ),
       (index, data) => {
         let BG_H_ = BG_H;
