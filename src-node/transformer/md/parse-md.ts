@@ -13,11 +13,18 @@ export const parseMd = async (
   let maybeCss = "";
   let maybeGlobalCss = "";
 
+  let rendererDepth = 0;
+
   marked.use(
     {
       renderer: {
+        hr() {
+          rendererDepth--;
+          return `</article-zone-${rendererDepth + 1}>`;
+        },
         image({ href, title, text }) {
           const img = `<img
+              class="image-hanging"
               src="${href}"
               alt="${text}" />`;
 
@@ -26,16 +33,17 @@ export const parseMd = async (
           }
           return `
           <figure>
-              ${img}
+              ${img.replace("image-hanging", "image-fig")}
             <figcaption>${text}</figcaption>
           </figure>`;
         },
         heading({ tokens, depth }) {
+          rendererDepth = depth;
           const text = this.parser.parseInline(tokens);
 
           return `
-          </article-zone-${depth}>
-          <article-zone-${depth} class="article-zone">
+          </article-zone-${rendererDepth}>
+          <article-zone-${rendererDepth} class="article-zone">
             <h${depth}>
               ${text}
             </h${depth}>`;
