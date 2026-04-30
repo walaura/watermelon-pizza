@@ -3,6 +3,7 @@ import { marked } from "marked";
 import path from "path";
 import { TOP_LEVEL_DOMAIN } from "../../paths";
 import { Meta, Post } from "./md.t";
+import markedFootnote from "marked-footnote";
 
 export const parseMd = async (
   filePath: string,
@@ -12,67 +13,76 @@ export const parseMd = async (
   let maybeCss = "";
   let maybeGlobalCss = "";
 
-  marked.use({
-    renderer: {
-      image({ href, title, text }) {
-        const img = `<img
+  marked.use(
+    {
+      renderer: {
+        image({ href, title, text }) {
+          const img = `<img
               src="${href}"
               alt="${text}" />`;
 
-        if (!text) {
-          return img;
-        }
-        return `
+          if (!text) {
+            return img;
+          }
+          return `
           <figure>
               ${img}
             <figcaption>${text}</figcaption>
           </figure>`;
-      },
-      heading({ tokens, depth }) {
-        const text = this.parser.parseInline(tokens);
+        },
+        heading({ tokens, depth }) {
+          const text = this.parser.parseInline(tokens);
 
-        return `
+          return `
           </article-zone-${depth}>
           <article-zone-${depth} class="article-zone">
             <h${depth}>
               ${text}
             </h${depth}>`;
+        },
+      },
+      walkTokens: (token) => {
+        if ("date" in meta) {
+          return;
+        }
+
+        if (token.type === "code" && token.lang === "json") {
+          const parsed = JSON.parse(token.text) as any as {
+            date: string;
+            [key: string]: unknown;
+          };
+          meta = {
+            ...parsed,
+            isDraft: Boolean(parsed.draft),
+            date: new Date(parseInt(parsed.date, 10) * 1000),
+            permalink: `${TOP_LEVEL_DOMAIN}/words/${path.basename(
+              filePath,
+              ".md",
+            )}`,
+          };
+          token.type = "space";
+          return;
+        }
+        if (token.type === "code" && token.lang === "css") {
+          maybeCss = token.text;
+        }
+        if (token.type === "code" && token.lang === "css-glob") {
+          maybeGlobalCss = token.text;
+        }
+        if (!("date" in meta) && token.type !== "footnotes") {
+          token.type = "space";
+        }
       },
     },
-    walkTokens: (token) => {
-      if ("date" in meta) {
-        return;
-      }
+    markedFootnote(),
+  );
 
-      if (token.type === "code" && token.lang === "json") {
-        const parsed = JSON.parse(token.text) as any as {
-          date: string;
-          [key: string]: unknown;
-        };
-        meta = {
-          ...parsed,
-          isDraft: Boolean(parsed.draft),
-          date: new Date(parseInt(parsed.date, 10) * 1000),
-          permalink: `${TOP_LEVEL_DOMAIN}/words/${path.basename(
-            filePath,
-            ".md",
-          )}`,
-        };
-        token.type = "space";
-        return;
-      }
-      if (token.type === "code" && token.lang === "css") {
-        maybeCss = token.text;
-      }
-      if (token.type === "code" && token.lang === "css-glob") {
-        maybeGlobalCss = token.text;
-      }
-      if (!("date" in meta)) {
-        token.type = "space";
-      }
-    },
-  });
-  const htmlContent = await marked.parse(content);
+  let htmlContent = await marked.parse(content);
+  htmlContent = htmlContent.replaceAll(
+    `<section class="footnotes"`,
+    `</article-zone-2><article-zone-2 class="article-zone footnotes"`,
+  );
+
   if (!("date" in meta)) {
     meta = {
       ...meta,

@@ -1,17 +1,13 @@
 import { Transformer } from "@parcel/plugin";
 import { prep } from "local-bitmo";
-import { Worker } from "worker_threads";
 
 import {
   initializeImageMagick,
   ImageMagick,
-  Magick,
   MagickFormat,
-  Quantum,
 } from "@imagemagick/magick-wasm";
 import { readFile } from "fs/promises";
-import { DATA_ROOT, PARCEL_SRC_ROOT } from "../paths";
-import { access } from "fs";
+import { DATA_ROOT } from "../paths";
 
 module.exports = new Transformer({
   async transform({ asset }) {

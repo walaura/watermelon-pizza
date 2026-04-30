@@ -12,6 +12,7 @@
     "fs-extra": "^6.0.1",
     "local-bitmo": "file:packages/local-bitmo",
     "local-fetcher": "file:./packages/local-fetcher/",
+    "marked-footnote": "^1.4.0",
     "painbrush": "^3.3.2",
     "parcel": "^2.12.0",
     "parcel-reporter-static-files-copy": "^1.5.3",

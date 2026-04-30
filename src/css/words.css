@@ -24,6 +24,8 @@
     (0.75rem + 3rem) * 1.2
   ); /* date + 1 line of heading + a bit higher */
 
+  --basis-img-width: 120%;
+
   background-color: var(--color-bg);
   color: var(--color-text);
 }
@@ -150,9 +152,28 @@ article {
   padding: var(--basis-padding);
   line-height: 1.4;
 
+  sup {
+    vertical-align: 15%;
+    padding-inline-start: 0.25em;
+    font-size: 0.6em;
+
+    a {
+      background: var(--color-text);
+      text-decoration: none;
+      padding-inline: 0.5em;
+      color: var(--color-bg);
+      border-radius: 100em 100em 100em 1px;
+      display: inline-flex;
+
+      &:hover {
+        background-color: var(--color-highlight);
+      }
+    }
+  }
+
   img {
-    max-width: 120%;
-    margin: auto -10%;
+    max-width: var(--basis-img-width);
+    margin: auto calc((100% - var(--basis-img-width)) / 2);
   }
 
   figure img {
