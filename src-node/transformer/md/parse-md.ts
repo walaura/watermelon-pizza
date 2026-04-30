@@ -5,6 +5,32 @@ import { TOP_LEVEL_DOMAIN } from "../../paths";
 import { Meta, Post } from "./md.t";
 import markedFootnote from "marked-footnote";
 
+const descriptionList = {
+  name: "descriptionList",
+  level: "block", // Is this a block-level or inline-level tokenizer?
+  start(src) {
+    return src.match(/:[^:\n]/)?.index;
+  }, // Hint to Marked.js to stop and check for a match
+  tokenizer(src, tokens) {
+    const rule = /^(?::[^:\n]+:[^:\n]*(?:\n|$))+/; // Regex for the complete token, anchor to string start
+    const match = rule.exec(src);
+    if (match) {
+      const token = {
+        // Token to generate
+        type: "descriptionList", // Should match "name" above
+        raw: match[0], // Text to consume from the source
+        text: match[0].trim(), // Additional custom properties
+        tokens: [], // Array where child inline tokens will be generated
+      };
+      this.lexer.inline(token.text, token.tokens); // Queue this data to be processed for inline tokens
+      return token;
+    }
+  },
+  renderer(token) {
+    return `<dl>${this.parser.parseInline(token.tokens)}\n</dl>`; // parseInline to turn child tokens into HTML
+  },
+};
+
 export const parseMd = async (
   filePath: string,
   content: string,
@@ -18,8 +44,8 @@ export const parseMd = async (
   marked.use(
     {
       renderer: {
-        hr() {
-          rendererDepth--;
+        hr(rendererThis) {
+          rendererThis.rendererDepth--;
           return `</article-zone-${rendererDepth + 1}>`;
         },
         image({ href, title, text }) {

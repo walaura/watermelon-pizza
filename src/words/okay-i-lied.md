@@ -86,7 +86,10 @@ article-zone-3 {
 }
 
 h2 {
-  background: #169ea4;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 534 534' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='hsl(from currentColor 0 0 0 / 5%)'%3E%3Cpath d='M0 399C74.5584 399 135 459.442 135 534H0V399Z' /%3E%3Cpath d='M534 534H402C402 460.444 460.827 400.63 534 399.034V534Z' /%3E%3Cpath d='M267 135C341.558 135 402 195.442 402 270C402 344.558 341.558 405 267 405C192.442 405 132 344.558 132 270C132 195.442 192.442 135 267 135Z' /%3E%3Cpath d='M135 0C135 74.5584 74.5584 135 0 135V0H135Z' /%3E%3Cpath d='M534 134.965C460.827 133.369 402 73.5558 402 0H534V134.965Z' /%3E%3C/g%3E%3C/svg%3E%0A");
+  background-color: var(--background);
+  background-size: 2em 2em;
+  background-repeat: repeat;
   margin-inline: -3rem;
   border-radius: 10em;
   padding: 0.75em 2em;
@@ -95,25 +98,28 @@ h2 {
   text-transform: uppercase;
   margin-top: -2em;
   font-weight: 1000;
+  color: #fff;
+  text-shadow: 0.1em 0.1em 0 hsl(from var(--background) h 50 calc(l/1.5));
+  box-shadow:
+    0.1em 0.1em 0 0 hsl(from var(--background) h 50 calc(l/1.5)),
+    inset 0.1em 0.1em hsl(0 0 100% / 20%);
   animation: 6s ease-in 0.2s infinite alternate-reverse both pulse;
 }
 
 article-zone-2,
-h1,
-h2,
 article-zone-3,
 figure {
   box-shadow: inset 0 0 0 0.125rem hsla(0 0 100% / 25%);
 }
 
 article-zone-2:nth-child(odd) {
-  background: #c1d5ed;
+  --background: #c1d5ed;
 }
 article-zone-2:nth-child(3n) h2 {
-  background: #ffd401;
+  --background: #ffd401;
 }
 article-zone-2:nth-child(3n + 1) h2 {
-  background: #3cc3e8;
+  --background: #3cc3e8;
 }
 
 em {
@@ -156,7 +162,7 @@ pre {
 
 When i started this blog, one big new Thing You Have To Do as part of a website[^1] that wasn't there before is pictures for social media. You know them, you love them they are movie-shaped for some reason, anyway, it looks real bad when you don't have one but nobody says they have to be related to the post.
 
-![TBF the fact that theres a picture saying i don't know how to make them is already a big red flag obviously i know how to make them the picture is there isn't it](./pix/okay-i-lied-tweet.png?as=webp)
+![TBF the fact that theres a picture saying i don't know how to make them is already a big red flag obviously i know how to make them the picture is there isn't it](./pix/okay-i-lied/tweet.png?as=webp)
 
 I wanted my dopamine for releasing something into the open so i grabbed an envelope i had at hand[^2] and wrote this on it, uploaded it, everything was fine. I even found a purple sharpie thats [on brand](https://github.com/walaura/watermelon-pizza/blob/25794b41ba5f876a9daec8b7b2db01acede8c11b/README.md). great stuff
 
@@ -168,7 +174,7 @@ Anyway time to check the state of the art on og images.
 
 ## It's 2026 and they are screenshotting the fucking websites
 
-The state of the art seems to be split between this [thing from Vercel](https://vercel.com/docs/og-image-generation) that pulls 1,160 dependencies to generate a SVG for you. **Which is not even the hard part** svgs are code you can just write them jesus fuck anyway this is all implied to go to a wasm port of [resvg](https://github.com/linebender/resvg)[^3] which i feel is only not a web browser on a technicality but fair enough.
+The state of the art seems to be this [thing from Vercel](https://vercel.com/docs/og-image-generation) that pulls 1,160 dependencies to generate a SVG for you. **Which is not even the hard part** svgs are code you can just write them jesus fuck anyway this is all implied to go to a wasm port of [resvg](https://github.com/linebender/resvg)[^3] which i feel is only not a web browser on a technicality but fair enough.
 
 You should use this btw, it's really solid stuff. It'll do everything you want. There's a reason it's beloved, looks great. i would use it on somebody else's website it's just for this one it seemed like Work rather than Fun
 
@@ -184,7 +190,7 @@ SVGs generally need to be 'converted' into 'real' images by your computer before
 
 When I was a child I was very dumb and also lived in Spain. The version of Paint on my computer didn't call them a bitmap but rather a 'map of bits'. a really evocative term making you think of pirates and treasure. I think this sparked an interest in me imagery in computers that somehow was _not_ ruined after finding out its just a long list of all the colors in the image left to right.
 
-![they are not evocative](./pix/okay-i-lied-bmp.png?as=webp)
+![they are not evocative](./pix/okay-i-lied/bmp.png?as=webp)
 
 This is in contrast with more advanced formats which use better forms of compressing the data inside. (This is also why you can zip a bmp to great effect but a webp just gains size at best!) **Wait..a list of pixels?** that sounds easy enough to manipulate in code! If i can draw a cat like this:
 
@@ -206,7 +212,7 @@ I was sorta expecting to find some high level libraries here. draw some boxes, p
 
 It's also not super fast but I can only assume it's faster than anything else you could use? There's only so much you can optimize for when populating an insanely long array of numbers in node. Ask me how I know.
 
-### another lil aside: bitmapv5
+### Another lil aside: bitmapv5
 
 I was naive thinking the BMP file format had anything to do with pirates as a child and it turns out I was naiver to think it was 'just' a list of colors in order as a big child.
 
@@ -218,7 +224,7 @@ That's right, a bitmap can also just carry a jpeg inside. Why the hell not.
 
 Anyway, took me a couple tries to just create a bitmap file that actually 'worked'. By which i mean that fast-bmp would read _and_ that whose insides I could make sense of, and i eventually managed to open it then chop up a 4x4 image with my own pixels inside, behold this masterpiece:
 
-![](./pix/okay-i-lied-vsc.png?as=webp)
+![](./pix/okay-i-lied/vsc.png?as=webp)
 
 If you have ever done creative coding you already know this but I was over the moon after seeing this ugly piece of garbage, that's the hard part!!! – Coding-wise – I can put arbitrary colors and shapes in an image of an arbitrary size so now I just need to put some pleasant ones.
 
@@ -233,7 +239,7 @@ Looping over Anyway, since this is for an open graph image so we should get some
 
 ## Text rendering
 
-![sorry](./pix/okay-i-lied-gpt.png?as=webp)
+![sorry](./pix/okay-i-lied/gpt.png?as=webp)
 
 Ever noticed how ChatGPT was really bad at writing text and it got magically good at about the same time it developed a very recognizable style? it's not even trying, it leaves holes and then overlays good old style text layers from a separate path that cant draw [^4].
 
@@ -249,13 +255,49 @@ Now of course we need line breaks, this is also easy (less easy) if you don't mi
 
 Throwing in a non-monospace font just means looking up the size of every individual character from somewhere rather than assuming they all are N pixels. This is easy if you break it down! (still took me several days and bugs)
 
+## Everything thats not text
+
+I tried to make this a little fancy. since I was looking for a javascript library to sort of draw on bitmaps canvas-style and it didn't exist [i made it](https://github.com/walaura/painbrush). I'm actually really proud of how [the public-facing API](https://github.com/walaura/painbrush/blob/main/packages/node-ex/index.ts) came through, it's clean enough and this turned out to be critical because i ended up going back and forth _A LOT_. Anyway go have a look and come back, we have lots to discuss.
+
+### Javascript..in a browser?
+
+Midway through development i noticed there isnt really anything here that would necessitate a server environment. Sure, I wanna make this images on a server but this should..run? I spun up a quick parcel scaffold and [yeah turns out it does run](https://walaura.github.io/painbrush/)
+
+This is fundamentally useless for you **but** it was huge for me because debugging perf gets so much easy when you get a little flame graph. it helped me find out everything i thought would be slow is fine and things I thought would be okay are actually big nonos. Not sharing all the learnings because im still not sure I did anything right.
+
+![](./pix/okay-i-lied/flame.png?as=webp)
+
+@@@
+
+As the project evolved from messing with a bitmap to creating and compositing several bitmaps not only i completely lost track of what I was doing in the first place (og images for this blog) I also ended up with a relatively clean product:
+
+- The main concept is _Layers_. You create layers for text, images, whatever and you can fill them with _Brushes_ which paint the pixels, anything you could possibly need can be done with a empty layer and a brush. All layers end up as a big bag of pixels and they can be turned into an image at any point. <br/>This rocks for debugging because on complex compositions it's really easy to 'bail out' of a complex layout and just render a problem area.
+- Layers can get _transformed_ with operations. think scale, rotate, etc. under the hood these just make new layers with custom brushes that read the old layer to decide the content.
+- Layers can also get _composed_ over other layers
+
+-\*-
+
+Composing in particular is how I found out JS Arrays are slow. Like, they are fine for crud apps but initially my compositor would try to blend pixels over and wastefully loop over the entire back layer instead of the smaller front layer[^layers]. For making text I was making one massive layer full of pixels just to override most of them with the text.
+
+Something I didn't see coming: copying a long array takes time. `[..like_this]`. The second biggest perf optimization I made was implementing a fast path compositor that overrides the back layer and skips blending altogether, which you dont need when creating stuff like text.
+
 ## (scary quotes) Fonts (end scary quotes)
 
-Now of course none of this means anything if you dont have actual characters to show. I was already deep enough in this hole that drawing some pixels instead of staring at code sounded rather lovely so I did just that
+Now of course none of this means anything if you don't have actual characters to show. I was already deep enough in this hole that drawing some pixels instead of staring at code sounded rather lovely so I did just that, meet demo sans
 
 (img)
 
 and then since I had a bmp parsing library i figured I could just ingest all of this and use it
+
+## some notes on productionizing javascript in 2025
+
+Whoa shit sucks now. It's also great
+
+- Node will let you run typescript natively so that's awesome. Love being able to take a hammer to one side of the code and seeing what fell on the other
+- NPM is now super annoying about security which sounds fair they kinda implicitly control all the important computers in the world now. I need to relogin with biometrics for every push.
+- NPM will not let you use typescript which sounds unfair lol. at the end of this i had to figure out how to pack everything back as js solely to upload things
+- Vitest is pretty cool. I used copilot with qwen locally to write the tests and it was kinda fun to see the computer power through it. The tests were ass and I got a little badge of shame on the commits for my troubles but it beats no tests i guess
+-
 
 [^1]: lots of things i don't have to do anymore tho which is awesome! this barely works on mobile, modern css negates the need for pirating photoshop and I don't really have a stick up my butt on code correctness so this is all being fun for once. Oh yeah and Netlify is dealing with https, that seems to work so that's awesome.
 
@@ -264,3 +306,5 @@ and then since I had a bmp parsing library i figured I could just ingest all of 
 [^3]: this will turn out to be weirdly prophetic
 
 [^4]: the source for this is my ass. while we know there's some sort of multi modality going on there's no specifics. Could be a second LLM trained on pictures of text which i guess are easy enough to generate??. Or they lie and just overlay pictures of text lol. Anyway Comfy and Weave which are more commercial-focused and let you peek behind the scenes both offer trad text overlays, you can let models layout them but they hand out the pixels first.
+
+[^layers]: back and front layer very literally meaning the layer that sits behind or in front relative to the viewer at the end of the operation. for most compositing front will be smaller as you are writing characters in a bigger square for example.
