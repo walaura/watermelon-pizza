@@ -18,9 +18,8 @@ garbo
 }
 
 figure {
-  padding: 1em;
-  background: #759904;
   color: #fff;
+  background: #759904;
   border-radius: 1em;
   float: right;
   width: min-content;
@@ -28,9 +27,15 @@ figure {
   margin-inline-end: -4em;
   margin-inline-start: 1em;
   animation: 5s ease-in infinite alternate-reverse both pulse;
+  border: 2px solid #759904;
+  overflow: hidden;
+
+  figcaption {
+    padding: 0.5em;
+  }
 
   img {
-    margin: 0 0 1em 0;
+    display: flex;
     max-height: 90cqw;
     min-width: min(90vw, 16em);
     max-width: min(90vw, 60cqw);
@@ -292,9 +297,37 @@ This is fundamentally useless for you **but** it was huge for me because debuggi
 
 As the project evolved from messing with a bitmap to creating and compositing several bitmaps not only i completely lost track of what I was doing in the first place (og images for this blog) I also ended up with a relatively clean product:
 
-- The main concept is _Layers_. You create layers for text, images, whatever and you can fill them with _Brushes_ which paint the pixels, anything you could possibly need can be done with a empty layer and a brush. All layers end up as a big bag of pixels and they can be turned into an image at any point. <br/>This rocks for debugging because on complex compositions it's really easy to 'bail out' of a complex layout and just render a problem area.
+---
+
+The main concept is **Layers**. You create layers for text, images, whatever. All layers end up as a big bag of pixels and they can be turned into an image at any point.
+
+This rocks for debugging because on complex compositions it's really easy to 'bail out' of a complex layout and just render a problem area.
+
 - Layers can get _transformed_ with operations. think scale, rotate, etc. under the hood these just make new layers with custom brushes that read the old layer to decide the content.
-- Layers can also get _composed_ over other layers.
+- Layers can also get _composed_ over other layers. For example, making text 'just' composes characters (which are layers themselves) over an empty layer.
+
+---
+
+If you aren't composing an existing layer, you can paint directly on the pixels of a layer using a **Brush**. Brushes are a function you pass on to many layer creators, they run on every pixel, receive a pixel index and layer data (like width and height) and use this to return a color to paint on that pixel.
+
+```
+makeLayer.blank(
+  { x: 10, y: 10 }, (index, layer) => {
+    return index * 100;
+  }
+);
+```
+
+Why not just receive x and y? because at the time that was nontrivial compute to run per pixel or so I thought. Especially because _everything_ is brushes, so normally you will just do something like this
+
+```
+makeLayer.blank(
+  { x: 10, y: 10 },
+  brush.solidFill(0xff0000)
+);
+```
+
+Which does not really care for any of the pixels, just returns a brush that ignores its arguments to then return the same color every time.
 
 ### Arrays: the more you know
 
@@ -362,6 +395,8 @@ Anyway so after some immensely messy pipeline work i finally got `1.1.0` publish
 - `3.2.0` i suddenly decided that api was even worse and made it neat and tidy
 - `3.2.X` my text was inexplicably overflowing and i added a crop function to normalize images because
 - `3.3.X` all that gloating from before about the font rendering? the font rendering was all wrong in terms of when to break lines and I never noticed
+
+![oh and the font compiler thing has colors n stuff](./pix/okay-i-lied/compi.png?as=webp)
 
 Anyway, you [should use my library](https://www.npmjs.com/package/painbrush). It's good! I mean, _now_ it is. It better be.
 
