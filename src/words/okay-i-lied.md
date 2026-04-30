@@ -14,7 +14,7 @@ garbo
   background-attachment: fixed;
 
   --basis-img-width: 100%;
-  --color-highlight: #f797c7;
+  --color-highlight: #7b43da;
 }
 
 figure {
@@ -50,10 +50,11 @@ article-zone[data-depth="2"] {
 
 article-zone[data-depth="3"] {
   --padding-s: calc(var(--basis-padding));
+  --color-highlight: #f797c7;
   animation: 5s ease-in infinite alternate-reverse both pulseOtherWay;
   color: #fff;
   border-radius: 1em;
-  padding: 1rem var(--padding-s);
+  padding: 1rem var(--padding-s) 2rem;
   padding-top: 0;
   background-color: #7b43da;
   font-size: 0.9em;
@@ -69,6 +70,7 @@ article-zone[data-depth="3"] {
   &:nth-of-type(even) {
     margin-inline-end: -3.25rem;
     margin-inline-start: 3.25rem;
+    background-color: #aa6812;
   }
 
   &:not(:last-child) {
@@ -97,19 +99,16 @@ h2 {
   background-color: var(--background);
   background-size: 2em 2em;
   background-repeat: repeat;
-  margin-inline: -3rem;
-  border-radius: 10em;
+  margin-inline: -1.5rem;
+  border-radius: 1em;
   padding: 0.75em 2em;
   text-align: center;
-  margin-bottom: 1em;
+  margin-top: -4.5em;
+  margin-bottom: 2em;
   text-transform: uppercase;
-  margin-top: -2em;
   font-weight: 1000;
   color: #fff;
   text-shadow: 0.1em 0.1em 0 hsl(from var(--background) h 50 calc(l/1.5));
-  box-shadow:
-    0.1em 0.1em 0 0 hsl(from var(--background) h 50 calc(l/1.5)),
-    inset 0.1em 0.1em hsl(0 0 100% / 20%);
   animation: 6s ease-in 0.2s infinite alternate-reverse both pulse;
 }
 
@@ -186,7 +185,9 @@ Back in 2018 i considered this to be clowny, absurd, a massive waste of resource
 
 Anyway time to check the state of the art on og images.
 
-## It's 2026 and they are screenshotting the fucking websites
+## State of the art on og images
+
+They are still screenshotting the fucking websites
 
 The state of the art seems to be this [thing from Vercel](https://vercel.com/docs/og-image-generation) that pulls 1,160 dependencies to generate a SVG for you. **Which is not even the hard part** svgs are code you can just write them jesus fuck anyway this is all implied to go to a wasm port of [resvg](https://github.com/linebender/resvg)[^3] which i feel is only not a web browser on a technicality but fair enough.
 
@@ -218,7 +219,7 @@ This is in contrast with more advanced formats which use better forms of compres
 ........
 ```
 
-It can't be much harder to draw a cat in pixels right? it's not. Drawing something slightly more ambitious is though! I walzted to npm and searched for BMP figuring out somebody must have done a little library to mess with them and the closest i could find was [fast-bmp](https://www.npmjs.com/package/fast-bmp). This was both good and bad at the same time.
+It can't be much harder to draw a cat in pixels right? And it really is not. Drawing aything slightly more ambitious is though! I walzted to npm and searched for BMP figuring out somebody must have done a little library to mess with them and the closest i could find was [fast-bmp](https://www.npmjs.com/package/fast-bmp). This was both good and bad at the same time.
 
 ## fast-bmp
 
@@ -301,6 +302,8 @@ The biggest perf optimization is also, honestly, the funniest. JS arrays are not
 
 With all the layer and brush abstractions, moving the underlying rendering to use 1 slot per pixel in hex was relatively easy and also way cleaner to reason about! At commit time I expand this back into 3 separate values.
 
+---
+
 With the benefit of hindsight there's two extra thingos I wanted to try out but never did because things got fast enough:
 
 - All layers are 'real' rn but they don't really _have_ to be. if i wanna scale a layer maybe I don't need to walk all over its pixels just yet, it can wait until I do the final walk at generation time. Same w transforms etc. This sounds hard tho.
@@ -308,15 +311,24 @@ With the benefit of hindsight there's two extra thingos I wanted to try out but 
 
 Anyway thats the glasses nerd shit over with for now, lets go back to the paintbrush nerd shit:
 
-## (scary quotes) Fonts (end scary quotes)
+## (scary quotes) Fonts
 
 Now of course none of this means anything if you don't have actual characters to show. I was already deep enough in this hole that drawing some pixels instead of staring at code sounded rather lovely so I did just that, meet demo sans
 
 (img)
 
-and then since I had a bmp parsing library i figured I could just ingest all of this and use it
+There's many ways of moving a pixel font to JS, since I already had a bitmap library anyway I figured I'd use that, so I started with a very tight set of assumptions, 11 char 6x6 sprite sheet with `?0-9A-Z`, easy if you forget `!` and commas exist. I originally wanted to encode the metadata on the image but then decided it wasnt worth it and now theres [a json alongside the font](https://github.com/walaura/painbrush/tree/main/packages/node-ex/fonts). Simpler.
 
-## some notes on productionizing javascript in 2025
+![](./pix/okay-i-lied/lucas.png?as=webp)
+
+There's a lot of art to making pixel fonts. Lucas here is ~~inspired by~~ stealing the look of lucasarts old graphic adventures and I use it for the clock demo on the web version. If i can nerd out for a moment I love how well the 7 works in this grid, and how tall the G stands.
+
+I quickly realized all monospaced fonts i know to draw look too code editor-y which is not the look I want so I implemented the worst possible way to encode variable widths. An [insanely long list of pixels to trim](https://github.com/walaura/watermelon-pizza/blob/f529a677dc7ed952e15e4de8d3c6b15f2155b9b2/packages/local-bitmo/raws/babushka-bold.json#L33-L85) off the right edge, per character. Incredible devex not gonna lie.
+
+![](./pix/okay-i-lied/poxel.png?as=webp)
+Poxel here is the font I bundled in as the 'default' font. A really fun limitation of this system (and of real fonts i guess) is descenders, that's the droopy bits `gpq` have at the bottom, and unless you set all your characters crazy high they just don't really fit 1:1 in a pixel font. Poxel just does small caps for these. Lucas does not bother, the actual font from monkey island
+
+## Productionizing javascript in 2025
 
 Whoa shit sucks now. It's also great
 
