@@ -37,6 +37,12 @@ figure {
   }
 }
 
+code {
+  opacity: 0.75;
+  font-size: 0.9em;
+  font-weight: 300;
+}
+
 article-zone[data-depth="2"] {
   background: #ebecf0;
   color: #00202d;
@@ -313,30 +319,55 @@ Anyway thats the glasses nerd shit over with for now, lets go back to the paintb
 
 ## (scary quotes) Fonts
 
-Now of course none of this means anything if you don't have actual characters to show. I was already deep enough in this hole that drawing some pixels instead of staring at code sounded rather lovely so I did just that, meet demo sans
+There's many ways of moving a pixel font to JS, normally I'd just ascii them in the text editor like its advent of code but since I already had a bitmap library in there I figured I'd use that? I started small with a 11 char 6x6 sprite sheet with `?0-9A-Z`, easy if you forget `!` and commas exist!
 
-(img)
-
-There's many ways of moving a pixel font to JS, since I already had a bitmap library anyway I figured I'd use that, so I started with a very tight set of assumptions, 11 char 6x6 sprite sheet with `?0-9A-Z`, easy if you forget `!` and commas exist. I originally wanted to encode the metadata on the image but then decided it wasnt worth it and now theres [a json alongside the font](https://github.com/walaura/painbrush/tree/main/packages/node-ex/fonts). Simpler.
+When it came to supporting other fonts the original plan for enriching this was to encode the metadata on the image but then I figured it wasn't worth it and now theres [a json alongside the font](https://github.com/walaura/painbrush/tree/main/packages/node-ex/fonts). Simpler. For the code art at least.
 
 ![](./pix/okay-i-lied/lucas.png?as=webp)
 
-There's a lot of art to making pixel fonts. Lucas here is ~~inspired by~~ stealing the look of lucasarts old graphic adventures and I use it for the clock demo on the web version. If i can nerd out for a moment I love how well the 7 works in this grid, and how tall the G stands.
+There's a lot of art to making pixel fonts. Lucas here is ~~inspired by~~ stealing the look of LucasArts graphic adventures and I use it for the clock demo on the web version. If I can nerd out for a moment I love how well the 7 works in this grid, and how tall the G stands.
 
-I quickly realized all monospaced fonts i know to draw look too code editor-y which is not the look I want so I implemented the worst possible way to encode variable widths. An [insanely long list of pixels to trim](https://github.com/walaura/watermelon-pizza/blob/f529a677dc7ed952e15e4de8d3c6b15f2155b9b2/packages/local-bitmo/raws/babushka-bold.json#L33-L85) off the right edge, per character. Incredible devex not gonna lie.
+Two fonts I it started to set how all monospaced fonts i know to draw look too code editor-y. not what we are going for here, so I implemented the worst possible way to encode variable widths. An [insanely long list of pixels to trim](https://github.com/walaura/watermelon-pizza/blob/f529a677dc7ed952e15e4de8d3c6b15f2155b9b2/packages/local-bitmo/raws/babushka-bold.json#L33-L85) off the right edge, per character. This is why some characters here are 'misaligned'. They will get cropped.
 
 ![](./pix/okay-i-lied/poxel.png?as=webp)
-Poxel here is the font I bundled in as the 'default' font. A really fun limitation of this system (and of real fonts i guess) is descenders, that's the droopy bits `gpq` have at the bottom, and unless you set all your characters crazy high they just don't really fit 1:1 in a pixel font. Poxel just does small caps for these. Lucas does not bother, the actual font from monkey island
+
+Poxel here is the font I bundled in as the 'default' font. A really fun limitation of this system (and of real fonts i guess) is descenders, that's the droopy bits gpqy and so have at the bottom, and unless you set all your characters crazy high they just don't really fit 1:1 in a pixel font.
+
+![check out their descenders](./pix/okay-i-lied/mi.png?as=webp)
+
+Poxel just does small caps for these. Lucas does not bother and is caps only. For the images in here (I'm getting to that i swear) I got in way over my head, built up a little more room to work with with a 15x15 grid, and went for compact descenders like Monkey Island.
+
+This is the only reason the post has a g on its strapline, so you can tab back and see it on the image. Go do that now, I love those g's. But now it's time for yet another detour. Fun!
 
 ## Productionizing javascript in 2025
 
-Whoa shit sucks now. It's also great
+At this point in time the website was a distant memory and what I had was a relatively convoluted monorepo with 3 packages dedicated to making crude ms paint drawings. The plan was to publish this to npm in case somebody else wants to use it ([wink wink](https://www.npmjs.com/package/painbrush)) and consume it downstream from the website. Some quick learnings:
 
 - Node will let you run typescript natively so that's awesome. Love being able to take a hammer to one side of the code and seeing what fell on the other
 - NPM is now super annoying about security which sounds fair they kinda implicitly control all the important computers in the world now. I need to relogin with biometrics for every push.
-- NPM will not let you use typescript which sounds unfair lol. at the end of this i had to figure out how to pack everything back as js solely to upload things
-- Vitest is pretty cool. I used copilot with qwen locally to write the tests and it was kinda fun to see the computer power through it. The tests were ass and I got a little badge of shame on the commits for my troubles but it beats no tests i guess
--
+- Vitest is pretty cool. I used copilot with qwen locally to write the tests and it was kinda fun to see the computer power through it. The tests were ass and I got a little badge of shame on the commits for my troubles but it beats no tests i guess.
+
+### Not typescript causing issues
+
+I proudly wrote `npm publish`, published `1.0.0` and went on to work on this blog an-haha no im kidding. Turns out Node will not let you use typescript on packages? That's why everybody still uploads js with those `d.ts` files that make it really hard to read the code? I though they were just being dicks about it.
+
+@@@
+
+Anyway so after some immensely messy pipeline work i finally got `1.1.0` published. With [javascript this time](https://npmdiff.dev/painbrush/1.0.2/1.1.0). If you look at the package now it's sitting at `3.3.2` so I might as well tell you all the things that went wrong. Feel free to skip to the next heading if you are just here for the fonts! I would consider this a big compliment.
+
+- `1.3.0` unfucks some imports that only worked on my machine
+- `2.0.0` does the aforementioned optimization with the single pixel per array key
+- `2.0.1` and `2.0.2` try to put the readme back in the npm page bc i wasnt copying it to the js folder oops
+- `3.0.0` i suddenly decided the api was a mess and made it neat and tidy
+- `3.2.0` i suddenly decided that api was even worse and made it neat and tidy
+- `3.2.X` my text was inexplicably overflowing and i added a crop function to normalize images because
+- `3.3.X` all that gloating from before about the font rendering? the font rendering was all wrong in terms of when to break lines and I never noticed
+
+Anyway, you [should use my library](https://www.npmjs.com/package/painbrush). It's good! I mean, _now_ it is. It better be.
+
+## Babushka Sans
+
+So here we are,
 
 [^1]: lots of things i don't have to do anymore tho which is awesome! this barely works on mobile, modern css negates the need for pirating photoshop and I don't really have a stick up my butt on code correctness so this is all being fun for once. Oh yeah and Netlify is dealing with https, that seems to work so that's awesome.
 
