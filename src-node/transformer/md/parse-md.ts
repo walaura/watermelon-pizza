@@ -1,34 +1,37 @@
-import { marked } from "marked";
+import { marked, TokenizerAndRendererExtension } from "marked";
 
 import path from "path";
 import { TOP_LEVEL_DOMAIN } from "../../paths";
 import { Meta, Post } from "./md.t";
 import markedFootnote from "marked-footnote";
 
-const descriptionList = {
-  name: "descriptionList",
-  level: "block", // Is this a block-level or inline-level tokenizer?
-  start(src) {
-    return src.match(/:[^:\n]/)?.index;
-  }, // Hint to Marked.js to stop and check for a match
-  tokenizer(src, tokens) {
-    const rule = /^(?::[^:\n]+:[^:\n]*(?:\n|$))+/; // Regex for the complete token, anchor to string start
-    const match = rule.exec(src);
-    if (match) {
-      const token = {
-        // Token to generate
-        type: "descriptionList", // Should match "name" above
-        raw: match[0], // Text to consume from the source
-        text: match[0].trim(), // Additional custom properties
-        tokens: [], // Array where child inline tokens will be generated
-      };
-      this.lexer.inline(token.text, token.tokens); // Queue this data to be processed for inline tokens
-      return token;
-    }
-  },
-  renderer(token) {
-    return `<dl>${this.parser.parseInline(token.tokens)}\n</dl>`; // parseInline to turn child tokens into HTML
-  },
+const closeZone = (ref: DepthRef) => {
+  return {
+    name: "closeZone",
+    level: "block",
+    tokenizer(src, tokens) {
+      const rule = /^(@@@*(?:\n|$))+/;
+      const match = rule.exec(src);
+      if (match) {
+        const token = {
+          type: "closeZone",
+          raw: match[0],
+          text: match[0].trim(),
+          tokens: [],
+        };
+        this.lexer.inline(token.text, token.tokens);
+        return token;
+      }
+    },
+    renderer() {
+      ref.__current--;
+      return `</article-zone>`;
+    },
+  } as TokenizerAndRendererExtension;
+};
+
+type DepthRef = {
+  __current: number;
 };
 
 export const parseMd = async (
@@ -39,15 +42,16 @@ export const parseMd = async (
   let maybeCss = "";
   let maybeGlobalCss = "";
 
-  let rendererDepth = 0;
+  const previousDepth: DepthRef = {
+    __current: 2,
+  };
 
   marked.use(
     {
+      extensions: [
+        closeZone(previousDepth),
+      ],
       renderer: {
-        hr(rendererThis) {
-          rendererThis.rendererDepth--;
-          return `</article-zone-${rendererDepth + 1}>`;
-        },
         image({ href, title, text }) {
           const img = `<img
               class="image-hanging"
@@ -64,12 +68,14 @@ export const parseMd = async (
           </figure>`;
         },
         heading({ tokens, depth }) {
-          rendererDepth = depth;
+          const delta = previousDepth.__current - depth + 1;
           const text = this.parser.parseInline(tokens);
+          previousDepth.__current = depth;
 
+          const closers = new Array(delta + 1).fill("").join("</article-zone>");
           return `
-          </article-zone-${rendererDepth}>
-          <article-zone-${rendererDepth} class="article-zone">
+          ${closers}
+          <article-zone data-depth="${depth}">
             <h${depth}>
               ${text}
             </h${depth}>`;
@@ -114,7 +120,7 @@ export const parseMd = async (
   let htmlContent = await marked.parse(content);
   htmlContent = htmlContent.replaceAll(
     `<section class="footnotes"`,
-    `</article-zone-2><article-zone-2 class="article-zone footnotes"`,
+    `</article-zone><article-zone class="article-zone footnotes"`,
   );
 
   if (!("date" in meta)) {

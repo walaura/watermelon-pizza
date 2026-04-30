@@ -21,21 +21,21 @@ article {
   color: #fff;
 }
 
-.article-zone {
+article-zone {
   margin-top: var(--basis-header-sp);
   & > :first-child {
     margin-top: 0;
   }
 }
 
-article-zone-2 {
+article-zone[data-depth="2"] {
   background: #fff;
   color: #000;
   border: 4px ridge grey;
   padding: var(--basis-padding);
 }
 
-article-zone-3 {
+article-zone[data-depth="3"] {
   background-color: #ffffea;
   padding: calc(var(--basis-padding) * 0.5);
   border: 2px outset grey;

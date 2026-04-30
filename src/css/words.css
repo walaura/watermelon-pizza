@@ -142,7 +142,7 @@ footer {
   margin-bottom: calc(var(--basis-header-sp));
 }
 
-.article-zone {
+article-zone {
   display: block;
 }
 
