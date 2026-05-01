@@ -47,7 +47,6 @@ figure {
   color: #fff;
   background: var(--box-background);
   border-radius: 1em;
-  width: min-content;
   margin-bottom: 2em;
   border: 2px solid var(--box-background);
   overflow: hidden;
@@ -59,9 +58,7 @@ figure {
 
   img {
     display: flex;
-    max-height: 90cqw;
-    min-width: min(90vw, 16em);
-    max-width: min(90vw, 60cqw);
+    width: 100%;
   }
 }
 
@@ -252,6 +249,15 @@ article :nth-child(5n) {
 }
 
 @media (min-width: 120ch) {
+  figure {
+    width: min-content;
+    img {
+      display: flex;
+      max-height: 90cqw;
+      min-width: min(90vw, 16em);
+      max-width: min(90vw, 60cqw);
+    }
+  }
   :is(article-zone[data-depth="3"], figure) {
     &:nth-child(odd) {
       margin-inline-start: calc(var(--basis-outflow) * -1);

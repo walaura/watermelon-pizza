@@ -9,7 +9,7 @@ const closeZone = (ref: DepthRef) => {
   return {
     name: "closeZone",
     level: "block",
-    tokenizer(src, tokens) {
+    tokenizer(src) {
       const rule = /^(@@@*(?:\n|$))+/;
       const match = rule.exec(src);
       if (match) {
@@ -19,13 +19,52 @@ const closeZone = (ref: DepthRef) => {
           text: match[0].trim(),
           tokens: [],
         };
-        this.lexer.inline(token.text, token.tokens);
         return token;
       }
     },
     renderer() {
       ref.__current--;
       return `</article-zone>`;
+    },
+  } as TokenizerAndRendererExtension;
+};
+
+const imageRenderer = () => {
+  return {
+    name: "image",
+    renderer({ href, text }) {
+      const img = `<img
+          class="image-hanging"
+          src="${href}"
+          alt="${text}" />`;
+
+      if (!text) {
+        return img;
+      }
+      return `
+      <figure>
+          ${img.replace("image-hanging", "image-fig")}
+        <figcaption>${text}</figcaption>
+      </figure>`;
+    },
+  } as TokenizerAndRendererExtension;
+};
+
+const headingRenderer = (previousDepth: DepthRef) => {
+  return {
+    name: "heading",
+    renderer({ tokens, depth }) {
+      const delta = previousDepth.__current - depth + 1;
+      const text = this.parser.parseInline(tokens || []);
+      previousDepth.__current = depth;
+
+      const closers = new Array(delta + 1).fill("").join("</article-zone>");
+      return `
+      ${closers}
+      <article-zone data-depth="${depth}">
+        <h${depth}>
+          ${text}
+        </h${depth}>`;
     },
   } as TokenizerAndRendererExtension;
 };
@@ -50,49 +89,9 @@ export const parseMd = async (
     {
       extensions: [
         closeZone(previousDepth),
+        imageRenderer(),
+        headingRenderer(previousDepth),
       ],
-      renderer: {
-        image({ href, title, text }) {
-          const img = `<img
-              class="image-hanging"
-              src="${href}"
-              alt="${text}" />`;
-
-          if (!text) {
-            return img;
-          }
-          return `
-          <figure>
-              ${img.replace("image-hanging", "image-fig")}
-            <figcaption>${text}</figcaption>
-          </figure>`;
-        },
-        link({ href, title, text }) {
-          // Check if this is an external link (not starting with TOP_LEVEL_DOMAIN)
-          const isExternal = !href.startsWith(TOP_LEVEL_DOMAIN);
-
-          if (isExternal) {
-            // External links open in new tab with security attributes
-            return `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
-          } else {
-            // Internal links open in same tab
-            return `<a href="${href}"${title ? ` title="${title}"` : ""}>${text}</a>`;
-          }
-        },
-        heading({ tokens, depth }) {
-          const delta = previousDepth.__current - depth + 1;
-          const text = this.parser.parseInline(tokens);
-          previousDepth.__current = depth;
-
-          const closers = new Array(delta + 1).fill("").join("</article-zone>");
-          return `
-          ${closers}
-          <article-zone data-depth="${depth}">
-            <h${depth}>
-              ${text}
-            </h${depth}>`;
-        },
-      },
       walkTokens: (token) => {
         if ("date" in meta) {
           return;
