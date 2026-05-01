@@ -67,6 +67,18 @@ export const parseMd = async (
             <figcaption>${text}</figcaption>
           </figure>`;
         },
+        link({ href, title, text }) {
+          // Check if this is an external link (not starting with TOP_LEVEL_DOMAIN)
+          const isExternal = !href.startsWith(TOP_LEVEL_DOMAIN);
+
+          if (isExternal) {
+            // External links open in new tab with security attributes
+            return `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+          } else {
+            // Internal links open in same tab
+            return `<a href="${href}"${title ? ` title="${title}"` : ""}>${text}</a>`;
+          }
+        },
         heading({ tokens, depth }) {
           const delta = previousDepth.__current - depth + 1;
           const text = this.parser.parseInline(tokens);

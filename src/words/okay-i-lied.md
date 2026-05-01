@@ -658,4 +658,4 @@ Aaand **thank you** for reading this far. As usual lemme know your thoughts on b
 
 [^foreshadow]: big mistake but I didn't know this yet so neither should you.
 
-[^yw]: if this all sorta interests you but the messing with saving files part doesnt i left some easy starter bitmaps on the npm package i published, have fun
+[^yw]: if this all sorta interests you but the messing with saving files part doesn't i left some easy starter bitmaps on the NPM package i published, have fun
