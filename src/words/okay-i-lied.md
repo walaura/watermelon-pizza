@@ -296,8 +296,7 @@ article :nth-child(5n) {
 {
   "title": "ok so i lied lol i do know how to make these",
   "desc": "Keep reading for tales on bmp rendering, performance, lies, and bad decisions",
-  "date": "1777649281",
-  "draft": true
+  "date": "1777649281"
 }
 ```
 
