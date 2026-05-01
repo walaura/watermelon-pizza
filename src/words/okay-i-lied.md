@@ -481,15 +481,24 @@ Okay, small setback in terms of the project where at no point it occurred to me 
 
 ### This is actually really funny and im not mad
 
-I swear to god if you do your own research on og images and whatnot for the little time i put into it you will likely come to a very similar conclusion where rasterizing svgs is an insanely hard problem in computer science. Fucks sake, some guy at Vercel built [an entire text rasterizer pipeline](https://github.com/vercel/satori/blob/main/src/text/index.ts) to then feed to some bullshit in rust because that doesn't even render text??
+I swear to god if you do your own research on og images and whatnot for the little time i put into it you will likely come to a very similar conclusion where rasterizing svgs is an insanely hard problem in computer science. Fucks sake, some guy at Vercel built [an entire text rasterizer pipeline](https://github.com/vercel/satori/blob/main/src/text/index.ts) to then feed to some nonsense in rust because that doesn't even render text??
 
 And all this time rasterizing svgs was just a _feature_ of normal image libraries the second you step out of website land into actual usages land?? it's just not shiny and glamorous?? And you just know this is perfect at text because it's what [the fucking wikipedia uses](https://gitlab.gnome.org/GNOME/librsvg)?
 
-Anyway scratch my comment on line 262 about opentype, theres at least two text processors in town. we truly live in an era of wonders.
+Anyway scratch my comment on line 262 about opentype, theres at least two text processors in town. we truly live in an era of wonders. Suddenly I feel less bad about my own jerry rigged approach.
 
 @@@
 
-Okay so using Parcel or Sharp is a goner. I also didnt do my research
+Okay so using Parcel or Sharp is a goner. I too didn't do my research but vaguely remembered imagick being a thing. All command line options are a big no-no because they take a file as a parameter i think and at this point this just doesn't exist yet so anyway - there's a wasm version and i plugged it in.
+I know very little about this part of doing software so all i can really brag about here is [converting a callback to an awaitable](https://github.com/walaura/watermelon-pizza/blob/371de91a9492399aad7bed549324810e9b039186/src-node/transformer/pxmd.ts#L23-L32). brought me back to the 2010s.
+
+![](./pix/okay-i-lied/hello.png?as=webp)
+
+And this is everything! The [backgrounds are using a custom brush that messes with the values](https://github.com/walaura/watermelon-pizza/blob/371de91a9492399aad7bed549324810e9b039186/packages/local-bitmo/bitmo.ts#L61-L74) in hsl to make them glitchy. there's a lot of cool effects you can make with this setup and i landed on boring :( I'll probably tune them further over time.
+
+## Quick tldr and other stuff
+
+Check out my cool JS Bitmap manipulation library [here](https://github.com/walaura/painbrush), Aseprite is great for manipulating bmps, its gonna show up on my last played row below because i bought it on steam. If you wanna do your own images you probably wanna just use a svg and [Sharp](https://sharp.pixelplumbing.com). Unless you want them pixely in which case you can use mine i guess!! (Just don't steal my font from here tho! Poxel is fine) You can see a Windows path on the last screenshot and this actually worked out super fine until the very end when parcel couldn't figure out the asset paths and hat's how I ended up using WSL (it's great now btw) aaand **thank you** for reading this far. As usual lemme know your thoughts on bsky!!
 
 [^1]: lots of things i don't have to do anymore tho which is awesome! this barely works on mobile, modern css negates the need for pirating photoshop and I don't really have a stick up my butt on code correctness so this is all being fun for once. Oh yeah and Netlify is dealing with https, that seems to work so that's awesome.
 
