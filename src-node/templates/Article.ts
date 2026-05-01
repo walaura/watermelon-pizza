@@ -3,7 +3,7 @@ import { Post } from "../transformer/md/md.t.ts";
 import { Shell } from "./internal/Shell.ts";
 import { AllWidgets } from "./Widget.ts";
 
-const BlogPost = ({
+const Article = ({
   post,
   widgets,
 }: {
@@ -70,6 +70,7 @@ const BlogPost = ({
         I don't know how to set up a newsletter but if you wake up with back pain and thus know what an rss feed is <a href="/src/rss.xml">you can sub here</a> and get updates as they come.
         </p>
       </article>
+       <script type="module" src="../js/article.ts" async defer></script>
     `;
 
   return Shell({
@@ -82,4 +83,4 @@ const BlogPost = ({
   });
 };
 
-export default BlogPost;
+export default Article;

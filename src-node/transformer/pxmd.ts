@@ -7,7 +7,7 @@ import {
   MagickFormat,
 } from "@imagemagick/magick-wasm";
 import { readFile } from "fs/promises";
-import { DATA_ROOT } from "../paths";
+import { DATA_ROOT } from "../paths.ts";
 
 module.exports = new Transformer({
   async transform({ asset }) {

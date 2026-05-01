@@ -16,9 +16,18 @@ import {
 } from "./src-node/reporter/dev/helper.ts";
 
 program.option("--no-md-text");
+program.option("--no-css");
 program.parse();
 const opts = program.opts();
-process.env.WMPZ_NO_MD_TEXT = opts.mdText === false ? "no" : undefined;
+const extras: {
+  [key: string]: string;
+} = {};
+if (opts.mdText === false) {
+  extras.WMPZ_NO_MD_TEXT = "true";
+}
+if (opts.css === false) {
+  extras.WMPZ_NO_CSS = "true";
+}
 
 let bundler = new Parcel({
   entries: pkg.source,
@@ -44,6 +53,15 @@ await drawLogo();
 reportInfo(`Server started at ${chalk.underline(TOP_LEVEL_DOMAIN)}`);
 reportEmpty(chalk.gray(`Hit [up] to show this again, [any] to quit`));
 console.log("");
+
+const ks = Object.keys(extras);
+for (const key of ks) {
+  process.env[key] = extras[key];
+  reportInfo(`Added global ${chalk.bold(key)}`);
+}
+if (ks.length) {
+  console.log("");
+}
 
 const spinner = ora({
   discardStdin: false,

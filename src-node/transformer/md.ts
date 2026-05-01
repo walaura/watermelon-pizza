@@ -1,8 +1,8 @@
 import { Transformer } from "@parcel/plugin";
 import * as path from "path";
-import { parseMd } from "./md/parse-md";
-import Blogpost from "../templates/Blogpost";
-import { PARCEL_SRC_ROOT } from "../paths";
+import { parseMd } from "./md/parse-md.ts";
+import Article from "../templates/Article.ts";
+import { PARCEL_SRC_ROOT } from "../paths.ts";
 import { readdir, readFile } from "fs/promises";
 import { Dirent } from "fs";
 import { HydratedWidget } from "local-fetcher/fetcher";
@@ -46,7 +46,7 @@ module.exports = new Transformer({
 
     asset.type = "html";
     asset.setCode(
-      Blogpost({
+      Article({
         post,
         widgets,
       }),

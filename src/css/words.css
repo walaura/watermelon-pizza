@@ -17,8 +17,8 @@
   --color-flood-inverted: hsl(
     from var(--color-flood) calc(h - 180) s calc(100 - l) / 100%
   );
-  --basis-min-width: calc(var(--basis) * 14);
   --basis-padding: min(calc(var(--basis) * 0.5), 5vw);
+  --basis-min-width: calc(60ch + (2 * var(--basis-padding)));
   --basis-header-sp: calc(var(--basis-padding) * 2);
   --basis-header-height: calc(
     (0.75rem + 3rem) * 1.2
@@ -152,21 +152,57 @@ article {
   padding: var(--basis-padding);
   line-height: 1.4;
 
-  sup {
+  sup:has(a[data-footnote-ref]) {
     vertical-align: 15%;
-    padding-inline-start: 0.25em;
-    font-size: 0.6em;
+    margin-inline-start: 0.25em;
+    position: relative;
+    anchor-scope: --note;
+    display: inline-flex;
 
     a {
+      font-size: 0.6em;
       background: var(--color-text);
       text-decoration: none;
       padding-inline: 0.5em;
       color: var(--color-bg);
       border-radius: 100em 100em 100em 1px;
       display: inline-flex;
+      anchor-name: --note;
+    }
 
-      &:hover {
-        background-color: var(--color-highlight);
+    a + div {
+      position: fixed;
+      container-type: anchored;
+      pointer-events: none;
+      position-anchor: --note;
+      position-area: span-top span-right;
+      position-try: flip-block, flip-inline;
+
+      div {
+        background: var(--color-text);
+        color: var(--color-bg);
+        width: 30ch;
+        transform: scale(0.2);
+        opacity: 0;
+        transition: all 0.125s ease-in-out;
+        transform-origin: var(--footnote-pop-x, 0) var(--footnote-pop-y, 100%);
+        margin: -0.1em;
+        padding: 1em;
+        border-radius: calc(var(--basis) * 0.25);
+      }
+    }
+
+    &:hover,
+    &:focus-within {
+      a {
+        opacity: 0;
+      }
+      a + div {
+        pointer-events: all;
+      }
+      a + div div {
+        transform: scale(1);
+        opacity: 1;
       }
     }
   }
@@ -212,10 +248,17 @@ article {
     }
   }
 
+  blockquote {
+    border-radius: calc(var(--basis) * 0.25);
+    border: 1px dashed hsl(from var(--color-text) h s l / 5%);
+    padding: calc(var(--basis-padding) * 0.5);
+  }
+
   p,
   ul,
   ol,
   figure,
+  blockquote,
   img,
   pre {
     margin-bottom: 1rem;
@@ -245,7 +288,6 @@ article {
 
     &:hover {
       text-decoration-color: hsl(from currentcolor calc(h + 50) s l / 100%);
-      text-decoration-thickness: 2px;
     }
   }
 

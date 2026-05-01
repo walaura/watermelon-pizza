@@ -4,7 +4,6 @@ import path from "path";
 import { TOP_LEVEL_DOMAIN } from "../../paths.ts";
 import { Meta, Post } from "./md.t.ts";
 import markedFootnote from "marked-footnote";
-import { OPTIONS } from "../../commander.ts";
 
 const closeZone = (ref: DepthRef) => {
   return {
@@ -118,9 +117,7 @@ export const parseMd = async (
     markedFootnote(),
   );
 
-  console.log(process.env.WMPZ_NO_MD_TEXT);
-
-  if (process.env.WMPZ_NO_MD_TEXT) {
+  if (process.env.WMPZ_NO_MD_TEXT == "true") {
     marked.use({
       renderer: {
         text() {
@@ -151,7 +148,7 @@ export const parseMd = async (
   return {
     htmlContent,
     meta: meta as Meta,
-    maybeCss,
+    maybeCss: process.env.WMPZ_NO_CSS ? null : maybeCss,
     maybeGlobalCss,
   };
 };
