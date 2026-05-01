@@ -1,5 +1,7 @@
-import { INSPECT_MAX_BYTES } from "node:buffer";
 import type { Widget } from "./widget";
+
+import dotenv from "dotenv";
+dotenv.config();
 
 const MY_BANGING_TUNES = "RDATjuUCIplWlHoqeQW8RA0bvcTC7g";
 
@@ -14,24 +16,24 @@ const params = new URLSearchParams({
 const url = new URL(baseUrl);
 url.search = params.toString();
 
-type Recent = {
+type RecentYt = {
   song: string;
   artist: string;
   thumb: string | null | undefined;
   url: string;
 };
 
-const ytWidget: Widget<"yt-top-songs", Recent[]> = {
+const ytWidget: Widget<"yt-top-songs", RecentYt[]> = {
   name: "yt-top-songs",
   fetchFrom: [url, {}],
   unmangle: async (data) => {
     const results = JSON.parse(data);
-    const items = results.items.map((item) => {
+    const items = results.items.map((item: any) => {
       const [deets, maybeArtist] = item.snippet.description
         .split("\n")
-        .map((l) => l.trim())
+        .map((l: string) => l.trim())
         .filter(Boolean)
-        .filter((l) => !l.startsWith("Provided to YouTube by"));
+        .filter((l: string) => !l.startsWith("Provided to YouTube by"));
 
       const deetsHasMiddot = deets.split("·");
       const artist =

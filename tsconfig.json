@@ -3,6 +3,7 @@
     "types": ["node"],
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "module": "nodenext"
+    "module": "preserve",
+    "skipLibCheck": true
   }
 }

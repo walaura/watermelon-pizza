@@ -1,5 +1,5 @@
 import { HydratedWidget } from "local-fetcher/fetcher";
-import { Post } from "../transformer/md/md.t.ts";
+import { Post } from "../transformer/md/md.js";
 import { Shell } from "./internal/Shell.ts";
 import { AllWidgets } from "./Widget.ts";
 

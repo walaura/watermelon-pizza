@@ -7,14 +7,14 @@ const url = new URL(
   `https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${process.env.STEAM_API}&steamid=${process.env.STEAM_USER_ID}&format=json`,
 );
 
-type Recent = {
+type RecentSteam = {
   url: string;
   name: string;
   playtime: number;
   iconUrl: string;
 };
 
-const steamWidget: Widget<"steam-last-game", Recent[]> = {
+const steamWidget: Widget<"steam-last-game", RecentSteam[]> = {
   name: "steam-last-game",
   fetchFrom: [url, {}],
   unmangle: async (data) => {

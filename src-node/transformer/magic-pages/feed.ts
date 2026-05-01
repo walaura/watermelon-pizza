@@ -1,7 +1,7 @@
 import { TOP_LEVEL_DOMAIN } from "../../paths";
 import listBlogEntries from "../../list-blog-entries";
-import { Post } from "../md/md.t";
-import { MagicPage } from "./magic-pages";
+import type { Post } from "../md/md.d.ts";
+import { MagicPage } from "./magic-pages.ts";
 
 const makeFeed = (items: Post[]) => `<?xml version="1.0" ?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">

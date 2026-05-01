@@ -17,8 +17,7 @@
   --color-flood-inverted: hsl(
     from var(--color-flood) calc(h - 180) s calc(100 - l) / 100%
   );
-  --basis-padding: min(calc(var(--basis) * 0.5), 5vw);
-  --basis-min-width: calc(60ch + (2 * var(--basis-padding)));
+  --basis-min-width: var(--basis-column-min-width);
   --basis-header-sp: calc(var(--basis-padding) * 2);
   --basis-header-height: calc(
     (0.75rem + 3rem) * 1.2
@@ -31,11 +30,15 @@
 }
 
 @keyframes bloops {
-  0% {
-    opacity: 0.125;
+  0%,
+  70% {
+    padding: 2em;
+    opacity: 0.25;
   }
 
+  90%,
   100% {
+    padding: 0;
     opacity: 1;
   }
 }
@@ -62,17 +65,24 @@ footer {
   right: 0;
   left: 0;
   color: #000;
-  backdrop-filter: blur(10px);
 
   @media (orientation: landscape) {
     position: sticky;
   }
 
+  &:hover {
+    opacity: 1 !important;
+  }
+
+  animation-timeline: scroll(root);
+  animation-name: bloops;
+  animation-duration: auto;
+  animation-timing-function: linear;
+  transition: all 1ms ease-in;
+
   .footer-actual {
-    animation-timeline: scroll(root);
-    animation-name: bloops;
-    animation-duration: auto;
-    animation-timing-function: linear;
+    padding-inline: 1px;
+    margin-inline: -1px;
 
     & > a {
       color: inherit;
@@ -90,10 +100,6 @@ footer {
         inset 0 -20vh 0 0 var(--color-accent),
         inset 0 20vh 0 0 white;
     }
-  }
-
-  &:hover .footer-actual {
-    opacity: 1 !important;
   }
 
   .header-scream {

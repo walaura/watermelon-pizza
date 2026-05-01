@@ -1,6 +1,5 @@
 import { HydratedWidget } from "local-fetcher/fetcher";
-import { objectivelyCorrectDateFormat } from "../dates";
-import { title } from "node:process";
+import { objectivelyCorrectDateFormat } from "../dates.ts";
 
 const WIDGET_NAMES: {
   [key in HydratedWidget["name"]]: string;
@@ -31,7 +30,7 @@ const getWidgetContent = (widget: HydratedWidget) => {
     return `<p>Lol this failed to load?? lmk</p>`;
   }
 
-  if (widget.name == "yt-top-songs") {
+  if (widget.name === "yt-top-songs") {
     return `
       <div class="widget-cols">
       ${widget.data
@@ -111,7 +110,7 @@ const getWidgetContent = (widget: HydratedWidget) => {
   return `
     <p>sorry im lazy and this widget doesn't have a renderer. heres the data, just imagine it:</p>
     <pre class="widget-xs">
-      ${JSON.stringify(widget.data, null, 2)}
+      ${JSON.stringify((widget as any).data, null, 2)}
     </pre>
     `;
 };

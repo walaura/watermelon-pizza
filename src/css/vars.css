@@ -9,6 +9,8 @@
 
   /* size */
   --basis: 3rem;
+  --basis-padding: min(calc(var(--basis) * 0.5), 5vw);
+  --basis-column-min-width: calc(60ch + (2 * var(--basis-padding)));
 }
 
 /* 
@@ -48,7 +50,10 @@ body {
     padding: calc(var(--basis-padding) * 0.75) var(--basis-padding);
     background: #fff;
     backface-visibility: hidden;
-    perspective: 1000;
-    text-shadow: 0 0.5px 0 0 currentColor;
+    text-shadow: 0 0.5px 0 0 currentcolor;
   }
+}
+
+.🧃-text-width {
+  min-width: var(--basis-column-min-width);
 }

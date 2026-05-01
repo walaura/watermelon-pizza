@@ -23,7 +23,7 @@ const blueskyWidget: Widget<
   unmangle: async (data) => {
     const results = JSON.parse(data);
     const firstResultNoReplies = results.records.find(
-      (r) => r.value?.reply?.parent == undefined,
+      (r: any) => r.value?.reply?.parent == undefined,
     );
     const twoot = firstResultNoReplies ?? results.records[0];
 

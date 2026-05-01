@@ -1,24 +1,25 @@
 import { Transformer } from "@parcel/plugin";
 import * as path from "path";
 
+// @ts-expect-error
 import extract from "extract-zip";
 import { dirname } from "path";
-import { DATA_ROOT, DIST_ROOT, PARCEL_SRC_ROOT } from "../paths";
+import { DIST_ROOT, PARCEL_SRC_ROOT } from "../paths";
 
 const extractPromise = (sourcePath: string, targetPath: string) =>
   new Promise((yay, nay) => {
     extract(
       path.resolve(sourcePath),
       {
-        dir: targetPath
+        dir: targetPath,
       },
-      function(err) {
+      function (err: Error) {
         if (err) {
           nay(err);
           return;
         }
         yay(sourcePath);
-      }
+      },
     );
   });
 
@@ -26,7 +27,7 @@ module.exports = new Transformer({
   async transform({ asset, options, config }) {
     const targetPath = path.join(
       DIST_ROOT,
-      dirname(asset.filePath.replace(PARCEL_SRC_ROOT, ""))
+      dirname(asset.filePath.replace(PARCEL_SRC_ROOT, "")),
     );
 
     const name = path.basename(asset.filePath, ".zip");
@@ -38,8 +39,8 @@ module.exports = new Transformer({
         type: "html",
         isSource: false,
         content: `<meta http-equiv="refresh" content="0; url=./${name}/index.html" />`,
-        pipeline: undefined
-      }
+        pipeline: undefined,
+      },
     ];
-  }
+  },
 });
