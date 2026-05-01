@@ -1,9 +1,9 @@
 [
   {
     "data": {
-      "url": "https://bsky.app/profile/did:plc:7zxb4jzotsbgdppi52ikz3ur/post/3mkeuuizjh22d",
-      "text": "maybe we need ai because of stuff like the only way to get music info from the youtube api seems to be - i shit you not this rocks - just magicallyy knowing that the second line of the video descriptions happens to be song name followed by middot followed by artist",
-      "date": "2026-04-26T05:59:53.262Z",
+      "url": "https://bsky.app/profile/did:plc:7zxb4jzotsbgdppi52ikz3ur/post/3mkrwo2aey22c",
+      "text": "remember the episode where bart goes to the australian embassy and they got an insane contraption hooked up to the toilet so the water spins in the correct direction? honestly thats wsl with the path slashes",
+      "date": "2026-05-01T10:36:40.536Z",
       "hasMedia": true
     },
     "name": "bluesky"
@@ -11,28 +11,28 @@
   {
     "data": [
       {
+        "name": "Aseprite",
+        "url": "https://store.steampowered.com/app/431730/",
+        "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/431730/da61bd2806f69205a97609dcdd4ca27df3baf800.jpg",
+        "playtime": 13326
+      },
+      {
         "name": "2025: Mosaic Retrospective",
         "url": "https://store.steampowered.com/app/4266120/",
         "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/4266120/18ab7f0e306c6575ac6fb2a019bd2cdfd98bed92.jpg",
         "playtime": 1957
       },
       {
-        "name": "Aseprite",
-        "url": "https://store.steampowered.com/app/431730/",
-        "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/431730/da61bd2806f69205a97609dcdd4ca27df3baf800.jpg",
-        "playtime": 13040
-      },
-      {
         "name": "The Evil Within 2",
         "url": "https://store.steampowered.com/app/601430/",
         "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/601430/823f7bef429bc85a7a68dba32d6f47938fc3b689.jpg",
-        "playtime": 253
+        "playtime": 390
       },
       {
-        "name": "PowerWash Simulator 2",
-        "url": "https://store.steampowered.com/app/2968420/",
-        "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/2968420/22c3afc784b39c76ac7c0a5c4771ce68b548e431.jpg",
-        "playtime": 1844
+        "name": "NORCO",
+        "url": "https://store.steampowered.com/app/1221250/",
+        "iconUrl": "https://media.steampowered.com/steamcommunity/public/images/apps/1221250/6ec6b7d812d0696c995460fcb728558d50bee368.jpg",
+        "playtime": 28
       }
     ],
     "name": "steam-last-game"
@@ -40,11 +40,11 @@
   {
     "data": {
       "temp": [
-        46,
-        7.777777777777778
+        77,
+        25
       ],
-      "type": "Partly Cloudy",
-      "sunsetAt": "8:17 PM",
+      "type": "Sunny",
+      "sunsetAt": "8:23 PM",
       "moon": "Waxing gibbous"
     },
     "name": "weather"
@@ -52,28 +52,28 @@
   {
     "data": [
       {
-        "song": "Gravity",
-        "artist": "Andrew Underberg",
-        "thumb": "https://i.ytimg.com/vi/8QkqehaWWa4/default.jpg",
-        "url": "https://youtube.com/watch?v=8QkqehaWWa4&list=RDATjuUCIplWlHoqeQW8RA0bvcTC7g"
+        "song": "New Addiction",
+        "artist": "The Haunt",
+        "thumb": "https://i.ytimg.com/vi/pyf_94-pnhM/default.jpg",
+        "url": "https://youtube.com/watch?v=pyf_94-pnhM&list=RDATjuUCIplWlHoqeQW8RA0bvcTC7g"
       },
       {
-        "song": "505",
-        "artist": "Arctic Monkeys",
-        "thumb": "https://i.ytimg.com/vi/qU9mHegkTc4/default.jpg",
-        "url": "https://youtube.com/watch?v=qU9mHegkTc4&list=RDATjuUCIplWlHoqeQW8RA0bvcTC7g"
+        "song": "Life Passes",
+        "artist": "Chris Del Rio",
+        "thumb": "https://i.ytimg.com/vi/YEZcSbBbIY8/default.jpg",
+        "url": "https://youtube.com/watch?v=YEZcSbBbIY8&list=RDATjuUCIplWlHoqeQW8RA0bvcTC7g"
+      },
+      {
+        "song": "Lazy Eye",
+        "artist": "Silversun Pickups",
+        "thumb": "https://i.ytimg.com/vi/_farsI18j3I/default.jpg",
+        "url": "https://youtube.com/watch?v=_farsI18j3I&list=RDATjuUCIplWlHoqeQW8RA0bvcTC7g"
       },
       {
         "song": "Dear Maria, Count Me In",
         "artist": "All Time Low",
         "thumb": "https://i.ytimg.com/vi/jDC1wP4-Wqo/default.jpg",
         "url": "https://youtube.com/watch?v=jDC1wP4-Wqo&list=RDATjuUCIplWlHoqeQW8RA0bvcTC7g"
-      },
-      {
-        "song": "Don't You Forget",
-        "artist": "Andrew Underberg",
-        "thumb": "https://i.ytimg.com/vi/-OiEdNbht48/default.jpg",
-        "url": "https://youtube.com/watch?v=-OiEdNbht48&list=RDATjuUCIplWlHoqeQW8RA0bvcTC7g"
       }
     ],
     "name": "yt-top-songs"

@@ -48,7 +48,7 @@
     "local-bitmo": "npm exec local-bitmo",
     "clean": "rm -rf dist .parcel-cache",
     "now": "node -e 'console.log(parseInt(new Date().getTime()/1000))'",
-    "fetch": "npm exec local-fetcher -- --save-to src/widget-data",
+    "fetch": "npm exec local-fetcher -- --clean --save-to src/widget-data",
     "fetchdev": "npm exec local-fetcher -- --debug"
   },
   "repository": {
