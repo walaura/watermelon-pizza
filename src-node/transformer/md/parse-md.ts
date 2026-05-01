@@ -120,7 +120,7 @@ export const parseMd = async (
   let htmlContent = await marked.parse(content);
   htmlContent = htmlContent.replaceAll(
     `<section class="footnotes"`,
-    `</article-zone><article-zone class="article-zone footnotes"`,
+    `</article-zone><article-zone data-depth="2" class="footnotes"`,
   );
 
   if (!("date" in meta)) {
