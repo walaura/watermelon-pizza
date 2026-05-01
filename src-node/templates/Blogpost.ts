@@ -1,7 +1,7 @@
 import { HydratedWidget } from "local-fetcher/fetcher";
-import { Post } from "../transformer/md/md.t";
-import { Shell } from "./internal/Shell";
-import { AllWidgets } from "./Widget";
+import { Post } from "../transformer/md/md.t.ts";
+import { Shell } from "./internal/Shell.ts";
+import { AllWidgets } from "./Widget.ts";
 
 const BlogPost = ({
   post,

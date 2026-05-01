@@ -1,8 +1,10 @@
 import path from "path";
 
+export const DEV_PORT = 6969; //hehe
+
 const TOP_LEVEL_DOMAIN =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:1234"
+    ? "http://localhost:" + DEV_PORT
     : "https://www.laura.monster";
 
 const DATA_ROOT = path.join(import.meta.dirname, "..");

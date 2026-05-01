@@ -1,9 +1,10 @@
 import { marked, TokenizerAndRendererExtension } from "marked";
 
 import path from "path";
-import { TOP_LEVEL_DOMAIN } from "../../paths";
-import { Meta, Post } from "./md.t";
+import { TOP_LEVEL_DOMAIN } from "../../paths.ts";
+import { Meta, Post } from "./md.t.ts";
 import markedFootnote from "marked-footnote";
+import { OPTIONS } from "../../commander.ts";
 
 const closeZone = (ref: DepthRef) => {
   return {
@@ -116,6 +117,18 @@ export const parseMd = async (
     },
     markedFootnote(),
   );
+
+  console.log(process.env.WMPZ_NO_MD_TEXT);
+
+  if (process.env.WMPZ_NO_MD_TEXT) {
+    marked.use({
+      renderer: {
+        text() {
+          return "hello";
+        },
+      },
+    });
+  }
 
   let htmlContent = await marked.parse(content);
   htmlContent = htmlContent.replaceAll(
