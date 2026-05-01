@@ -31,14 +31,16 @@
 
 @keyframes bloops {
   0%,
-  70% {
-    padding: 2em;
+  40% {
+    padding-inline: var(--basis-padding);
     opacity: 0.25;
+    translate: 0 calc(var(--basis-padding) / -1);
   }
 
-  90%,
-  100% {
-    padding: 0;
+  60%,
+  90% {
+    translate: 0 0;
+    padding-inline: 0;
     opacity: 1;
   }
 }
