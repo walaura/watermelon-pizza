@@ -275,11 +275,37 @@ _NOTE: Very much like everything else, text just gets insanely more complicated 
 
 If you've never tried to lay text out you should start with monospaced fonts, no line breaks, spaces as a character. this is easy because all you really have to do is keep a counter of which letter you are at and put it at `pixelSize * index` horizontally and `0` vertically:
 
-(image)
+```
+// h|e|l|l|o
+
+const charSpace = (letter, index) => {
+  return index * 10
+}
+```
 
 Now of course we need line breaks, this is also easy (less easy) if you don't mind breaking words in half. It boils down to figuring out the size of the character _before_ plopping it down and if it will run over the max width, make a new line. Once you are there just do it for words (as separated by spaces) instead of characters and you are golden.
 
-Throwing in a non-monospace font just means looking up the size of every individual character from somewhere rather than assuming they all are N pixels. This is easy if you break it down! (still took me several days and bugs)
+```
+const MAX_WIDTH = 80;
+
+const wordSpace = (word) => {
+  const chars = word.split('');
+  return chars.map(charSpace)
+}
+
+let lines = 0;
+let lineWidth = 0;
+for (words of sentence) {
+  lineWidth += wordSpace(word);
+  if(lineWidth > MAX_WIDTH) {
+    lines++;
+    lineWidth = 0;
+  }
+  // lay out the word
+}
+```
+
+Throwing in a non-monospace font just means looking up the size of every individual character from somewhere rather than assuming they all are N pixels. This is easy if you break it down! (still took me several days and bugs, dont copy this code)
 
 ## Everything thats not text
 
@@ -382,11 +408,13 @@ At this point in time the website was a distant memory and what I had was a rela
 
 ### Not typescript causing issues
 
-I proudly wrote `npm publish`, published `1.0.0` and went on to work on this blog an-haha no im kidding. Turns out Node will not let you use typescript on packages? That's why everybody still uploads js with those `d.ts` files that make it really hard to read the code? I though they were just being dicks about it.
+I proudly wrote `npm publish`, published `1.0.0` and went on to work on this blog an-haha no im kidding. Turns out Node will not let you use typescript on packages? That's why everybody still uploads js with those `d.ts` files that make it really hard to read the code? I though they were just being dicks about it. [^no]
 
 @@@
 
 Anyway so after some immensely messy pipeline work i finally got `1.1.0` published. With [javascript this time](https://npmdiff.dev/painbrush/1.0.2/1.1.0). If you look at the package now it's sitting at `3.3.2` so I might as well tell you all the things that went wrong. Feel free to skip to the next heading if you are just here for the fonts! I would consider this a big compliment.
+
+![oh and the font compiler thing has colors n stuff](./pix/okay-i-lied/compi.png?as=webp)
 
 - `1.3.0` unfucks some imports that only worked on my machine
 - `2.0.0` does the aforementioned optimization with the single pixel per array key
@@ -396,13 +424,72 @@ Anyway so after some immensely messy pipeline work i finally got `1.1.0` publish
 - `3.2.X` my text was inexplicably overflowing and i added a crop function to normalize images because
 - `3.3.X` all that gloating from before about the font rendering? the font rendering was all wrong in terms of when to break lines and I never noticed
 
-![oh and the font compiler thing has colors n stuff](./pix/okay-i-lied/compi.png?as=webp)
+---
 
 Anyway, you [should use my library](https://www.npmjs.com/package/painbrush). It's good! I mean, _now_ it is. It better be.
 
 ## Babushka Sans
 
-So here we are,
+So here we are, back to lots of grueling work after it was time to plug this onto the website (this one). After working this hard on a pixel text engine I was kinda done with overly pixely text so I went on to look for some pictures of old Sony devices for inspo. They were doing a lot with the tech they had while looking just a little bit quirky.
+
+![TODO inspo pic](./pix/okay-i-lied/compi.png?as=webp)
+
+I'll spare you the big details because I'm no typographer. I just drew three fonts I guess but I've also been writing code for 20 years and i wouldnt call myself a 'software engineer' thats for nerds. So instead imma just list some of the things I quite like:
+
+![](./pix/okay-i-lied/babu.png?as=webp)
+
+- The hanging serifs in `gkmnpqr` that sadly i couldn't quite fit for the bold font
+- `I`'s are _always_ dotted. i used to get shit for not dotting mine when writing by hand so there hope my classmates are happy now. they r cute.
+- The number `4`. just, look at it. Also lowercase `y`.
+- The thick-ass dots all over bold.
+
+Bold is a bit of a hack job that loses a lot of the whimsy and thats just the price you gotta pay for bold if you don't know shit. I really like that they don't just look 'pixel' (Like Poxel does) but rather they are going for something. Closer to Tahoma on windows XP than to Zelda 2 if that makes sense.
+
+![](./pix/okay-i-lied/babu-set.png?as=webp)
+
+Drawing the characters is the fun part, if you wanna call it that. After that's done and you got them all laid out on a sprite sheet comes the immensely grueling work of cropping them all to size. I kinda hated myself for not figuring out how to encode this on the bmp but ended up with a relatively nice workflow anyway where i had node auto refreshing two different specimen files as i was messing with pixels.
+
+### Powering through
+
+I forgot to turn off the local ai's next line suggestions so every other line vsc would try to help and suggest where to trim a letter. never got it right but to be fair how could it.
+This was happening as salsa kept trying to help to by walking all over the desk. All the small creatures in the house conspiring against me at once.
+It only fueled my determination to get this done.
+
+@@@
+
+A really nice-in-an unexpected way feature of this whole stack was a combo of being able to draw in the background of each 'letter plate' (because they are layers, remember) alongside a little border brush i made just to test out the api. Put them together and suddenly you get a great debugging outline on each character. Insanely helpful. Should have put this in the docs for pPinbrush.
+
+## Hooking it all up
+
+This is where things took a bit of a turn. First, I wanted to really stick with native parcel since it offers image compression, my though here being that i can serve you a bmp from my code and pass some arguments somewhere to magically turn it into a gigantic png. [^foreshadow]
+
+![great stuff](./pix/okay-i-lied/parcel.png?as=webp)
+
+Parcel, like every other ==javascript== bundler out there, offers a [deranged](https://parceljs.org/plugin-system/overview/) plugin system that fulfils every conceivable need except the one you have. First of all it's smart enough to extract assets from code, so I can just [make up a link to a file that does not exist](https://github.com/walaura/watermelon-pizza/blob/148b07c3439356e64de05cca34a8a8d6115e63e7/src-node/templates/Blogpost.ts#L14-L15) and thats enough to get parcel looking for it. Cool!
+
+_(I mean, the file **really** does not exist, so that's a problem)_
+
+You then define a [Resolver](https://github.com/walaura/watermelon-pizza/blob/148b07c3439356e64de05cca34a8a8d6115e63e7/src-node/resolver/pxmd.ts) which is one of the plugin types. This one basically steps in to resolve a file. Normally this just goes to find it in the filesystem but you can also make one up on the spot. This is great stuff! Anyway, when you make up a file like this you can't actually return binary files, just code.
+
+"Not a problem!" i say with my unflappable spirit. "I can use this path to figure out what the text in the image should say and then pass it down to another plugin". Words come out of my mouth with barely any conviction that any of this really beats just installing the parcel library like a normal person. maybe netlify just has a button to make these images too? Not the point, I'm too deep.
+
+I whip up a transformer plugin that takes this pxmd file that at this point is a bunch of json with post metadata because why not, whatever rules existed for anything are long broken, and use that to [finally generate the damn image](https://github.com/walaura/watermelon-pizza/blob/148b07c3439356e64de05cca34a8a8d6115e63e7/src-node/transformer/pxmd.ts#L14-L17) all that's left to do is convert it using the built in stuff and –
+
+> This module supports reading JPEG, PNG, WebP, GIF, AVIF, TIFF and SVG images.
+
+Okay, small setback in terms of the project where at no point it occurred to me to check if the image manipulation library that i had at hand supported the bmp format. Finding out that all along i had a svg rasterizer library available to me would have been a big moral setback if I wasn't finding out right now at the time of writing this and copying this quote because i'm a terrible reader
+
+### This is actually really funny and im not mad
+
+I swear to god if you do your own research on og images and whatnot for the little time i put into it you will likely come to a very similar conclusion where rasterizing svgs is an insanely hard problem in computer science. Fucks sake, some guy at Vercel built [an entire text rasterizer pipeline](https://github.com/vercel/satori/blob/main/src/text/index.ts) to then feed to some bullshit in rust because that doesn't even render text??
+
+And all this time rasterizing svgs was just a _feature_ of normal image libraries the second you step out of website land into actual usages land?? it's just not shiny and glamorous?? And you just know this is perfect at text because it's what [the fucking wikipedia uses](https://gitlab.gnome.org/GNOME/librsvg)?
+
+Anyway scratch my comment on line 262 about opentype, theres at least two text processors in town. we truly live in an era of wonders.
+
+@@@
+
+Okay so using Parcel or Sharp is a goner. I also didnt do my research
 
 [^1]: lots of things i don't have to do anymore tho which is awesome! this barely works on mobile, modern css negates the need for pirating photoshop and I don't really have a stick up my butt on code correctness so this is all being fun for once. Oh yeah and Netlify is dealing with https, that seems to work so that's awesome.
 
@@ -413,3 +500,7 @@ So here we are,
 [^4]: the source for this is my ass. while we know there's some sort of multi modality going on there's no specifics. Could be a second LLM trained on pictures of text which i guess are easy enough to generate??. Or they lie and just overlay pictures of text lol. Anyway Comfy and Weave which are more commercial-focused and let you peek behind the scenes both offer trad text overlays, you can let models layout them but they hand out the pixels first.
 
 [^layers]: back and front layer very literally meaning the layer that sits behind or in front relative to the viewer at the end of the operation. for most compositing front will be smaller as you are writing characters in a bigger square for example.
+
+[^no]: theres also another detour where i needed to reset my 2fa, at some point i lost the keys. support was really nice about this.
+
+[^foreshadow]: big mistake but I didn't know this yet so neither should you.

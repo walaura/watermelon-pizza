@@ -194,6 +194,24 @@ article {
     margin-bottom: 0;
   }
 
+  hr {
+    text-decoration-line: line-through;
+    text-decoration-style: wavy;
+    text-decoration-color: hsl(from currentcolor h s l / 50%);
+    border: 0;
+    display: block;
+    margin: 1em 0;
+
+    &::before {
+      color: transparent;
+      user-select: none;
+      content: "------------------------------------------------------------------------------------";
+      height: 1lh;
+      overflow: hidden;
+      display: block;
+    }
+  }
+
   p,
   ul,
   ol,
