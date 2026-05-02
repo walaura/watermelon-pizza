@@ -12,22 +12,22 @@
     "@parcel/plugin": "^2.16.4",
     "@parcel/transformer-inline-string": "^2.16.4",
     "@parcel/transformer-xml": "^2.16.4",
-    "@types/extract-zip": "^2.0.0",
+    "@types/extract-zip": "^2.0.3",
     "@types/node": "^25.6.0",
     "chalk": "^5.6.2",
     "commander": "^14.0.3",
     "emit-keypress": "^2.0.1",
-    "extract-zip": "^1.6.7",
+    "extract-zip": "^2.0.1",
     "local-bitmo": "file:packages/local-bitmo",
     "local-fetcher": "file:./packages/local-fetcher/",
-    "marked": "^18.0.2",
+    "marked": "^18.0.3",
     "marked-footnote": "^1.4.0",
     "ora": "^9.4.0",
     "painbrush": "^3.3.2",
     "parcel": "^2.16.4",
     "parcel-reporter-static-files-copy": "^1.5.3",
-    "sharp": "^0.33",
-    "stylelint": "^17.9.0",
+    "sharp": "^0.34",
+    "stylelint": "^17.9.1",
     "stylelint-config-standard": "^40.0.0",
     "wasm-imagemagick": "^1.2.8"
   },
@@ -63,5 +63,8 @@
   "author": "Laura Mayhem",
   "type": "module",
   "license": "IT-MINE",
-  "homepage": "https://github.com/walaura/watermelon-pizza"
+  "homepage": "https://github.com/walaura/watermelon-pizza",
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
 }

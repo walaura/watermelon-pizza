@@ -1,26 +1,13 @@
 import { Transformer } from "@parcel/plugin";
 import * as path from "path";
 
-// @ts-expect-error
 import extract from "extract-zip";
 import { dirname } from "path";
 import { DIST_ROOT, PARCEL_SRC_ROOT } from "../paths";
 
 const extractPromise = (sourcePath: string, targetPath: string) =>
-  new Promise((yay, nay) => {
-    extract(
-      path.resolve(sourcePath),
-      {
-        dir: targetPath,
-      },
-      function (err: Error) {
-        if (err) {
-          nay(err);
-          return;
-        }
-        yay(sourcePath);
-      },
-    );
+  extract(path.resolve(sourcePath), {
+    dir: targetPath,
   });
 
 module.exports = new Transformer({
