@@ -133,11 +133,13 @@ h1 {
 
     & li + li a {
       @media (orientation: portrait) {
-        border-top: 1px solid var(--color-border);
+        border-block: 1px solid var(--color-border);
+        margin-block-start: -1px;
       }
 
       @media (orientation: landscape) {
-        border-left: 1px solid var(--color-border);
+        border-inline: 1px solid var(--color-border);
+        margin-inline-start: -1px;
       }
     }
   }
