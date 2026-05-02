@@ -35,9 +35,12 @@
   },
   "source": [
     "src/index.html",
-    "src/words/index.html",
     "src/words/*.md"
   ],
+  "imports": {
+    "#test": "./tsconfig.json",
+    "#src-node/*": "./src-node/*"
+  },
   "staticFiles": {
     "staticPath": "static",
     "watcherGlob": "**"

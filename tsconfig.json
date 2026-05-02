@@ -4,6 +4,13 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "module": "preserve",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "*": ["./*"],
+      "~*": ["./*"],
+      "#src-node/*": ["./src-node/*"],
+      "/src-node/*": ["./src-node/*"],
+      "src-node/*": ["./src-node/*"]
+    }
   }
 }
