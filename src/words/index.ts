@@ -1,9 +1,9 @@
 "use preload entrypoint";
 
 import listBlogEntries from "#src-node/list-blog-entries.ts";
-import Toc from "#src-node/templates/Toc.ts";
+import wordsTocPage from "#src/prerender/pages/words-toc.ts";
 
 export default async () => {
   const posts = await listBlogEntries();
-  return Toc({ posts });
+  return wordsTocPage({ posts });
 };

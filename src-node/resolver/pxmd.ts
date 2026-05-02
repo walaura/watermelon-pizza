@@ -6,7 +6,6 @@ import { readFile } from "fs/promises";
 
 module.exports = new Resolver({
   async resolve({ specifier }) {
-    console.log(specifier);
     if (!specifier.endsWith(".pxmd")) {
       return;
     }

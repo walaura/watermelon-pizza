@@ -40,7 +40,8 @@
   ],
   "imports": {
     "#src-node/*": "./src-node/*",
-    "#src/*": "./src/*"
+    "#src/*": "./src/*",
+    "#prerender/*": "./src/prerender/*"
   },
   "staticFiles": {
     "staticPath": "static",
