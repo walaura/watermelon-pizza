@@ -164,6 +164,8 @@ article {
 
     a + div {
       position: fixed;
+      z-index: 999999;
+      translate: 0 0 1px;
       container-type: anchored;
       pointer-events: none;
       position-anchor: --note;

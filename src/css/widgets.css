@@ -1,26 +1,32 @@
 @import url("vars.css");
 
 .widgets {
+  margin-top: -1px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
 }
 
 .widget {
+  --color-widget-text: var(--color-text-over-flood);
+
   overflow: hidden;
   flex-direction: column;
   align-items: start;
   gap: calc(var(--basis) / 4);
   padding-block: calc(var(--basis) / 2);
   background-color: #696969; /* hehehehehhehehe */
-  transition: background 100ms linear;
-  color: var(--color-text-over-flood);
+  color: var(--color-widget-text);
+  box-shadow: inset 0 0 0 0 hsl(from var(--color-flood) h s l / 20%);
 
   a {
-    color: var(--color-text-over-flood);
+    color: inherit;
   }
 
   &:hover {
-    background-color: var(--color-accent);
+    --color-widget-text: var(--color-accent);
+
+    mix-blend-mode: normal;
+    background-color: hsl(0deg 0 100% / 100%);
   }
 
   h3 {
@@ -96,7 +102,13 @@
     transition: box-shadow 0.125s linear;
 
     &:hover {
-      box-shadow: inset 0 -20vh 0 0 #000;
+      strong {
+        text-decoration: wavy;
+        text-decoration: underline;
+        text-decoration-style: wavy;
+        text-decoration-thickness: 1px;
+        text-decoration-color: hsl(from currentcolor h s l / 50%);
+      }
     }
   }
 
@@ -138,7 +150,6 @@
     inset: 0;
     position: absolute;
     transform: scale(var(--scale, 1));
-    filter: grayscale(0.75) brightness(125%);
   }
 }
 
