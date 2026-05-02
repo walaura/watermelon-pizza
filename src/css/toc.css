@@ -8,6 +8,10 @@
   padding-block-start: calc(var(--basis-padding) * 4);
 }
 
+.toc-heading {
+  padding-block-end: calc(var(--basis-padding) * 4);
+}
+
 .toc-heading > * {
   background-color: transparent;
   color: var(--color-text-over-flood);
