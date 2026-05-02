@@ -10,11 +10,12 @@ Holy shit its been 10 years and i forgot so lets write this down at 11 because w
 
 Its been [11 years](https://www.laura.monster/old/1) of this give or take () from and you know what? what an insanely consistent aesthetic here. glitches, purple, bit of a tasteful eyesore. shit-ass css. it's all here. Yellow? lemme get there.
 
-Turns out this website has always been in tension between [way too serious](https://www.laura.monster/old/2/index.html) and [unreadable garbage](https://www.laura.monster/old/4/index.html). A weird of pride is that at [#5](https://www.laura.monster/old/5/index.html) i stopped just stealing pictures of the internet (which at the time was okay for individuals to do you see) and those are my own pics AND icons. It also looks incredible. I dropped it bc it didnt work on mobile and in 
+Turns out this website has always been in tension between [way too serious](https://www.laura.monster/old/2/index.html) and [unreadable garbage](https://www.laura.monster/old/4/index.html). A weird of pride is that at [#5](https://www.laura.monster/old/5/index.html) i stopped just stealing pictures of the internet (which at the time was okay for individuals to do you see) and those are my own pics AND icons. It also looks incredible. I dropped it bc it didnt work on mobile and in
 
 [#7](https://www.laura.monster/old/7/index.html) goes hard with the 3d if you ignore the freaky-ass topology and the inexplicable blue. this and #2 are the only non-purples and ah shit nevermind, #8 is pink - but to be fair thats the pink that now goes with the purple on [#9](https://www.laura.monster/old/9/index.html) which at the time of writing is, like, the current page,
 
 ### What the fuck is up with the purple and yellow
+
 Guys its been long enough i can say - that was the theme of my bedroom at my parents and it looked banging. im seeing this now and that is clearly the room of somebody who hadnt puked on enough bar bathrooms yet because thats the entire vibe im getting.
 
 <img src="https://github.com/user-attachments/assets/3926e6fc-fc01-4133-989b-4f24fc4913ff" />

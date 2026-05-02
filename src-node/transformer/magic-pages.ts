@@ -22,5 +22,5 @@ module.exports = new Transformer({
     asset.type = type;
 
     return [asset];
-  }
+  },
 });

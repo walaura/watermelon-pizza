@@ -2,6 +2,6 @@
 export default {
   extends: ["stylelint-config-standard"],
   rules: {
-    "no-descending-specificity": null
-  }
+    "no-descending-specificity": null,
+  },
 };

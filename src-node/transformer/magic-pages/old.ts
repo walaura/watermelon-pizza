@@ -9,7 +9,7 @@ const IndexTpl = (count: number) => {
 
     <div>
       ${Array.from(Array(count).keys())
-        .map(index => `<a href="/src/old/${index + 1}.zip">${index + 1}</a>`)
+        .map((index) => `<a href="/src/old/${index + 1}.zip">${index + 1}</a>`)
         .join("")}
       <a href="/">NOW</a>
     </div>
@@ -45,14 +45,14 @@ const oldPage: MagicPage = {
 
     const entries = await readdirSync(dirPath, { withFileTypes: true });
     const files = entries.filter(
-      entry => entry.isFile() && entry.name.endsWith(".zip")
+      (entry) => entry.isFile() && entry.name.endsWith(".zip"),
     );
 
     return {
       type: "html",
-      content: IndexTpl(files.length)
+      content: IndexTpl(files.length),
     };
-  }
+  },
 };
 
 export default oldPage;
