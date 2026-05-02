@@ -1,5 +1,6 @@
 import { HydratedWidget } from "local-fetcher/fetcher";
 import { objectivelyCorrectDateFormat } from "../dates.ts";
+import { html } from "common-tags";
 
 const WIDGET_NAMES: {
   [key in HydratedWidget["name"]]: string;
@@ -107,23 +108,29 @@ const getWidgetContent = (widget: HydratedWidget) => {
     `;
   }
 
-  return `
-    <p>sorry im lazy and this widget doesn't have a renderer. heres the data, just imagine it:</p>
+  return html`
+    <p>
+      sorry im lazy and this widget doesn't have a renderer. heres the data,
+      just imagine it:
+    </p>
     <pre class="widget-xs">
       ${JSON.stringify((widget as any).data, null, 2)}
-    </pre>
-    `;
+    </pre
+    >
+  `;
 };
 
 export const AllWidgets = ({ widgets }: { widgets: HydratedWidget[] }) => {
-  return `
-  <link rel="stylesheet" href="/src/css/widgets.css" />
-  <div class="widgets 🧃-glitchbox">${widgets
-    .map((widget) => {
-      return WidgetRenderer({
-        title: WIDGET_NAMES[widget.name],
-        content: getWidgetContent(widget),
-      });
-    })
-    .join("")}</div>`;
+  return html` <link
+      rel="stylesheet"
+      href="/src/css/widgets.css"
+    />
+    <div class="widgets 🧃-glitchbox">
+      ${widgets.map((widget) => {
+        return WidgetRenderer({
+          title: WIDGET_NAMES[widget.name],
+          content: getWidgetContent(widget),
+        });
+      })}
+    </div>`;
 };
