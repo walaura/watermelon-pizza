@@ -5,7 +5,7 @@ import { TOP_LEVEL_DOMAIN } from "#src-node/paths.ts";
 import type { Post } from "#src-node/transformer/md/md.d.ts";
 import { html } from "common-tags";
 
-const makeFeed = (items: Post[]) => `<?xml version="1.0" ?>
+const makeFeed = (items: Post[]) => html`<?xml version="1.0" ?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
     <title>Laura's blog!</title>
@@ -20,17 +20,17 @@ const makeFeed = (items: Post[]) => `<?xml version="1.0" ?>
 
 	${items
     .map(
-      (i) => `
-		<item>
-			<title>${i.meta.title}</title>
-			<link>${i.meta.permalink}</link>
-			<description>${i.meta.desc ?? i.meta.title}</description>
-			<pubDate>${i.meta.date.toUTCString()}</pubDate>
-			<guid isPermaLink="true">${i.meta.permalink}</guid>
-			<dc:creator>Laura</dc:creator>
-			<category>Blog</category>
-		</item>
-	`,
+      (i) => html`
+        <item>
+          <title>${i.meta.title}</title>
+		  <link>${i.meta.permalink}</link>
+          <description>${i.meta.desc ?? i.meta.title}</description>
+          <pubDate>${i.meta.date.toUTCString()}</pubDate>
+          <guid isPermaLink="true">${i.meta.permalink}</guid>
+          <dc:creator>Laura</dc:creator>
+          <category>Blog</category>
+        </item>
+      `,
     )
     .join("")}
   </channel>

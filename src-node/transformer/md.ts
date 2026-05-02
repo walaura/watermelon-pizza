@@ -1,55 +1,20 @@
 import { Transformer } from "@parcel/plugin";
-import * as path from "path";
-import { parseMd } from "./md/parse-md.ts";
-import Article from "../templates/Article.ts";
-import { PARCEL_SRC_ROOT } from "../paths.ts";
-import { readdir, readFile } from "fs/promises";
-import { Dirent } from "fs";
-import { HydratedWidget } from "local-fetcher/fetcher";
-
-const getClosestWidget = async (date: Date): Promise<HydratedWidget[]> => {
-  const dirPath = path.join(PARCEL_SRC_ROOT, "widget-data");
-
-  const entries = await readdir(dirPath, { withFileTypes: true });
-  const closestFile = (entries
-    .map((entry) => {
-      const distance = Math.abs(date.getTime() / 1000 - parseInt(entry.name));
-      return [entry, distance] as [Dirent, number];
-    })
-    .sort((a, b) => a[1] - b[1])
-    .shift() ?? [])[0];
-
-  if (!closestFile) {
-    return [];
-  }
-
-  const widget = (
-    await readFile(path.join(closestFile.parentPath, closestFile.name))
-  ).toString();
-
-  return JSON.parse(widget) as HydratedWidget[];
-};
+import { existsSync } from "fs";
+import { dirname, join } from "path";
 
 module.exports = new Transformer({
   async transform({ asset }) {
     const filePath = asset.filePath;
-    if (
-      !filePath.includes(`${path.sep}words${path.sep}`) ||
-      !filePath.endsWith(".md")
-    ) {
+    const maybeIntakeCode = join(dirname(filePath), "_intake.ts");
+
+    if (!existsSync(maybeIntakeCode)) {
       return [asset];
     }
 
-    const code = await asset.getCode();
-    const post = await parseMd(filePath, code);
-    const widgets = await getClosestWidget(post.meta.date);
-
+    const pageRunner = await import(maybeIntakeCode);
     asset.type = "html";
     asset.setCode(
-      Article({
-        post,
-        widgets,
-      }),
+      await pageRunner.default(await asset.getCode(), asset.filePath),
     );
 
     return [asset];

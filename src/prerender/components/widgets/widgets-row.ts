@@ -1,7 +1,7 @@
-import { HydratedWidget } from "local-fetcher/fetcher";
+import type { HydratedWidget } from "local-fetcher/widgets";
 
 import { html } from "common-tags";
-import { objectivelyCorrectDateFormat } from "../../../../src-node/dates.ts";
+import { objectivelyCorrectDateFormat } from "../../../js/lib/dates.ts";
 
 const WIDGET_NAMES: {
   [key in HydratedWidget["name"]]: string;

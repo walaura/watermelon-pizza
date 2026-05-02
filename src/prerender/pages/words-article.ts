@@ -1,17 +1,40 @@
-import { HydratedWidget } from "local-fetcher/fetcher";
-import { Post } from "../transformer/md/md.js";
-import { Shell } from "./internal/Shell.ts";
+import { PARCEL_SRC_ROOT } from "#src-node/paths.ts";
+import { Shell } from "#src/prerender/pages/shell.ts";
+import type { Post } from "#src-node/transformer/md/md.d.ts";
+import { Dirent } from "fs";
 import { html } from "common-tags";
-import { footerNav } from "../../src/prerender/components/footer-nav/footer-nav.ts";
-import { widgetsRow } from "../../src/prerender/components/widgets/widgets-row.ts";
+import type { HydratedWidget } from "local-fetcher/widgets";
+import path from "path";
+import { readdir, readFile } from "fs/promises";
+import { footerNav } from "#prerender/components/footer-nav/footer-nav.ts";
+import { widgetsRow } from "#prerender/components/widgets/widgets-row.ts";
 
-const Article = ({
-  post,
-  widgets,
-}: {
-  post: Post;
-  widgets: HydratedWidget[];
-}) => {
+const getClosestWidget = async (date: Date): Promise<HydratedWidget[]> => {
+  const dirPath = path.join(PARCEL_SRC_ROOT, "widget-data");
+
+  const entries = await readdir(dirPath, { withFileTypes: true });
+  const closestFile = (entries
+    .map((entry) => {
+      const distance = Math.abs(date.getTime() / 1000 - parseInt(entry.name));
+      return [entry, distance] as [Dirent, number];
+    })
+    .sort((a, b) => a[1] - b[1])
+    .shift() ?? [])[0];
+
+  if (!closestFile) {
+    return [];
+  }
+
+  const widget = (
+    await readFile(path.join(closestFile.parentPath, closestFile.name))
+  ).toString();
+
+  return JSON.parse(widget) as HydratedWidget[];
+};
+
+const wordsArticlePage = async (post: Post) => {
+  const widgets = await getClosestWidget(post.meta.date);
+
   const head = html`
     <meta
       property="og:image"
@@ -101,4 +124,4 @@ const Article = ({
   });
 };
 
-export default Article;
+export default wordsArticlePage;

@@ -11,7 +11,8 @@
     "html-to-json": "^0.6.0"
   },
   "exports": {
-    "./fetcher": "./fetcher.ts"
+    "./fetcher": "./fetcher.ts",
+    "./widgets": "./widgets.ts"
   },
   "bin": "./fetcher.ts"
 }
