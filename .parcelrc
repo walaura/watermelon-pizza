@@ -6,7 +6,6 @@
     "...",
     "parcel-reporter-static-files-copy"
   ],
-  "runtimes": [],
   "resolvers": [
     "...",
     "./src-node/resolver/pxmd.ts"
@@ -26,6 +25,10 @@
     ],
     "*.*": [
       "./src-node/transformer/magic-pages.ts",
+      "..."
+    ],
+    "*.ts": [
+      "./src-node/transformer/yummers.ts",
       "..."
     ]
   }

@@ -1,7 +1,7 @@
 import { HydratedWidget } from "local-fetcher/fetcher";
 
 import { html } from "common-tags";
-import { objectivelyCorrectDateFormat } from "../../../src-node/dates";
+import { objectivelyCorrectDateFormat } from "../../../../src-node/dates.ts";
 
 const WIDGET_NAMES: {
   [key in HydratedWidget["name"]]: string;
@@ -124,7 +124,7 @@ const getWidgetContent = (widget: HydratedWidget) => {
 export const widgetsRow = ({ widgets }: { widgets: HydratedWidget[] }) => {
   return html` <link
       rel="stylesheet"
-      href="../components/widgets/widgets-row.css"
+      href="../prerender/components/widgets/widgets-row.css"
     />
     <div class="widgets 🧃-glitchbox">
       ${widgets.map((widget) => {

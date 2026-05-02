@@ -5,7 +5,7 @@ import { emitKeypress } from "emit-keypress";
 import { program } from "commander";
 import { Parcel } from "@parcel/core";
 import pkg from "./package.json" with { type: "json" };
-const { DEV_PORT, TOP_LEVEL_DOMAIN } = await import("./src-node/paths.ts");
+const { DEV_PORT, TOP_LEVEL_DOMAIN } = await import("#src-node/paths.ts");
 import chalk from "chalk";
 import ora from "ora";
 import {
@@ -13,7 +13,7 @@ import {
   reportEmpty,
   reportInfo,
   reportNay,
-} from "./src-node/reporter/dev/helper.ts";
+} from "#src-node/reporter/dev/helper.ts";
 
 program.option("--no-md-text");
 program.option("--no-css");

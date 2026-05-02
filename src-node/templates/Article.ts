@@ -2,8 +2,8 @@ import { HydratedWidget } from "local-fetcher/fetcher";
 import { Post } from "../transformer/md/md.js";
 import { Shell } from "./internal/Shell.ts";
 import { html } from "common-tags";
-import { footerNav } from "../../src/components/footer-nav/footer-nav.ts";
-import { widgetsRow } from "../../src/components/widgets/widgets-row.ts";
+import { footerNav } from "../../src/prerender/components/footer-nav/footer-nav.ts";
+import { widgetsRow } from "../../src/prerender/components/widgets/widgets-row.ts";
 
 const Article = ({
   post,
@@ -82,8 +82,7 @@ const Article = ({
       <p>
         I don't know how to set up a newsletter but if you wake up with back
         pain and thus know what an rss feed is
-        <a href="/src/rss.xml">you can sub here</a> and get updates as they
-        come.
+        <a href="/src/rss.ts">you can sub here</a> and get updates as they come.
       </p>
     </article>
     <script

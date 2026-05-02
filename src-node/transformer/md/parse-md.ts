@@ -1,8 +1,9 @@
-import { marked, TokenizerAndRendererExtension } from "marked";
+import { marked } from "marked";
+import type { TokenizerAndRendererExtension } from "marked";
 
 import path from "path";
 import { TOP_LEVEL_DOMAIN } from "../../paths.ts";
-import { Meta, Post } from "./md.js";
+import type { Meta, Post } from "./md.d.ts";
 import markedFootnote from "marked-footnote";
 
 const closeZone = (ref: DepthRef) => {

@@ -1,8 +1,9 @@
 import { html } from "common-tags";
-import { objectivelyCorrectDateFormat } from "../dates.ts";
-import { Post } from "../transformer/md/md.js";
-import { Shell } from "./internal/Shell.ts";
-import { footerNav } from "../../src/components/footer-nav/footer-nav.ts";
+import { Shell } from "#src-node/templates/internal/Shell.ts";
+import { footerNav } from "#src/prerender/components/footer-nav/footer-nav.ts";
+import type { Post } from "#src-node/transformer/md/md.d.ts";
+import { objectivelyCorrectDateFormat } from "#src-node/dates.ts";
+import { withOwnStyles } from "#prerender/use-link.ts";
 
 const postsByMonth = (posts: Post[]): Map<string, Post[]> => {
   const months = new Map();
@@ -43,7 +44,7 @@ const makeSection = (title: string, posts: string[]) => html`
   </div>
 `;
 
-const Toc = ({ posts: allPosts }: { posts: Post[] }) => {
+const wordsTocPage = ({ posts: allPosts }: { posts: Post[] }) => {
   const allPostsByMonth = postsByMonth(allPosts);
   let sec = "";
   allPostsByMonth.forEach(
@@ -67,13 +68,10 @@ const Toc = ({ posts: allPosts }: { posts: Post[] }) => {
     })} `;
 
   return Shell({
-    head: html`<link
-      rel="stylesheet"
-      href="/src/css/toc.css"
-    />`,
+    head: withOwnStyles(import.meta.filename),
     title: "Words",
     body,
   });
 };
 
-export default Toc;
+export default wordsTocPage;
