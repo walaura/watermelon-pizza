@@ -6,24 +6,29 @@
     "node": ">=24.14.0"
   },
   "dependencies": {
-    "@babel/core": "^7.7.5",
     "@imagemagick/magick-wasm": "^0.0.40",
     "@parcel/optimizer-data-url": "^2.16.4",
+    "@parcel/packager-xml": "^2.16.4",
+    "@parcel/plugin": "^2.16.4",
     "@parcel/transformer-inline-string": "^2.16.4",
+    "@parcel/transformer-xml": "^2.16.4",
+    "@types/extract-zip": "^2.0.0",
+    "@types/node": "^25.6.0",
     "chalk": "^5.6.2",
     "commander": "^14.0.3",
     "emit-keypress": "^2.0.1",
     "extract-zip": "^1.6.7",
-    "fs-extra": "^6.0.1",
     "local-bitmo": "file:packages/local-bitmo",
     "local-fetcher": "file:./packages/local-fetcher/",
+    "marked": "^18.0.2",
     "marked-footnote": "^1.4.0",
     "ora": "^9.4.0",
     "painbrush": "^3.3.2",
     "parcel": "^2.16.4",
     "parcel-reporter-static-files-copy": "^1.5.3",
-    "prettier": "^3.8.3",
-    "svgo": "^3.3.2",
+    "sharp": "^0.33",
+    "stylelint": "^17.9.0",
+    "stylelint-config-standard": "^40.0.0",
     "wasm-imagemagick": "^1.2.8"
   },
   "source": [
@@ -58,18 +63,5 @@
   "author": "Laura Mayhem",
   "type": "module",
   "license": "IT-MINE",
-  "homepage": "https://github.com/walaura/watermelon-pizza",
-  "devDependencies": {
-    "@parcel/packager-xml": "^2.16.4",
-    "@parcel/plugin": "^2.16.4",
-    "@parcel/transformer-xml": "^2.16.4",
-    "@types/extract-zip": "^2.0.0",
-    "@types/node": "^25.6.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-runtime": "^6.26.0",
-    "marked": "^18.0.2",
-    "sharp": "^0.33.5",
-    "stylelint": "^17.9.0",
-    "stylelint-config-standard": "^40.0.0"
-  }
+  "homepage": "https://github.com/walaura/watermelon-pizza"
 }
