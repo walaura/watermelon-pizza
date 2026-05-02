@@ -41,7 +41,7 @@ const Article = ({
     (post.maybeGlobalCss ? `<style>${post.maybeGlobalCss}</style>` : "") +
     post.htmlContent;
 
-  const body = `<div class="article-wrapper">
+  const body = `<div class="🧃-glitchbar"></div><div class="article-wrapper">
       <article>
         ${htmlContent}
       </article>

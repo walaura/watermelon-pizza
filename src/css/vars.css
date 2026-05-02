@@ -4,6 +4,9 @@
   /* color */
   --color-flood: #060a36;
   --color-text-over-flood: white;
+  --color-border-over-flood: hsl(
+    from var(--color-text-over-flood) h s calc(l / 1.125)
+  );
   --color-accent: #ff3573;
   --color-text-over-accent: var(--color-flood);
 
@@ -22,6 +25,31 @@ body {
     -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   overflow-x: hidden;
+}
+
+.🧃-glitchbar {
+  width: 100%;
+  height: calc(var(--basis) / 2);
+  z-index: 20;
+  display: block;
+  position: relative;
+  background:
+    linear-gradient(to bottom, hsl(0deg 0 100% / 1%)),
+    url("../css/gli.gif") 0 / cover,
+    url("../css/gli.jpg") center / cover;
+  background-blend-mode: color-dodge;
+
+  &::before {
+    content: "";
+    background: var(--color-border-over-flood);
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    mix-blend-mode: color-dodge;
+  }
 }
 
 .🧃-glitchbox {

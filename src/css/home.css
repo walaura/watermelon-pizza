@@ -4,8 +4,9 @@
   background-color: var(--color-flood);
   color: var(--color-text-over-flood);
 
-  --color-border: hsl(from var(--color-text-over-flood) h s l / 60%);
+  --color-border: var(--color-border-over-flood);
   --color-text: #000;
+  --basis-home-padding: calc(var(--basis-padding) * 2);
 }
 
 * {
@@ -45,13 +46,13 @@ h1 {
   display: inline;
 
   strong {
-    color: var(--color-accent);
+    color: hsl(from var(--color-accent) h calc(s * 1.5) calc(l * 1.5));
   }
 }
 
 .intro {
-  font-size: 1.6rem;
-  margin: calc(var(--basis) * 1.5) var(--basis);
+  font-size: 1.8rem;
+  margin: calc(var(--basis-home-padding) * 1.5) var(--basis-home-padding);
 
   img {
     height: 0.8em;
@@ -59,7 +60,7 @@ h1 {
   }
 
   & .intro-para {
-    margin-bottom: calc(var(--basis) * 0.5);
+    margin-bottom: calc(var(--basis-home-padding) * 0.5);
 
     + .intro-para {
       margin-bottom: 0;
@@ -88,7 +89,7 @@ h1 {
   border-right: 0;
 
   a {
-    padding: var(--basis);
+    padding: var(--basis-home-padding);
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -112,7 +113,7 @@ h1 {
         box-shadow: inset 100vw 0 0 0 var(--color-accent);
       }
 
-      color: hsl(from currentcolor h s l / 50%);
+      color: var(--color-border);
       filter: blur(0.5px);
     }
   }
@@ -175,7 +176,7 @@ footer {
   color: var(--color-text-over-accent);
   font-size: 0.8rem;
   font-weight: 400;
-  padding: calc(var(--basis) / 3) var(--basis);
+  padding: calc(var(--basis-home-padding) / 3) var(--basis-home-padding);
   background-color: var(--color-text-over-flood);
   display: flex;
   justify-content: space-between;
@@ -183,7 +184,7 @@ footer {
 
   @media (orientation: portrait) {
     flex-direction: column;
-    gap: calc(var(--basis) / 3);
+    gap: calc(var(--basis-home-padding) / 3);
   }
 
   strong {

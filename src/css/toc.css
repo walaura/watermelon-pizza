@@ -5,20 +5,47 @@
   flex-direction: column;
   overflow: hidden;
   padding: var(--basis-padding);
-  padding-block-start: calc(var(--basis-padding) * 4);
+  padding-block: calc(var(--basis-padding) * 2);
 }
 
 .toc-heading {
-  padding-block-end: calc(var(--basis-padding) * 4);
-}
+  position: relative;
+  padding-block: calc(var(--basis-padding) * 3);
+  padding-block-start: calc(
+    (var(--basis-padding) * 3) + calc(var(--basis) / 2)
+  );
 
-.toc-heading > * {
-  background-color: transparent;
-  color: var(--color-text-over-flood);
+  &::after {
+    content: "";
+    background: var(--color-border-over-flood);
+    width: 100%;
+    height: 1px;
+    top: calc(var(--basis) / 2);
+    left: 0;
+    right: 0;
+    position: absolute;
+    mix-blend-mode: color-dodge;
+  }
 
-  h1 {
-    font-size: max(3rem, 3.5vw);
-    font-weight: 800;
+  &::before {
+    content: "";
+    background: var(--color-border-over-flood);
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    mix-blend-mode: color-dodge;
+  }
+
+  & > * {
+    background-color: transparent;
+    color: var(--color-text-over-flood);
+
+    h1 {
+      font-size: max(3rem, 3.5vw);
+    }
   }
 }
 
@@ -28,6 +55,7 @@
 }
 
 .toc-section {
+  padding-block-start: calc(var(--basis-padding) * 4);
   gap: calc(var(--basis-padding) * 2);
   display: flex;
   flex-direction: column;
@@ -50,7 +78,7 @@
 
   a {
     color: var(--color-highlight);
-    font-weight: 500;
+    font-weight: 800;
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-decoration-style: wavy;

@@ -45,22 +45,6 @@
   }
 }
 
-body {
-  &::before {
-    content: "";
-    width: 100%;
-    height: calc(var(--basis-padding) / 2);
-    z-index: 20;
-    display: block;
-    position: relative;
-    background:
-      url("../css/gli.gif") 0 / cover,
-      url("../css/gli.jpg") center / cover;
-    background-blend-mode: color-dodge;
-    border-bottom: 1px solid color-mix(in lab, #fff, transparent 50%);
-  }
-}
-
 footer {
   font-size: 0.75em;
   bottom: 0;
