@@ -48,7 +48,7 @@
   ],
   "scripts": {
     "install": "npm run make",
-    "make": "parcel build",
+    "make": "parcel build --detailed-report 2",
     "start": "node serve.ts",
     "local-bitmo": "npm exec local-bitmo",
     "clean": "rm -rf dist .parcel-cache",
