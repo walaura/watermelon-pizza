@@ -11,7 +11,7 @@ export const footerNav = ({
 }) => {
   return html`<link
       rel="stylesheet"
-      href="../components/footer-nav/footer-nav.css"
+      href="../prerender/components/footer-nav/footer-nav.css"
     />
     <footer>
       <div class="footer-actual 🧃-glitchbox">

@@ -2,7 +2,7 @@ import { html } from "common-tags";
 import { objectivelyCorrectDateFormat } from "../dates.ts";
 import type { Post } from "../transformer/md/md.d.ts";
 import { Shell } from "#src-node/templates/internal/Shell.ts";
-import { footerNav } from "../../src/components/footer-nav/footer-nav.ts";
+import { footerNav } from "../../src/prerender/components/footer-nav/footer-nav.ts";
 
 const postsByMonth = (posts: Post[]): Map<string, Post[]> => {
   const months = new Map();

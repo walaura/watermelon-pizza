@@ -2,8 +2,8 @@ import { HydratedWidget } from "local-fetcher/fetcher";
 import { Post } from "../transformer/md/md.js";
 import { Shell } from "./internal/Shell.ts";
 import { html } from "common-tags";
-import { footerNav } from "../../src/components/footer-nav/footer-nav.ts";
-import { widgetsRow } from "../../src/components/widgets/widgets-row.ts";
+import { footerNav } from "../../src/prerender/components/footer-nav/footer-nav.ts";
+import { widgetsRow } from "../../src/prerender/components/widgets/widgets-row.ts";
 
 const Article = ({
   post,
