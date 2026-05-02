@@ -8,6 +8,7 @@ export type Meta = {
 };
 
 export type Post = {
+  objectivelyCorrectDateFormat(date: any): unknown;
   htmlContent: string;
   meta: Meta;
   maybeCss: string | null | undefined;
