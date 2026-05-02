@@ -3,16 +3,12 @@ import { html } from "common-tags";
 export const Shell = ({
   head = "",
   title,
-  accessory = "",
   colophon = "",
   body = "",
-  backHref = "/",
 }: {
-  backHref?: string;
   head?: string;
   colophon?: string;
   title: string;
-  accessory?: string;
   body: string;
 }) =>
   html`<!DOCTYPE html>
@@ -42,30 +38,7 @@ export const Shell = ({
       </head>
 
       <body>
-        ${body}
-        <footer>
-          <div class="footer-actual 🧃-glitchbox">
-            <a
-              href="${backHref}"
-              class="footer-bk"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 47 17"
-                alt="Back"
-                title="Back"
-              >
-                <path
-                  fill="currentColor"
-                  d="M9.9 1.414 3.812 7.5H47v2H3.843l6.056 6.057-1.414 1.414L0 8.485 8.485 0z"
-                />
-              </svg>
-            </a>
-            <div class="🧃-glitchbox-flex"></div>
-            ${accessory}
-          </div>
-        </footer>
-        ${colophon}
+        ${body} ${colophon}
         <article class="footer-past">
           you got to the end :) this is everything.
         </article>

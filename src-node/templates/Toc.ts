@@ -1,6 +1,8 @@
+import { html } from "common-tags";
 import { objectivelyCorrectDateFormat } from "../dates.ts";
 import { Post } from "../transformer/md/md.js";
 import { Shell } from "./internal/Shell.ts";
+import { footerNav } from "../../src/components/footer-nav/footer-nav.ts";
 
 const postsByMonth = (posts: Post[]): Map<string, Post[]> => {
   const months = new Map();
@@ -21,21 +23,25 @@ const postsByMonth = (posts: Post[]): Map<string, Post[]> => {
 };
 
 const makeList = (posts: Post[]) =>
-  posts
-    .map(
-      (item) =>
-        `<li><a href="${item.meta.permalink}">${
-          item.meta.title
-        }</a><br />${item.meta.desc ? `${item.meta.desc}` : ""} <small>${objectivelyCorrectDateFormat(item.meta.date)}</small></li>`,
-    )
-    .join("\n");
+  posts.map(
+    (item) =>
+      html`<li>
+        <a href="${item.meta.permalink}">${item.meta.title}</a><br />${item.meta
+          .desc
+          ? `${item.meta.desc}`
+          : ""}
+        <small>${objectivelyCorrectDateFormat(item.meta.date)}</small>
+      </li>`,
+  );
 
-const makeSection = (title: string, posts: string) => `
-    <div class="toc-section">
-      <h2>${title}</h2>
-      <ul>${posts}</ul>
-    </div>
-    `;
+const makeSection = (title: string, posts: string[]) => html`
+  <div class="toc-section">
+    <h2>${title}</h2>
+    <ul>
+      ${posts}
+    </ul>
+  </div>
+`;
 
 const Toc = ({ posts: allPosts }: { posts: Post[] }) => {
   const allPostsByMonth = postsByMonth(allPosts);
@@ -43,20 +49,28 @@ const Toc = ({ posts: allPosts }: { posts: Post[] }) => {
   allPostsByMonth.forEach(
     (posts, key) => (sec += makeSection(key, makeList(posts))),
   );
-  const body = `
-  <div class="toc-heading 🧃-glitchbox">
-    <div class="toc-width">
-      <h1>Hey you made it to my blog! Thanks for coming – check out all ${allPosts.length} posts.</h1>
-    </div>
-  </div>
-  <div class="toc-wrapper">
-    <div class="toc-width">
-        ${sec}
+
+  const body = html`<div class="toc-heading 🧃-glitchbox">
+      <div class="toc-width">
+        <h1>
+          Hey you made it to my blog! Thanks for coming – check out all
+          ${allPosts.length} posts.
+        </h1>
       </div>
-    </div>`;
+    </div>
+    <div class="toc-wrapper">
+      <div class="toc-width">${sec}</div>
+    </div>
+    ${footerNav({
+      backHref: "/",
+      backHrefTitle: "Back to the links",
+    })} `;
 
   return Shell({
-    head: `<link rel="stylesheet" href="/src/css/toc.css" />`,
+    head: html`<link
+      rel="stylesheet"
+      href="/src/css/toc.css"
+    />`,
     title: "Words",
     body,
   });

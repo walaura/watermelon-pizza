@@ -50,7 +50,7 @@
   ],
   "scripts": {
     "install": "npm run make",
-    "make": "parcel build --detailed-report 2",
+    "make": "parcel build --reporter @parcel/reporter-bundle-buddy",
     "start": "node serve.ts",
     "local-bitmo": "npm exec local-bitmo",
     "clean": "rm -rf dist .parcel-cache",
@@ -63,7 +63,10 @@
     "url": "git+https://github.com/walaura/watermelon-pizza"
   },
   "author": "Laura Mayhem",
-  "type": "module",
   "license": "IT-MINE",
-  "homepage": "https://github.com/walaura/watermelon-pizza"
+  "homepage": "https://github.com/walaura/watermelon-pizza",
+  "devDependencies": {
+    "@parcel/reporter-bundle-analyzer": "^2.16.4",
+    "@parcel/reporter-bundle-buddy": "^2.16.4"
+  }
 }

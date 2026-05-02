@@ -1,8 +1,9 @@
 import { HydratedWidget } from "local-fetcher/fetcher";
 import { Post } from "../transformer/md/md.js";
 import { Shell } from "./internal/Shell.ts";
-import { AllWidgets } from "./Widget.ts";
 import { html } from "common-tags";
+import { footerNav } from "../../src/components/footer-nav/footer-nav.ts";
+import { widgetsRow } from "../../src/components/widgets/widgets-row.ts";
 
 const Article = ({
   post,
@@ -22,7 +23,7 @@ const Article = ({
     />
   `;
 
-  const accessory = html`<a
+  const accessoryEnd = html`<a
     class="header-scream"
     href="https://bsky.app/search?q=${encodeURIComponent(
       post.meta.permalink,
@@ -66,11 +67,15 @@ const Article = ({
   const body = html`<div class="🧃-glitchbar"></div>
     <div class="article-wrapper">
       <article>${htmlContent}</article>
-      {backLine}
+      ${backLine}
     </div>`;
 
   const colophon = html`
-    ${AllWidgets({
+    ${footerNav({
+      accessoryEnd,
+      backHref: "/words",
+    })}
+    ${widgetsRow({
       widgets,
     })}
     <article class="article-colophon">
@@ -93,9 +98,7 @@ const Article = ({
     head,
     colophon,
     title: post.meta.title,
-    accessory,
     body,
-    backHref: "/words",
   });
 };
 
