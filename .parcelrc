@@ -11,17 +11,13 @@
     "./parcel/resolver/pxmd.ts"
   ],
   "transformers": {
-    "*.md": [
+    "*.{md,pxmd}": [
       "...",
-      "./parcel/transformer/md.ts"
+      "./parcel/transformer/intake.ts"
     ],
     "*.zip": [
       "...",
       "./parcel/transformer/zip.ts"
-    ],
-    "*.*": [
-      "./parcel/transformer/magic-pages.ts",
-      "..."
     ],
     "*.ts": [
       "./parcel/transformer/yummers.ts",

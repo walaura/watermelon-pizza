@@ -4,10 +4,6 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "module": "preserve",
-    "skipLibCheck": true,
-    "paths": {
-      "*": ["./*"],
-      "~*": ["./*"]
-    }
+    "skipLibCheck": true
   }
 }
