@@ -1,9 +1,9 @@
 "use yummers";
 
-import listBlogEntries from "#src-node/list-blog-entries.ts";
-import { TOP_LEVEL_DOMAIN } from "#src-node/paths.ts";
-import type { Post } from "#src-node/transformer/md/md.d.ts";
+import listBlogEntries from "#prerender/list-blog-entries.ts";
+import { TOP_LEVEL_DOMAIN } from "#/paths.ts";
 import { html } from "common-tags";
+import type { Post } from "#prerender/parse-md.ts";
 
 const makeFeed = (items: Post[]) => html`<?xml version="1.0" ?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">

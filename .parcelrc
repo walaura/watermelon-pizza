@@ -8,27 +8,23 @@
   ],
   "resolvers": [
     "...",
-    "./src-node/resolver/pxmd.ts"
+    "./parcel/resolver/pxmd.ts"
   ],
   "transformers": {
-    "*.pxmd": [
-      "...",
-      "./src-node/transformer/pxmd.ts"
-    ],
     "*.md": [
       "...",
-      "./src-node/transformer/md.ts"
+      "./parcel/transformer/md.ts"
     ],
     "*.zip": [
       "...",
-      "./src-node/transformer/zip.ts"
+      "./parcel/transformer/zip.ts"
     ],
     "*.*": [
-      "./src-node/transformer/magic-pages.ts",
+      "./parcel/transformer/magic-pages.ts",
       "..."
     ],
     "*.ts": [
-      "./src-node/transformer/yummers.ts",
+      "./parcel/transformer/yummers.ts",
       "..."
     ]
   }

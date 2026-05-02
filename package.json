@@ -39,9 +39,10 @@
     "src/words/*.md"
   ],
   "imports": {
-    "#src-node/*": "./src-node/*",
+    "#parcel/*": "./parcel/*",
     "#src/*": "./src/*",
-    "#prerender/*": "./src/prerender/*"
+    "#prerender/*": "./src/prerender/*",
+    "#/*": "./*"
   },
   "staticFiles": {
     "staticPath": "static",

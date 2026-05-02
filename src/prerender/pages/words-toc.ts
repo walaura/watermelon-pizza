@@ -1,9 +1,9 @@
 import { html } from "common-tags";
 import { Shell } from "#src/prerender/pages/shell.ts";
 import { footerNav } from "#src/prerender/components/footer-nav/footer-nav.ts";
-import type { Post } from "#src-node/transformer/md/md.d.ts";
 import { objectivelyCorrectDateFormat } from "#src/js/lib/dates.ts";
 import { withOwnStyles } from "#prerender/use-link.ts";
+import type { Post } from "../parse-md.ts";
 
 const postsByMonth = (posts: Post[]): Map<string, Post[]> => {
   const months = new Map();

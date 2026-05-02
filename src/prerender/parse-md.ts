@@ -3,8 +3,23 @@ import type { TokenizerAndRendererExtension } from "marked";
 
 import path from "path";
 import { TOP_LEVEL_DOMAIN } from "../../paths.ts";
-import type { Meta, Post } from "./md.d.ts";
 import markedFootnote from "marked-footnote";
+
+export type Meta = {
+  date: Date;
+  title: string;
+  desc: string;
+  permalink: string;
+  filename: string;
+  isDraft: boolean;
+};
+
+export type Post = {
+  htmlContent: string;
+  meta: Meta;
+  maybeCss: string | null | undefined;
+  maybeGlobalCss: string | null | undefined;
+};
 
 const closeZone = (ref: DepthRef) => {
   return {

@@ -1,8 +1,8 @@
 import * as path from "path";
 import * as fs from "fs/promises";
-import { PARCEL_SRC_ROOT } from "./paths.ts";
-import { parseMd } from "./transformer/md/parse-md.ts";
-import type { Post } from "./transformer/md/md.d.ts";
+import { PARCEL_SRC_ROOT } from "#/paths.ts";
+import { parseMd } from "./parse-md.ts";
+import type { Post } from "../parse-md.ts";
 
 const listBlogEntries = async (): Promise<Post[]> => {
   const dirPath = path.join(PARCEL_SRC_ROOT, "words");

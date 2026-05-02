@@ -1,7 +1,6 @@
 import { Resolver } from "@parcel/plugin";
 import * as path from "path";
-import { parseMd } from "../transformer/md/parse-md";
-import { PARCEL_SRC_ROOT } from "../paths";
+import { PARCEL_SRC_ROOT } from "../../paths";
 import { readFile } from "fs/promises";
 
 module.exports = new Resolver({
@@ -22,24 +21,28 @@ module.exports = new Resolver({
       console.warn("uhhh");
       return;
     }
+    return {
+      filePath: PARCEL_SRC_ROOT + "/words/" + fileName + ".pxmd",
+      code: "HEY IM REAL",
+    };
     const post = await supportingMDFile.toString();
     const postData = await parseMd(supportingMDFilePath, post);
 
-    const title = (postData.meta.title ?? "")
-      .trim()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .split("\n")
-      .filter(Boolean)
-      .join("")
-      .trim();
-    const desc = (postData.meta.desc ?? "")
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .split("\n")
-      .filter(Boolean)
-      .join("")
-      .trim();
+    // const title = (postData.meta.title ?? "")
+    //   .trim()
+    //   .normalize("NFD")
+    //   .replace(/[\u0300-\u036f]/g, "")
+    //   .split("\n")
+    //   .filter(Boolean)
+    //   .join("")
+    //   .trim();
+    // const desc = (postData.meta.desc ?? "")
+    //   .normalize("NFD")
+    //   .replace(/[\u0300-\u036f]/g, "")
+    //   .split("\n")
+    //   .filter(Boolean)
+    //   .join("")
+    //   .trim();
     return {
       filePath: PARCEL_SRC_ROOT + "/words/" + fileName + ".pxmd",
       code: JSON.stringify({

@@ -1,5 +1,5 @@
 import { readdirSync } from "fs";
-import { DATA_ROOT, PARCEL_SRC_ROOT, TOP_LEVEL_DOMAIN } from "../../paths";
+import { DATA_ROOT, PARCEL_SRC_ROOT, TOP_LEVEL_DOMAIN } from "../../../paths";
 import { MagicPage } from "./magic-pages";
 import path from "path";
 

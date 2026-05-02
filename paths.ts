@@ -7,7 +7,7 @@ const TOP_LEVEL_DOMAIN =
     ? "http://localhost:" + DEV_PORT
     : "https://www.laura.monster";
 
-const DATA_ROOT = path.join(import.meta.dirname, "..");
+const DATA_ROOT = path.join(import.meta.dirname);
 const DIST_ROOT = path.join(DATA_ROOT, "dist");
 const PARCEL_SRC_ROOT = path.join(DATA_ROOT, "src");
 

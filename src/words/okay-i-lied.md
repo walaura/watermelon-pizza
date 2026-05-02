@@ -603,15 +603,15 @@ This is where things took a bit of a turn. First, I wanted to really stick with 
 
 ![great stuff](./pix/okay-i-lied/parcel.png?as=webp)
 
-Parcel, like every other ==javascript== bundler out there, offers a [deranged](https://parceljs.org/plugin-system/overview/) plugin system that fulfils every conceivable need except the one you have. First of all it's smart enough to extract assets from code, so I can just [make up a link to a file that does not exist](https://github.com/walaura/watermelon-pizza/blob/148b07c3439356e64de05cca34a8a8d6115e63e7/src-node/templates/Blogpost.ts#L14-L15) and that's enough to get parcel looking for it. Cool!
+Parcel, like every other ==javascript== bundler out there, offers a [deranged](https://parceljs.org/plugin-system/overview/) plugin system that fulfils every conceivable need except the one you have. First of all it's smart enough to extract assets from code, so I can just [make up a link to a file that does not exist](https://github.com/walaura/watermelon-pizza/blob/148b07c3439356e64de05cca34a8a8d6115e63e7/parcel/templates/Blogpost.ts#L14-L15) and that's enough to get parcel looking for it. Cool!
 
 _(I mean, the file **really** does not exist, so that's a problem)_
 
-You then define a [Resolver](https://github.com/walaura/watermelon-pizza/blob/148b07c3439356e64de05cca34a8a8d6115e63e7/src-node/resolver/pxmd.ts) which is one of the plugin types. This one basically steps in to resolve a file. Normally this just goes to find it in the filesystem but you can also make one up on the spot. This is great stuff! Anyway, when you make up a file like this you can't actually return binary files, just code.
+You then define a [Resolver](https://github.com/walaura/watermelon-pizza/blob/148b07c3439356e64de05cca34a8a8d6115e63e7/parcel/resolver/pxmd.ts) which is one of the plugin types. This one basically steps in to resolve a file. Normally this just goes to find it in the filesystem but you can also make one up on the spot. This is great stuff! Anyway, when you make up a file like this you can't actually return binary files, just code.
 
 "Not a problem!" i say with my unflappable spirit. "I can use this path to figure out what the text in the image should say and then pass it down to another plugin". Words come out of my mouth with barely any conviction that any of this really beats just installing the parcel library like a normal person. maybe Netlify just has a button to make these images too? Not the point, I'm too deep.
 
-I whip up a transformer plugin that takes this PXMD file that at this point is a bunch of JSON with post metadata because why not, whatever rules existed for anything are long broken, and use that to [finally generate the damn image](https://github.com/walaura/watermelon-pizza/blob/148b07c3439356e64de05cca34a8a8d6115e63e7/src-node/transformer/pxmd.ts#L14-L17) all that's left to do is convert it using the built in stuff and –
+I whip up a transformer plugin that takes this PXMD file that at this point is a bunch of JSON with post metadata because why not, whatever rules existed for anything are long broken, and use that to [finally generate the damn image](https://github.com/walaura/watermelon-pizza/blob/148b07c3439356e64de05cca34a8a8d6115e63e7/parcel/transformer/pxmd.ts#L14-L17) all that's left to do is convert it using the built in stuff and –
 
 > This module supports reading JPEG, PNG, WebP, GIF, AVIF, TIFF and SVG images.
 
@@ -629,7 +629,7 @@ Anyway scratch my comment on line 262 about OpenType, there's at least two text 
 
 Okay so using Parcel or Sharp is a goner. I too didn't do my research but vaguely remembered Imagick being a thing. All command line options are a big no-no because they take a file as a parameter i think and at this point this just doesn't exist yet so anyway - there's a wasm version and i plugged it in.
 
-I know very little about this part of doing software so all i can really brag about here is [converting a callback to an awaitable](https://github.com/walaura/watermelon-pizza/blob/371de91a9492399aad7bed549324810e9b039186/src-node/transformer/pxmd.ts#L23-L32). brought me back to the 2010s.
+I know very little about this part of doing software so all i can really brag about here is [converting a callback to an awaitable](https://github.com/walaura/watermelon-pizza/blob/371de91a9492399aad7bed549324810e9b039186/parcel/transformer/pxmd.ts#L23-L32). brought me back to the 2010s.
 
 ![](./pix/okay-i-lied/hello.png?as=webp)
 

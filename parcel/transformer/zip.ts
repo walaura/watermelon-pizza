@@ -3,7 +3,7 @@ import * as path from "path";
 
 import extract from "extract-zip";
 import { dirname } from "path";
-import { DIST_ROOT, PARCEL_SRC_ROOT } from "../paths";
+import { DIST_ROOT, PARCEL_SRC_ROOT } from "../../paths";
 
 const extractPromise = (sourcePath: string, targetPath: string) =>
   extract(path.resolve(sourcePath), {

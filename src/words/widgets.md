@@ -81,7 +81,7 @@ It's hecka cool because now i can throw all the scraping and mangling garbage i 
 
 Very dumb stuff. i got a little command `npm run fetch` i can run to download all the data the widgets need, this goes through some transformers (here's [bsky](https://github.com/walaura/watermelon-pizza/blob/87191ec390499851e56ed9d383a4e76940f2c45a/packages/local-fetcher/widget/bluesky.ts)). After that it saves a timestamped json into the website folder.
 
-When i run the posts I just go through all of them and find the [closest one in time](https://github.com/walaura/watermelon-pizza/blob/87191ec390499851e56ed9d383a4e76940f2c45a/src-node/transformer/md.ts#L10-L11) then yeet it to the renderer. It's all really silly.
+When i run the posts I just go through all of them and find the [closest one in time](https://github.com/walaura/watermelon-pizza/blob/87191ec390499851e56ed9d383a4e76940f2c45a/parcel/transformer/md.ts#L10-L11) then yeet it to the renderer. It's all really silly.
 
 As you may have imagined, the hardest part was getting typescript to cooperate. It did tho and now it can autofill stuff when I am authoring the widgets!!
 

@@ -1,6 +1,5 @@
-import { PARCEL_SRC_ROOT } from "#src-node/paths.ts";
+import { PARCEL_SRC_ROOT } from "#/paths.ts";
 import { Shell } from "#src/prerender/pages/shell.ts";
-import type { Post } from "#src-node/transformer/md/md.d.ts";
 import { Dirent } from "fs";
 import { html } from "common-tags";
 import type { HydratedWidget } from "local-fetcher/widgets";
@@ -8,6 +7,7 @@ import path from "path";
 import { readdir, readFile } from "fs/promises";
 import { footerNav } from "#prerender/components/footer-nav/footer-nav.ts";
 import { widgetsRow } from "#prerender/components/widgets/widgets-row.ts";
+import type { Post } from "../parse-md.ts";
 
 const getClosestWidget = async (date: Date): Promise<HydratedWidget[]> => {
   const dirPath = path.join(PARCEL_SRC_ROOT, "widget-data");
