@@ -1,4 +1,4 @@
-import { html } from "common-tags";
+import { html } from "#prerender/sys/tags.ts";
 import { Shell } from "#src/prerender/pages/shell.ts";
 import { footerNav } from "#src/prerender/components/footer-nav/footer-nav.ts";
 import { objectivelyCorrectDateFormat } from "#src/js/lib/dates.ts";
@@ -39,7 +39,7 @@ const makeSection = (title: string, posts: string[]) => html`
   <div class="toc-section">
     <h2>${title}</h2>
     <ul>
-      ${posts}
+      ${posts.join("")}
     </ul>
   </div>
 `;

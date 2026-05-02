@@ -18,6 +18,9 @@ module.exports = new Transformer({
     asset.setCode(
       await pageRunner.default(await asset.getCode(), asset.filePath),
     );
+    if (pageRunner.ASSET_TYPE == null) {
+      console.log(await asset.getCode());
+    }
 
     return [asset];
   },

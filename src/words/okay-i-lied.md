@@ -156,6 +156,7 @@ em {
 
 pre {
   display: inline-block;
+  clear: none;
 }
 
 article :nth-child(5n + 1) {

@@ -1,5 +1,5 @@
 import { PARCEL_SRC_ROOT } from "#/paths.ts";
-import { html } from "common-tags";
+import { html } from "#prerender/sys/tags.ts";
 
 export const withOwnStyles = (pathname: string) => {
   return html`<link

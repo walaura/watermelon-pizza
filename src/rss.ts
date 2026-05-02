@@ -2,7 +2,7 @@
 
 import listBlogEntries from "#prerender/list-blog-entries.ts";
 import { TOP_LEVEL_DOMAIN } from "#/paths.ts";
-import { html } from "common-tags";
+import { html } from "#prerender/sys/tags.ts";
 import type { Post } from "#prerender/parse-md.ts";
 
 const makeFeed = (items: Post[]) => html`<?xml version="1.0" ?>

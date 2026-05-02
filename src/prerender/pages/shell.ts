@@ -1,4 +1,4 @@
-import { html } from "common-tags";
+import { html } from "#prerender/sys/tags.ts";
 
 export const Shell = ({
   head = "",

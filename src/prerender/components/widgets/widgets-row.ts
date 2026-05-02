@@ -1,6 +1,6 @@
 import type { HydratedWidget } from "local-fetcher/widgets";
 
-import { html } from "common-tags";
+import { html } from "#prerender/sys/tags.ts";
 import { objectivelyCorrectDateFormat } from "../../../js/lib/dates.ts";
 
 const WIDGET_NAMES: {
@@ -127,11 +127,13 @@ export const widgetsRow = ({ widgets }: { widgets: HydratedWidget[] }) => {
       href="../prerender/components/widgets/widgets-row.css"
     />
     <div class="widgets 🧃-glitchbox">
-      ${widgets.map((widget) => {
-        return WidgetRenderer({
-          title: WIDGET_NAMES[widget.name],
-          content: getWidgetContent(widget),
-        });
-      })}
+      ${widgets
+        .map((widget) => {
+          return WidgetRenderer({
+            title: WIDGET_NAMES[widget.name],
+            content: getWidgetContent(widget),
+          });
+        })
+        .join("")}
     </div>`;
 };

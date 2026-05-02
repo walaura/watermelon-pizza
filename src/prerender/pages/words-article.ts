@@ -1,7 +1,7 @@
 import { PARCEL_SRC_ROOT } from "#/paths.ts";
 import { Shell } from "#src/prerender/pages/shell.ts";
 import { Dirent } from "fs";
-import { html } from "common-tags";
+import { html } from "#prerender/sys/tags.ts";
 import type { HydratedWidget } from "local-fetcher/widgets";
 import path from "path";
 import { readdir, readFile } from "fs/promises";

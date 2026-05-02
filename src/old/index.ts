@@ -3,7 +3,7 @@
 import path from "path";
 import { PARCEL_SRC_ROOT } from "#/paths.ts";
 import { readdir } from "fs/promises";
-import { html } from "common-tags";
+import { html } from "#prerender/sys/tags.ts";
 
 const IndexTpl = (count: number) => {
   return html`

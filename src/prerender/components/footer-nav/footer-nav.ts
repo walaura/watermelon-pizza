@@ -1,4 +1,4 @@
-import { html } from "common-tags";
+import { html } from "#prerender/sys/tags.ts";
 
 export const footerNav = ({
   accessoryEnd = "",
@@ -30,7 +30,7 @@ export const footerNav = ({
               d="M9.9 1.414 3.812 7.5H47v2H3.843l6.056 6.057-1.414 1.414L0 8.485 8.485 0z"
             />
           </svg>
-          ${backHrefTitle && html`<span>${backHrefTitle}</span>`}
+          ${backHrefTitle ? html`<span>${backHrefTitle}</span>` : ""}
         </a>
         <div class="🧃-glitchbox-flex"></div>
         ${accessoryEnd}
