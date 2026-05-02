@@ -82,8 +82,7 @@ const Article = ({
       <p>
         I don't know how to set up a newsletter but if you wake up with back
         pain and thus know what an rss feed is
-        <a href="/src/rss.xml">you can sub here</a> and get updates as they
-        come.
+        <a href="/src/rss.ts">you can sub here</a> and get updates as they come.
       </p>
     </article>
     <script

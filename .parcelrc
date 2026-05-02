@@ -28,7 +28,7 @@
       "..."
     ],
     "*.ts": [
-      "./src-node/transformer/magic-pages-2.ts",
+      "./src-node/transformer/yummers.ts",
       "..."
     ]
   }

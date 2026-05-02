@@ -1,12 +1,11 @@
 import { Transformer } from "@parcel/plugin";
 
-import feed from "./magic-pages/feed";
 import old from "./magic-pages/old";
 import { MagicPage } from "./magic-pages/magic-pages";
 
 const PAGES: {
   [key: string]: MagicPage;
-} = { feed, old };
+} = { old };
 
 module.exports = new Transformer({
   async transform({ asset }) {

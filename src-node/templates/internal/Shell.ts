@@ -29,7 +29,7 @@ export const Shell = ({
           href="/src/css/words.css"
         />
         <link
-          href="/src/rss.xml"
+          href="/src/rss.ts"
           rel="alternate"
           type="application/rss+xml"
           title="Blog RSS feed"

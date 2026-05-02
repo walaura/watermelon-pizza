@@ -1,4 +1,4 @@
-"use preload entrypoint";
+"use yummers";
 
 import listBlogEntries from "#src-node/list-blog-entries.ts";
 import wordsTocPage from "#src/prerender/pages/words-toc.ts";
