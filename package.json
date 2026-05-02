@@ -26,7 +26,7 @@
     "painbrush": "^3.3.2",
     "parcel": "^2.16.4",
     "parcel-reporter-static-files-copy": "^1.5.3",
-    "sharp": "^0.34",
+    "sharp": "^0.33.5",
     "stylelint": "^17.9.1",
     "stylelint-config-standard": "^40.0.0",
     "wasm-imagemagick": "^1.2.8"
@@ -63,8 +63,5 @@
   "author": "Laura Mayhem",
   "type": "module",
   "license": "IT-MINE",
-  "homepage": "https://github.com/walaura/watermelon-pizza",
-  "devDependencies": {
-    "sharp": "^0.33.5"
-  }
+  "homepage": "https://github.com/walaura/watermelon-pizza"
 }
