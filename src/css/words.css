@@ -123,6 +123,7 @@ article {
   }
 
   img {
+    width: 100%;
     max-width: var(--basis-img-width);
     margin: auto calc((100% - var(--basis-img-width)) / 2);
   }

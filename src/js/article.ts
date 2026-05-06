@@ -20,8 +20,6 @@ for (const footnote of footnotes) {
   footnote.parentElement?.append(window);
 }
 
-// rmeember to check if this is still needed lol
-
 const styles = document.createElement("style");
 styles.innerHTML = `
     @container anchored(fallback: flip-inline) {
@@ -35,5 +33,5 @@ styles.innerHTML = `
         }
     }
 `;
+
 document.body.appendChild(styles);
-console.log(footnotes);
