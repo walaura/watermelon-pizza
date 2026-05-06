@@ -5,9 +5,7 @@ const footnotes = [
 ];
 
 for (const footnote of footnotes) {
-  console.log(footnote);
   const link = new URL(footnote.href).hash;
-  console.log(document.querySelector(link));
 
   const wwindow = document.createElement("div");
   const window = document.createElement("div");

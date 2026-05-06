@@ -63,8 +63,16 @@ const wordsTocPage = ({ posts: allPosts }: { posts: Post[] }) => {
       <div class="toc-width">${sec}</div>
     </div>
     ${footerNav({
-      backHref: "/",
-      backHrefTitle: "Back to the links",
+      linksEnd: [],
+      linksStart: [
+        {
+          hasSquiggle: true,
+          icon: "back",
+          link: "/",
+          brow: "Homepage",
+          title: "Back to the links",
+        },
+      ],
     })} `;
 
   return Shell({

@@ -11,6 +11,7 @@
 }
 
 :root {
+  scroll-behavior: smooth;
   --color-highlight: var(--color-accent);
   --color-text: #000;
   --color-bg: #fff;

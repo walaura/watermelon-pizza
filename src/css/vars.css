@@ -75,7 +75,7 @@ body {
     mix-blend-mode: color-dodge;
     display: flex;
     align-items: center;
-    padding: calc(var(--basis-padding) * 0.75) var(--basis-padding);
+    padding: calc(var(--basis-padding) * 0.5) var(--basis-padding);
     background: #fff;
     backface-visibility: hidden;
     text-shadow: 0 0.5px 0 0 currentcolor;

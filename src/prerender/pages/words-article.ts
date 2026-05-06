@@ -5,9 +5,13 @@ import { html } from "#prerender/sys/tags.ts";
 import type { HydratedWidget } from "local-fetcher/widgets";
 import path from "path";
 import { readdir, readFile } from "fs/promises";
-import { footerNav } from "#prerender/components/footer-nav/footer-nav.ts";
+import {
+  footerNav,
+  type FooterNavLink,
+} from "#prerender/components/footer-nav/footer-nav.ts";
 import { widgetsRow } from "#prerender/components/widgets/widgets-row.ts";
 import type { Post } from "../parse-md.ts";
+import listBlogEntries from "../list-blog-entries.ts";
 
 const getClosestWidget = async (date: Date): Promise<HydratedWidget[]> => {
   const dirPath = path.join(PARCEL_SRC_ROOT, "widget-data");
@@ -73,9 +77,9 @@ const wordsArticlePage = async (post: Post) => {
     (post.maybeGlobalCss ? `<style>${post.maybeGlobalCss}</style>` : "") +
     post.htmlContent;
 
-  const backLine = html`<article>
+  const backLine = html`<article id="footer">
     <p>
-      <strong>Thanks for coming!</strong> if you got thoughts
+      <strong>Thanks for reading!</strong> if you got thoughts
       <a
         href="https://bsky.app/search?q=${encodeURIComponent(
           post.meta.permalink,
@@ -85,6 +89,12 @@ const wordsArticlePage = async (post: Post) => {
       and you can respond there! And if I haven't just ping me there or
       <a href="mailto:hi@laura.monster">email me</a>.
     </p>
+    <p>
+      <strong>Wanna follow along?</strong> I don't know how to set up a
+      newsletter but if you wake up with back pain and thus know what an rss
+      feed is <a href="/src/rss.ts">you can sub here</a> and get updates as they
+      come.
+    </p>
   </article>`;
 
   const body = html`<div class="🧃-glitchbar"></div>
@@ -93,21 +103,53 @@ const wordsArticlePage = async (post: Post) => {
       ${backLine}
     </div>`;
 
+  const allArticles = await listBlogEntries();
+  const thisArticle = allArticles.findIndex(
+    (entry) => entry.meta.permalink === post.meta.permalink,
+  );
+
+  const maybePrevArticle = allArticles[thisArticle - 1];
+  const maybeNextArticle = allArticles[thisArticle + 1];
+
   const colophon = html`
     ${footerNav({
-      accessoryEnd,
-      backHref: "/words",
+      linksStart: [
+        maybePrevArticle
+          ? {
+              icon: "back",
+              link: maybePrevArticle.meta.permalink,
+              title: maybePrevArticle.meta.title,
+              brow: "Posted after this one",
+            }
+          : undefined,
+        {
+          icon: "menu",
+          link: "/words",
+          title: "Index",
+          brow: "Everything",
+          isCollapsed: true,
+        },
+      ].filter(Boolean) as FooterNavLink[],
+      linksEnd: [
+        {
+          link: "#footer",
+          brow: "Done reading?",
+          title: "Like, Comment, Subscribe",
+          hasSquiggle: true,
+        },
+        maybeNextArticle
+          ? {
+              icon: "fwd",
+              link: maybeNextArticle.meta.permalink,
+              title: maybeNextArticle.meta.title,
+              brow: "Or keep reading this oldie",
+            }
+          : undefined,
+      ].filter(Boolean) as FooterNavLink[],
     })}
     ${widgetsRow({
       widgets,
     })}
-    <article class="article-colophon">
-      <p>
-        I don't know how to set up a newsletter but if you wake up with back
-        pain and thus know what an rss feed is
-        <a href="/src/rss.ts">you can sub here</a> and get updates as they come.
-      </p>
-    </article>
     <script
       type="module"
       src="../js/article.ts"
