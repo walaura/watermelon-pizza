@@ -7,10 +7,8 @@ let cache: Post[] = [];
 
 const listBlogEntries = async (): Promise<Post[]> => {
   if (cache.length) {
-    console.log("hit");
     return cache;
   }
-  console.log("miss");
 
   const dirPath = path.join(PARCEL_SRC_ROOT, "words");
   const entries = await fs.readdir(dirPath, { withFileTypes: true });
