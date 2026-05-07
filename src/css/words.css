@@ -108,8 +108,7 @@ article {
       }
     }
 
-    &:hover,
-    &:focus-within {
+    &:hover {
       a {
         opacity: 0;
       }
