@@ -8,7 +8,7 @@ import type { Post } from "#prerender/parse-md.ts";
 const makeFeed = (items: Post[]) => html`<?xml version="1.0" ?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
-    <title>Laura's blog!</title>
+    <title>Laura's Blog</title>
     <link>${TOP_LEVEL_DOMAIN}</link>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
@@ -21,13 +21,13 @@ const makeFeed = (items: Post[]) => html`<?xml version="1.0" ?>
 	${items
     .map(
       (i) => html`
-        <item>
+      <item>
           <title>${i.meta.title}</title>
-		  <link>${i.meta.permalink}</link>
+		      <link>${i.meta.permalink}</link>
           <description>${i.meta.desc ?? i.meta.title}</description>
           <pubDate>${i.meta.date.toUTCString()}</pubDate>
           <guid isPermaLink="true">${i.meta.permalink}</guid>
-          <dc:creator>Laura</dc:creator>
+          <dc:creator>Laura gonzalez</dc:creator>
           <category>Blog</category>
         </item>
       `,

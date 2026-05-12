@@ -172,8 +172,18 @@ export const parseMd = async (
     filename: path.basename(filePath, ".md"),
   };
 
+  marked.use({
+    hooks: {
+      processAllTokens(tokens) {
+        return tokens.slice(0, 5);
+      },
+    },
+  });
+
+  let feedContent = await marked.parse(content);
+
   return {
-    htmlContent,
+    htmlContent: feedContent,
     meta: meta as Meta,
     maybeCss: process.env.WMPZ_NO_CSS ? null : maybeCss,
     maybeGlobalCss,
