@@ -1,9 +1,12 @@
-import { marked } from "marked";
+import { Marked } from "marked";
 import type { TokenizerAndRendererExtension } from "marked";
 
 import path from "path";
 import { TOP_LEVEL_DOMAIN } from "../../paths.ts";
 import markedFootnote from "marked-footnote";
+import { markedXhtml } from "marked-xhtml";
+
+const FEED_CHARACTER_MAX = 1200;
 
 export type Meta = {
   date: Date;
@@ -16,6 +19,7 @@ export type Meta = {
 
 export type Post = {
   htmlContent: string;
+  feedContent: string;
   meta: Meta;
   maybeCss: string | null | undefined;
   maybeGlobalCss: string | null | undefined;
@@ -101,7 +105,7 @@ export const parseMd = async (
     __current: 2,
   };
 
-  marked.use(
+  const SETTINGS = [
     {
       extensions: [
         closeZone(previousDepth),
@@ -142,10 +146,10 @@ export const parseMd = async (
       },
     },
     markedFootnote(),
-  );
+  ];
 
   if (process.env.WMPZ_NO_MD_TEXT == "true") {
-    marked.use({
+    SETTINGS.push({
       renderer: {
         text() {
           return "hello";
@@ -154,6 +158,7 @@ export const parseMd = async (
     });
   }
 
+  const marked = new Marked(...SETTINGS);
   let htmlContent = await marked.parse(content);
   htmlContent = htmlContent.replaceAll(
     `<section class="footnotes"`,
@@ -172,18 +177,49 @@ export const parseMd = async (
     filename: path.basename(filePath, ".md"),
   };
 
-  marked.use({
+  const feedMarked = new Marked(markedXhtml(), {
+    renderer: {
+      image() {
+        // not dealing w this rn
+        return "";
+      },
+    },
     hooks: {
       processAllTokens(tokens) {
-        return tokens.slice(0, 5);
+        let length = 0;
+        let returnables = [];
+        let isReady = false;
+        for (const token of tokens) {
+          if (!isReady) {
+            if (token.type === "code" && token.lang === "json") {
+              isReady = true;
+            }
+            continue;
+          }
+          if (token.type === "paragraph") {
+            length += token.text.length;
+          }
+          if (length > FEED_CHARACTER_MAX) {
+            break;
+          }
+          returnables.push(token);
+        }
+
+        return returnables.slice(
+          0,
+          returnables.findLastIndex((t) => t.type === "paragraph") + 1,
+        );
       },
     },
   });
-
-  let feedContent = await marked.parse(content);
+  const feedContent = (await feedMarked.parse(content)).replaceAll(
+    "<br/>",
+    "\n",
+  );
 
   return {
-    htmlContent: feedContent,
+    htmlContent,
+    feedContent,
     meta: meta as Meta,
     maybeCss: process.env.WMPZ_NO_CSS ? null : maybeCss,
     maybeGlobalCss,

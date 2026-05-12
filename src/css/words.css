@@ -43,6 +43,7 @@
 }
 
 .article-wrapper {
+  min-height: 100lvh;
   z-index: 9;
   padding-top: calc(var(--basis) * 4);
   margin-top: calc(var(--basis) * -4);

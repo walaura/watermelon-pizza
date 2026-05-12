@@ -24,7 +24,10 @@ const makeFeed = (items: Post[]) => html`<?xml version="1.0" ?>
       <item>
           <title>${i.meta.title}</title>
 		      <link>${i.meta.permalink}</link>
-          <description>${i.meta.desc ?? i.meta.title}</description>
+          <description><![CDATA[ 
+            ${i.feedContent}
+            <p>There's more! <a href="${i.meta.permalink}">keep reading this way</a>.</p>
+          ]]></description>
           <pubDate>${i.meta.date.toUTCString()}</pubDate>
           <guid isPermaLink="true">${i.meta.permalink}</guid>
           <dc:creator>Laura gonzalez</dc:creator>
