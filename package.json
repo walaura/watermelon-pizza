@@ -57,7 +57,7 @@
   ],
   "scripts": {
     "install": "npm run make",
-    "make": "parcel build --no-optimize",
+    "make": "NODE_OPTIONS=\"--max-old-space-size=8192\" parcel build --no-optimize",
     "start": "node serve.ts",
     "local-bitmo": "npm exec local-bitmo",
     "clean": "rm -rf dist .parcel-cache",
