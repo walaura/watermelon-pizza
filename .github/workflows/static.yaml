@@ -39,9 +39,6 @@ jobs:
           node-version: 25
       - name: npm install
         run: npm i
-      - name: npm install (sub)
-        run: npm i && npm run make
-        working-directory: ./
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
