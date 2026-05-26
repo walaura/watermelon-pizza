@@ -8,11 +8,18 @@ em {
   opacity: 0.75;
 }
 
+hr {
+  text-decoration: none;
+  border-bottom: 1px dotted #ddd;
+  height: 0px;
+  margin-block: calc(var(--basis));
+}
+
 .article-heading {
-  border: 2px solid var(--color-highlight);
-  color: var(--color-highlight);
+  background: var(--color-highlight);
+  color: #fff;
   padding: var(--basis-padding);
-  background: #f0f0f0;
+  line-height: 1.1;
 
   date {
     color: black;
@@ -43,7 +50,7 @@ Try doing that today and it won’t really work on a phone, so now you need to s
 
 Anyway so thats cool. Are you gathering user data? dropping cookies? do users interact on your website? wanna sell items? enjoy the 200 page legal read. Phew thats over now on to host this so people can access it. ssl, domain names, dns, scrapping/bot prevention, oh yeah btw this will probably cost money if more than 2 people at a time visit or you make a typo and need to redeploy so thats cool.
 
-_in an incredible twist, netlify fucked up deploying this and i had to get my phone to authenticate logging in to debug and sdkhfkhsdhjf you get the point_
+_in an incredible twist, netlify fucked up deploying this and i had to get my phone to authenticate logging in to debug and sdkhfkhsdhjf you get the point. still not sure why things dont work anymore but oh well we usin github pages now_
 
 I hear some folks use ‘javascript’ to further enhance the functionality of their websites, that sounds like another even bigger can of worms just waiting to be opened so im not gonna.
 
