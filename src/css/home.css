@@ -6,7 +6,7 @@
 
   --color-border: var(--color-border-over-flood);
   --color-text: #000;
-  --basis-home-padding: calc(var(--basis-padding) * 2);
+  --basis-home-padding: calc(10vmax);
 }
 
 @font-face {
@@ -42,14 +42,21 @@
   backface-visibility: hidden;
 }
 
-.screenful {
+.wrapper {
   margin: auto;
-  max-width: 60rem;
-  padding: calc(4 * var(--basis-padding));
-  min-height: calc(90vh - (8 * var(--basis-padding)));
-  &.screenful--initial {
+  padding: var(--basis-home-padding);
+
+  font-family: Babushka;
+  line-height: 2;
+  letter-spacing: 0.05em;
+  font-size: 1vh;
+  max-width: 120vh;
+
+  &.wrapper--main {
     display: grid;
+    column-gap: calc(var(--basis-home-padding) * 2);
     grid-template-areas: "a a" "b c";
+    grid-template-columns: 1fr 20em;
   }
 }
 
@@ -59,17 +66,22 @@
 
 .intro {
   font-weight: bold;
-  font-family: Babushka;
-  line-height: 2;
-  letter-spacing: 0.05em;
-  font-size: 4vh;
 
-  &.intro-xl {
+  h1 {
+    display: inline;
+  }
+
+  &.intro--xl {
     grid-area: a;
+    min-height: calc(90vh - (3 * var(--basis-home-padding)));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 5vmin;
+    padding-block: calc(var(--basis-home-padding) / 2);
   }
 
   &.intro--mini {
-    font-size: 2vh;
     font-weight: normal;
     grid-area: b;
   }
@@ -77,6 +89,19 @@
   strong {
     color: var(--color-accent);
   }
+}
+
+h3.plate {
+  background: var(--color-accent);
+  color: var(--color-flood);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-family: system-ui;
+  display: inline-flex;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.2rem;
+  font-weight: bold;
 }
 
 x-tomfoolery {
@@ -87,13 +112,36 @@ x-tomfoolery {
   contain: strict;
   pointer-events: none;
   background:
+    radial-gradient(white, hsl(0 0 0 / 50%)),
     linear-gradient(to bottom, hsl(0deg 0 100% / 1%)),
     url("../css/gli.gif") 0 / cover,
     url("../css/gli.jpg") center / cover;
-  background-blend-mode: normal, color-dodge;
+  background-blend-mode: darken, normal, color-dodge;
 }
 
 x-fg {
   z-index: 11;
   position: relative;
+}
+
+.links a {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.2rem;
+  margin: 0 -0.75rem;
+  span {
+    font-family: system-ui;
+  }
+  strong {
+    font-size: 0.75em;
+    line-height: 2;
+  }
+
+  &:hover {
+    background: var(--color-text-over-flood);
+    color: var(--color-flood);
+  }
 }
