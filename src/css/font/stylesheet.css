@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Bab-rg';
+    src: url('Bab-rg.woff2') format('woff2'),
+        url('Bab-rg.woff') format('woff'),
+        url('Bab-rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bab';
+    src: url('Bab-bold.woff2') format('woff2'),
+        url('Bab-bold.woff') format('woff'),
+        url('Bab-bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
