@@ -43,16 +43,36 @@
 }
 
 .screenful {
+  margin: auto;
+  max-width: 60rem;
   padding: calc(4 * var(--basis-padding));
   min-height: calc(90vh - (8 * var(--basis-padding)));
+  &.screenful--initial {
+    display: grid;
+    grid-template-areas: "a a" "b c";
+  }
+}
+
+.links {
+  grid-area: c;
 }
 
 .intro {
-  font-family: Babushka;
   font-weight: bold;
+  font-family: Babushka;
   line-height: 2;
   letter-spacing: 0.05em;
   font-size: 4vh;
+
+  &.intro-xl {
+    grid-area: a;
+  }
+
+  &.intro--mini {
+    font-size: 2vh;
+    font-weight: normal;
+    grid-area: b;
+  }
 
   strong {
     color: var(--color-accent);
