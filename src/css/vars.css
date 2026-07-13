@@ -2,7 +2,7 @@
 
 :root {
   /* color */
-  --color-flood: #060a36;
+  --color-flood: #0d0e18;
   --color-text-over-flood: white;
   --color-border-over-flood: hsl(
     from var(--color-text-over-flood) h s calc(l / 1.125)
