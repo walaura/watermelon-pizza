@@ -1,7 +1,8 @@
 @import url("./vars.css");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 
 :root {
-  background-color: var(--color-flood);
+  background-color: #000;
   color: var(--color-text-over-flood);
 
   --color-border: var(--color-border-over-flood);
@@ -9,30 +10,7 @@
   --basis-home-padding: calc(10vmax);
 }
 
-@font-face {
-  font-family: "Babushka";
-  src:
-    url("./font/Bab-rg.woff2") format("woff2"),
-    url("./font/Bab-rg.woff") format("woff"),
-    url("./font/Bab-rg.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Babushka";
-  src:
-    url("./font/Bab-bold.woff2") format("woff2"),
-    url("./font/Bab-bold.woff") format("woff"),
-    url("./font/Bab-bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
 * {
-  font-size: 1em;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -45,50 +23,37 @@
 .wrapper {
   margin: auto;
   padding: var(--basis-home-padding);
-
-  font-family: Babushka;
-  line-height: 2;
-  letter-spacing: 0.05em;
-  font-size: 1vh;
-  max-width: 100vh;
-}
-
-.section--links {
-  grid-area: c;
+  font-family: "Manrope";
+  line-height: 1.2;
+  font-size: 3vmin;
+  max-width: 90vh;
 }
 
 .intro {
-  font-weight: bold;
+  * + * {
+    margin-top: 10vmin;
+  }
 
   h1 {
-    display: inline-flex;
-    background: var(--color-accent);
-    color: var(--color-flood);
-    mix-blend-mode: lighten;
-    padding: 1vmin;
-    margin-inline: -1vmin;
-    border-radius: 2px;
+    display: inline;
+    font-size: 3em;
+    font-weight: 900;
+    letter-spacing: -1%;
   }
+}
 
-  &.intro--xl {
-    grid-area: a;
-    min-height: calc(90vh - (3 * var(--basis-home-padding)));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 3vmin;
-    padding-block: calc(var(--basis-home-padding) / 2);
-  }
+a {
+  text-decoration: wavy underline;
+  text-decoration-color: hsl(from currentcolor h s l / 50%);
+}
 
-  &.intro--mini {
-    font-weight: normal;
-    grid-area: b;
-  }
-
-  a {
-    color: var(--color-accent);
-    text-decoration: underline;
-  }
+small,
+footer {
+  display: block;
+  margin-bottom: 5vmin;
+  color: hsl(from currentcolor h s l / 50%);
+  font-weight: 400;
+  font-size: 0.5em;
 }
 
 .section {
@@ -113,53 +78,75 @@
   }
 }
 
-x-tomfoolery {
-  inset: 0;
-  position: fixed;
-  will-change: transform;
-  z-index: 10;
-  contain: strict;
-  pointer-events: none;
-  background:
-    radial-gradient(white, hsl(0 0 0 / 50%)),
-    linear-gradient(to bottom, hsl(0deg 0 100% / 1%)),
-    url("../css/gli.gif") 0 / cover,
-    url("../css/gli.jpg") center / cover;
-  background-blend-mode: darken, normal, color-dodge;
-}
-
-x-fg {
-  z-index: 11;
-  position: relative;
-}
-
 .section--links {
   position: sticky;
   top: 0;
+  font-size: 1rem;
 
   ul {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
-    gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+    gap: 1rem;
   }
 }
 
 .section--links a {
   display: flex;
+  text-decoration: none;
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
-  padding: 0.25rem 0.75rem;
+  padding: 1rem;
   border-radius: 0.1rem;
-  border: 1px solid hsl(from var(--color-text-over-flood) h s l / 20%);
-  span {
-    font-family: system-ui;
-  }
+  color: #000;
+  aspect-ratio: 1;
+  transition: 0.2s ease-out --lol;
+  transition-property: transform, rotate;
+  background: var(--bg, #c3ff00);
+
   strong {
-    line-height: 2;
+    font-size: 2em;
+    font-weight: 800;
   }
 
   &:hover {
-    background: var(--color-accent);
+    transform: scale(1.1);
+    rotate: var(--rota, 1deg);
+    background: #fff;
   }
+}
+
+.section--links ul > :nth-child(2) {
+  --bg: #ff00ae;
+  --rota: 2deg;
+}
+
+.section--links ul > :nth-child(3) {
+  --bg: #006aff;
+  --rota: -1deg;
+}
+
+.section--links ul > :nth-child(4) {
+  --bg: #00ff40;
+  --rota: 3deg;
+}
+
+.section--links ul > :nth-child(5) {
+  --bg: #00eeff;
+  --rota: -2deg;
+}
+
+.section--links ul > :nth-child(6) {
+  --bg: #ff3700;
+  --rota: 1.5deg;
+}
+
+.section--links ul > :nth-child(7) {
+  --bg: #37ff00;
+  --rota: -0.5deg;
+}
+
+.section--links ul > :nth-child(8) {
+  --bg: #ff00a6;
+  --rota: 1.25deg;
 }
