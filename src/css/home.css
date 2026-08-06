@@ -4,10 +4,10 @@
 :root {
   background-color: #000;
   color: var(--color-text-over-flood);
+  margin: 3vmax;
 
   --color-border: var(--color-border-over-flood);
   --color-text: #000;
-  --basis-home-padding: calc(10vmax);
 }
 
 * {
@@ -21,12 +21,11 @@
 }
 
 .wrapper {
-  margin: auto;
-  padding: var(--basis-home-padding);
   font-family: "Manrope";
   line-height: 1.2;
-  font-size: 3vmin;
-  max-width: 90vh;
+  font-size: max(1rem, 3vmin);
+  max-width: 30em;
+  margin: 12vmax auto;
 }
 
 .intro {
@@ -99,10 +98,13 @@ footer {
   padding: 1rem;
   border-radius: 0.1rem;
   color: #000;
-  aspect-ratio: 1;
   transition: 0.2s ease-out --lol;
   transition-property: transform, rotate;
   background: var(--bg, #c3ff00);
+
+  @media (orientation: landscape) {
+    aspect-ratio: 1;
+  }
 
   strong {
     font-size: 2em;
