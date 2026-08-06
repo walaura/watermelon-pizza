@@ -4,7 +4,7 @@
 :root {
   background-color: #000;
   color: var(--color-text-over-flood);
-  margin: 3vmax;
+  margin: 0 3vmax;
 
   --color-border: var(--color-border-over-flood);
   --color-text: #000;
@@ -21,16 +21,16 @@
 }
 
 .wrapper {
-  font-family: "Manrope";
+  font-family: Manrope, sans-serif;
   line-height: 1.2;
   font-size: max(1rem, 3vmin);
   max-width: 30em;
-  margin: 12vmax auto;
+  margin: 15vmax auto;
 }
 
 .intro {
   * + * {
-    margin-top: 10vmin;
+    margin-top: 7.5vmax;
   }
 
   h1 {
@@ -49,38 +49,14 @@ a {
 small,
 footer {
   display: block;
-  margin-bottom: 5vmin;
   color: hsl(from currentcolor h s l / 50%);
   font-weight: 400;
   font-size: 0.5em;
 }
 
-.section {
-  position: relative;
-
-  & + .section {
-    margin-top: 4rem;
-  }
-
-  .section-plate {
-    background: var(--color-accent);
-    color: var(--color-flood);
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    font-family: system-ui;
-    display: inline-flex;
-    margin-bottom: 1rem;
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.1rem;
-    font-weight: bold;
-    line-height: 1rem;
-  }
-}
-
-.section--links {
-  position: sticky;
-  top: 0;
+.section.section--links {
   font-size: 1rem;
+  margin-top: 3.75vmax;
 
   ul {
     display: grid;
