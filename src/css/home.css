@@ -44,6 +44,7 @@
 a {
   text-decoration: wavy underline;
   text-decoration-color: hsl(from currentcolor h s l / 50%);
+  color: var(--bg, #dcfdff);
 }
 
 small,
@@ -94,33 +95,38 @@ footer {
   }
 }
 
-.section--links ul > :nth-child(2) {
+.color.color--bsky {
+  --bg: #c3ff00;
+  --rota: 1deg;
+}
+
+.color.color--artstation {
   --bg: #ff00ae;
   --rota: 2deg;
 }
 
-.section--links ul > :nth-child(3) {
+.color.color--github {
   --bg: #006aff;
   --rota: -1deg;
 }
 
-.section--links ul > :nth-child(4) {
+.color.color--redbubble {
   --bg: #00ff40;
   --rota: 3deg;
 }
 
-.section--links ul > :nth-child(5) {
+.color.color--itch {
   --bg: #00eeff;
   --rota: -2deg;
 }
 
-.section--links ul > :nth-child(6) {
+.color.color--behance {
   --bg: #ff3700;
   --rota: 1.5deg;
 }
 
-.section--links ul > :nth-child(7) {
-  --bg: #37ff00;
+.color.color--steam {
+  --bg: #ff0044;
   --rota: -0.5deg;
 }
 
