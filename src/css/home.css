@@ -44,7 +44,19 @@
 a {
   text-decoration: wavy underline;
   text-decoration-color: hsl(from currentcolor h s l / 50%);
+
+  &:hover {
+    text-decoration-thickness: 3px;
+    color: #fff;
+  }
+}
+
+.wrapper--main a {
   color: var(--bg, #dcfdff);
+
+  &:hover {
+    color: hsl(from var(--bg, #dcfdff) calc(s * 5) 98%);
+  }
 }
 
 small,
@@ -91,7 +103,8 @@ footer {
   &:hover {
     transform: scale(1.1);
     rotate: var(--rota, 1deg);
-    background: #fff;
+    background: hsl(from var(--bg, #c3ff00) h calc(s * 5) 98%);
+    color: var(--bg, #c3ff00);
   }
 }
 
