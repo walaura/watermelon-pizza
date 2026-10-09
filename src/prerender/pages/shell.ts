@@ -39,8 +39,8 @@ export const Shell = ({
 
       <body>
         ${body} ${colophon}
-        <article class="footer-past">
-          you got to the end :) this is everything.
-        </article>
+        <div class="footer-past">
+          <p>you got to the end :) this is everything.</p>
+        </div>
       </body>
     </html>`;

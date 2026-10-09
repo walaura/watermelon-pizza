@@ -36,9 +36,10 @@
 }
 
 .footer-past {
-  margin-top: var(--basis-header-sp);
+  background: #000;
+  color: hsl(from #fff h s l / 0.5);
+  padding: var(--basis-header-sp);
   text-align: center;
-  opacity: 0.5;
   font-size: 0.75em;
 }
 

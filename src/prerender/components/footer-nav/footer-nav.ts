@@ -79,9 +79,9 @@ export const footerNav = ({
       href="../prerender/components/footer-nav/footer-nav.css"
     />
     <footer>
-      <div class="footer-actual 🧃-glitchbox">
+      <div class="footer-actual">
         ${linksStart.map(makeFooterNavLink(false)).join("")}
-        <div class="🧃-glitchbox-flex"></div>
+        <div class="footer-actual-flex"></div>
         ${linksEnd.map(makeFooterNavLink(true)).join("")}
       </div>
     </footer>`;

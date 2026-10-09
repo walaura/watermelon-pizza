@@ -1,9 +1,10 @@
 @import url("/src/css/vars.css");
 
 .widgets {
-  margin-top: -1px;
+  margin: 1px auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+  background: #000;
 }
 
 .widget {
@@ -14,19 +15,11 @@
   align-items: start;
   gap: calc(var(--basis) / 4);
   padding-block: calc(var(--basis) / 2);
-  background-color: #696969; /* hehehehehhehehe */
   color: var(--color-widget-text);
-  box-shadow: inset 0 0 0 0 hsl(from var(--color-flood) h s l / 20%);
+  box-shadow: inset 0 0 0 0 hsl(from #fff h s l / 20%);
 
   a {
     color: inherit;
-  }
-
-  &:hover {
-    --color-widget-text: var(--color-accent);
-
-    mix-blend-mode: normal;
-    background-color: hsl(0deg 0 100% / 100%);
   }
 
   h3 {

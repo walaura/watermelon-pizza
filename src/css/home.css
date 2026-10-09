@@ -1,5 +1,4 @@
 @import url("./vars.css");
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 
 :root {
   background-color: #000;
@@ -7,7 +6,7 @@
   margin: 0 3vmax;
 
   --color-border: var(--color-border-over-flood);
-  --color-text: #000;
+  --color-text: #fff;
 }
 
 * {
