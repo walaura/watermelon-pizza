@@ -16,11 +16,13 @@
 @keyframes bloops-in {
   0%,
   40% {
-    border-radius: 10000em;
+    padding-block: 0;
+    border-radius: 4rem;
   }
 
-  60%,
-  90% {
+  80%,
+  100% {
+    padding-block: calc(var(--basis-padding) / 2);
     border-radius: 0;
   }
 }

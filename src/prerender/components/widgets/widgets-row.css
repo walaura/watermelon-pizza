@@ -1,37 +1,50 @@
 @import url("/src/css/vars.css");
 
 .widgets {
-  margin: 1px auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
   background: #000;
+  font-family: "Manrope";
+  gap: calc(var(--basis) / 2);
+  padding: 0 calc(var(--basis) / 2);
+  font-weight: 200;
+}
+
+.widget:nth-child(1) {
+  background-color: #00d9ff;
+}
+.widget:nth-child(2) {
+  background-color: #ffee00;
+}
+.widget:nth-child(3) {
+  background-color: #c3ff00;
+}
+.widget:nth-child(4) {
+  background-color: #ff007b;
 }
 
 .widget {
   --color-widget-text: var(--color-text-over-flood);
-
+  color: #000;
+  background-color: #fff;
+  border-radius: 0.1rem;
   overflow: hidden;
   flex-direction: column;
   align-items: start;
-  gap: calc(var(--basis) / 4);
   padding-block: calc(var(--basis) / 2);
-  color: var(--color-widget-text);
-  box-shadow: inset 0 0 0 0 hsl(from #fff h s l / 20%);
+  gap: calc(var(--basis) / 2);
 
   a {
     color: inherit;
   }
 
   h3 {
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    color: hsl(from currentcolor h s calc(l - 20));
-    margin-bottom: calc(var(--basis) / 2);
+    font-weight: 600;
+    margin-bottom: calc(var(--basis));
   }
 
   small {
-    color: hsl(from currentcolor h s calc(l - 30));
+    opacity: 0.5;
     font-size: 0.75em;
   }
 }
@@ -54,7 +67,7 @@
 }
 
 .widget-alpha {
-  color: hsl(from currentcolor h s calc(l - 30));
+  opacity: 0.5;
 }
 
 .widget-flex {
@@ -130,9 +143,9 @@
   aspect-ratio: 1;
   overflow: hidden;
   position: relative;
-  border-radius: 1px;
+  border-radius: 0.1rem;
   background: var(--color-text-over-flood);
-  border: 1px solid #fff;
+  box-shadow: 0 2px 2px 1px hsl(from #000 h s l / 0.2);
 
   &::before {
     background: var(--img);
