@@ -9,6 +9,7 @@
 }
 
 .toc-heading {
+  background: #000;
   position: relative;
   padding-block: calc(var(--basis-padding) * 3);
   padding-block-start: calc(
