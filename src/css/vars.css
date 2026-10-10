@@ -62,7 +62,6 @@ body {
     align-items: center;
     padding: calc(var(--basis-padding) * 0.5) var(--basis-padding);
     backface-visibility: hidden;
-    text-shadow: 0 0.5px 0 0 currentcolor;
   }
 }
 
