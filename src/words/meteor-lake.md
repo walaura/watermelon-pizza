@@ -269,14 +269,14 @@ Using your HyperNavigator Pocket you can document the world around you via its c
 
 Rumor has it you aren’t the only person interested in this album! You may find extra uses for your snaps later.
 
-## ██ █████ ██ ███ ██████
+## ██ ████ █
 ███ ██ ████ ███ where ██████ ██████ ███ ██ ████ ███ ███ █████████ the ███ ██████ ██ ████ ██████ ██████ Norwood ███ ███████ █████.
 
 ## █████ ████ !
 ███ from ██████ the ███ ███ ███████ ██ ████ ██ ZIIIIP ███ ████ ████ ██████  ███ ████████.
 
 
-## Meet new friends - and enemies
+## Make friends - & enemies
 Islas Verdes is full of friendly colorful folks that will help you in your adventures. Help them on their errands or catch up with them between story beats, they’ll have something cool to say
 
 The world outside town is also full of danger now. Many of the robots have gone rogue and will try to attack you on sight. Your trusty bat will keep them at bay. Hopefully this never has to escalate
