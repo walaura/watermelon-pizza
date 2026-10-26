@@ -1,4 +1,7 @@
 ```css
+article {
+    --color-highlight: rgb(0, 89, 255);
+}
 .head {
     width:100%;
     margin:auto;
@@ -6,6 +9,7 @@
     background: black url(data-url:pix/echoes-from-meteor-lake/bg.jpg?as=webp);
     background-size: cover;
     overflow:hidden;
+    min-height:90vh;
 }
 
 .head img {
@@ -64,7 +68,10 @@ article {
         box-shadow: 0px 9px 16.9px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 2px rgba(255, 255, 255, 0.7);
         border-radius:1em;
         overflow:hidden;
-        padding: 2vw;
+        padding: 4vw;
+        @media (min-width: 800px) {
+            padding:2vw;
+        }
         background: #ddd;
         background-image: linear-gradient(to bottom, #fff, #ddd)
     }
@@ -87,9 +94,14 @@ article {
 
 
     h2 {
-        margin: -2vw;
-        margin-bottom: 2vw;
-        padding: 2vw;
+        margin: -4vw;
+        margin-bottom: 4vw;
+        padding: 4vw;
+        @media (min-width: 800px) {
+            margin: -2vw;
+            margin-bottom: 2vw;
+            padding: 2vw;
+        }
         background: url(data-url:pix/echoes-from-meteor-lake/bg1.png?as=webp);
         background-size:cover;
         color: #000;
@@ -100,13 +112,10 @@ article {
     }
 }
 h2 {
-    h2 {
-        line-height:1;
-        font-weight: 600;
-        font-stretch: 110%;
-        font-variation-settings: 'GRAD' 0, 'XOPQ' 114, 'XTRA' 468, 'YOPQ' 60, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 440, 'YTUC' 712, 'slnt' 0;
-    }
-
+    line-height:1;
+    font-weight: 600;
+    font-stretch: 110%;
+    font-variation-settings: 'GRAD' 0, 'XOPQ' 114, 'XTRA' 468, 'YOPQ' 60, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 440, 'YTUC' 712, 'slnt' 0;
 }
 .screens p {
     display:flex;
@@ -114,6 +123,8 @@ h2 {
     flex: 0 0 auto;
     animation: 120s linear 1s infinite running marquee;
     margin: -10vw 0;
+    position:relative;
+    z-index: 999;
 }
 
 .screens{

@@ -21,6 +21,22 @@ module.exports = new Resolver({
       console.warn("uhhh");
       return;
     }
+
+    const supportingPngFilePath = path.resolve(
+      PARCEL_SRC_ROOT,
+      "words",
+      fileName + ".png",
+    );
+    try {
+      const supportingPngFile = await readFile(supportingPngFilePath);
+
+      if (supportingPngFile) {
+        return {
+          filePath: PARCEL_SRC_ROOT + "/words/" + fileName + ".png",
+        };
+      }
+    } catch {}
+
     return {
       filePath: PARCEL_SRC_ROOT + "/words/" + fileName + ".pxmd",
       code: "HEY IM REAL",
