@@ -194,7 +194,14 @@ small {
 }
 
 #footer {
-    display:none;
+    padding:10vw;
+    text-align:center;
+    @media (min-width: 800px) {
+        padding:10vw 20vw;
+    }
+    color: white;
+    background:transparent;
+    opacity: .75;
 }
 
 body {
